@@ -11,11 +11,13 @@ import java.util.HashMap;
  *
  * @author daniel
  */
-public class RepositorioProdutoLoja {
-    HashMap lista;
+public class RepositorioProdutoLoja extends RepositorioProduto {
+    HashMap listaLoja;
 
-    public RepositorioProdutoLoja(double preco, boolean disponibilidade, DadosProdutoLoja produto) {
-    }
+    public RepositorioProdutoLoja(Loja loja, ProdutoLoja dados) {
+        listaLoja.put(loja, dados);
+    };
     
+
     
 }

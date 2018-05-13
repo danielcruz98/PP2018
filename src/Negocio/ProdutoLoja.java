@@ -5,35 +5,23 @@
  */
 package Negocio;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author daniel
  */
 public class ProdutoLoja extends RepositorioProduto{
-    private Produto produto;
+    
     private double preco;
     private boolean disponibilidade;
-    private ArrayList<Produto> listaProduto;
+    private Produto produto;
+
     
-    public ProdutoLoja(Produto produto, double preco, boolean disponibilidade) {
-        this.produto = produto;
+    public ProdutoLoja(double preco, boolean disponibilidade,Produto produto) {
+        
         this.preco = preco;
         this.disponibilidade = disponibilidade;
-        listaProduto = new ArrayList<Produto>();
-    }
-    
-    public void associarProdutoLoja(Produto produto){
-        
-    }
-    
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
         this.produto = produto;
+
     }
 
     public double getPreco() {
@@ -50,6 +38,14 @@ public class ProdutoLoja extends RepositorioProduto{
 
     public void setDisponibilidade(boolean disponibilidade) {
         this.disponibilidade = disponibilidade;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
     
     

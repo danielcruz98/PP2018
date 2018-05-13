@@ -9,6 +9,11 @@ package Negocio;
  *
  * @author daniel
  */
-public class Administrador {
+public class Administrador extends Utilizador {
     
+    public Administrador(){}
+    
+    public Administrador(String username, String password, String nome){
+        super(username, password, nome);
+    }
 }
