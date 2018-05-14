@@ -3,10 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Negocio.Utilizadores;
-
-import Negocio.Produtos.RepositorioProdutoLoja;
-
+package Negocio;
 
 /**
  *
@@ -16,7 +13,6 @@ public class Loja extends Utilizador {
     private boolean subscricao;
     private int clicks;
     private int clicksUsados;
-    private RepositorioProdutoLoja repositorio;
 
     public Loja() {
     }
@@ -45,10 +41,6 @@ public class Loja extends Utilizador {
     public int getClicks() {
         return clicks;
     }
-    
-    public void addClickUsados() {
-         clicksUsados++;
-    }
 
     public void setClicks(int clicks) {
         this.clicks = clicks;
@@ -56,10 +48,6 @@ public class Loja extends Utilizador {
 
     public int getClicksUsados() {
         return clicksUsados;
-    }
-    
-    public int getClicksRestantes() {
-        return (clicks -clicksUsados);
     }
 
     public void setClicksUsados(int clicksUsados) {

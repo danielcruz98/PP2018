@@ -5,10 +5,6 @@
  */
 package Negocio;
 
-import Negocio.Produtos.ProdutoLoja;
-import Negocio.Produtos.Produto;
-import Negocio.Utilizadores.Loja;
-
 /**
  *
  * @author daniel
@@ -28,13 +24,13 @@ public class Main {
 //        System.out.println(r.obterProduto("1"));
 
         Produto p1 = new Produto("Telemovel", "huawei", "dadsadasdada");
-  //      RepositorioProduto r = new RepositorioProduto();
-//        ProdutoLoja ol = new ProdutoLoja(12,true,p1);
+        RepositorioProduto r = new RepositorioProduto();
+        ProdutoLoja ol = new ProdutoLoja(12,true,p1);
         Loja l = new Loja();
-   //     r.registarProduto("ola", p1);
+        r.registarProduto("ola", p1);
         
-     //   RepositorioProdutoLoja lo = new RepositorioProdutoLoja(l,ol);
-   //     System.out.println(lo.obterProduto("ola"));
+        RepositorioProdutoLoja lo = new RepositorioProdutoLoja(l,ol);
+        System.out.println(lo.obterProduto("ola"));
         
     
         

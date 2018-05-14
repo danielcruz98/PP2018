@@ -5,9 +5,9 @@
  */
 package Negocio;
 
-import Negocio.Utilizadores.ListaUsers;
-import Negocio.Utilizadores.Administrador;
-import Negocio.Utilizadores.Utilizador;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
