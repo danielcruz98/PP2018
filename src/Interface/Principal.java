@@ -34,6 +34,11 @@ public class Principal extends javax.swing.JDialog {
         listagem.setVisible(true);        
     }
     
+    private void listarProdutos() {
+        janelaListaProdutos listagem = new janelaListaProdutos(sistema);
+        listagem.setVisible(true);        
+    }
+    
     private void alterarPassword() {        
         DadosUsers psw = new DadosUsers(sistema, sistema.getUtilizadorLigado(), null);
         psw.setVisible(true);
@@ -188,6 +193,7 @@ public class Principal extends javax.swing.JDialog {
 
     private void listaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaProdutoActionPerformed
         // TODO add your handling code here:
+        listarProdutos();
     }//GEN-LAST:event_listaProdutoActionPerformed
 
     private void listaUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaUsersActionPerformed

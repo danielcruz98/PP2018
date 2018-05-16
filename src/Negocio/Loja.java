@@ -10,24 +10,27 @@ package Negocio;
  * @author daniel
  */
 public class Loja extends Utilizador {
+
     private boolean subscricao;
     private int clicks;
     private int clicksUsados;
+    private RepositorioProdutoLoja repositorio;
 
     public Loja() {
     }
 
-    public Loja(boolean subscricao, int clicks, int clicksUsados) {
-        this.subscricao = subscricao;
-        this.clicks = clicks;
-        this.clicksUsados = clicksUsados;
-    }
-
-    public Loja(boolean subscricao, int clicks, int clicksUsados, String username, String password, String nome) {
+    public Loja(String username, String password, String nome, boolean subscricao, int clicks) {
         super(username, password, nome);
         this.subscricao = subscricao;
         this.clicks = clicks;
-        this.clicksUsados = clicksUsados;
+    }
+
+    public int getClicksRestantes() {
+        return (clicks - clicksUsados);
+    }
+
+    public void addClickUsados() {
+        clicksUsados++;
     }
 
     public boolean getSubscricao() {
@@ -54,7 +57,4 @@ public class Loja extends Utilizador {
         this.clicksUsados = clicksUsados;
     }
 
-    
-    
-    
 }

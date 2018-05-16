@@ -9,19 +9,21 @@ package Negocio;
  *
  * @author daniel
  */
-public class ProdutoLoja extends RepositorioProduto{
-    
+public class ProdutoLoja extends RepositorioProduto {
+
+    RepositorioProduto repositorioProduto = RepositorioProduto.INSTANCE;
     private double preco;
     private boolean disponibilidade;
     private Produto produto;
+    private Loja loja;
 
+    public ProdutoLoja(){}
     
-    public ProdutoLoja(double preco, boolean disponibilidade,Produto produto) {
-        
+    public ProdutoLoja(double preco, boolean disponibilidade, Produto produto, Loja loja) {
         this.preco = preco;
         this.disponibilidade = disponibilidade;
         this.produto = produto;
-
+        this.loja = loja;
     }
 
     public double getPreco() {
@@ -47,6 +49,14 @@ public class ProdutoLoja extends RepositorioProduto{
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
+
+    public Loja getLoja() {
+        return loja;
+    }
+
+    public void setLoja(Loja loja) {
+        this.loja = loja;
+    }
     
-    
+
 }

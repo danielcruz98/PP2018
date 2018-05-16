@@ -6,41 +6,50 @@
 package Interface;
 
 import Negocio.Sistema;
-import Negocio.ListaUsers;
-import Negocio.Utilizador;
+import Negocio.Produto;
+import Negocio.RepositorioProduto;
+import Negocio.RepositorioProdutoLoja;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author daniel
  */
-public class janelaListaUsers extends javax.swing.JDialog {
+public class janelaListaProdutos extends javax.swing.JDialog {
 
     private Sistema sistema;
-    
+
     private AbstractTableModel modeloTabela;
-    
-    public janelaListaUsers(Sistema sistema) {
+
+    /**
+     * Creates new form janelaListaProdutos
+     */
+    public janelaListaProdutos(Sistema sistema) {
+
         initComponents();
+
         this.sistema = sistema;
+
         this.modeloTabela = criarModeloTabela();
-        tabUtilizadores.setModel(modeloTabela);
+        produtosTabela.setModel(modeloTabela);
+
     }
-    
-    private AbstractTableModel criarModeloTabela() {   
-        String[] nomeColunas = {"Username", "Nome", "Password"};
-        
-        return new AbstractTableModel() {     
+
+    private AbstractTableModel criarModeloTabela() {
+        String[] nomeColunas = {"Codigo Barras", "Nome", "Marca", "Referencia"};
+
+        return new AbstractTableModel() {
             @Override
             public String getColumnName(int column) {
                 return nomeColunas[column];
             }
-           
+
             @Override
             public int getRowCount() {
                 //Retorna o número de linhas que a tabela deverá ter
-                return sistema.getListaUtilizadores().size();
+                return sistema.getListaProduto().size();
             }
 
             @Override
@@ -51,52 +60,58 @@ public class janelaListaUsers extends javax.swing.JDialog {
 
             @Override
             public Object getValueAt(int rowIndex, int columnIndex) {
-            /*
+                /*
                 Este método é invocado quando se pretende "popular" cada uma das células da tabela
                 Se a tabela tem 3 linhas e 2 colunas existem 6 células (3*2), logo o método será invocado 6 vezes
                     rowIndex representa a linha da célula (0 a rowCount -1)
                     columnIndex representa a coluna da célula (0 a ColumnCount -1)
-            */
+                 */
                 switch (columnIndex) {
-                    case 0: 
-                        return sistema.getListaUtilizadores().todos().get(rowIndex).getUsername();
+                    case 0:
+                        return sistema.getListaProduto().todos().get(rowIndex).getCodigoBarras();
                     case 1:
-                        return sistema.getListaUtilizadores().todos().get(rowIndex).getNome();
-                        
-                        case 2:
-                        return sistema.getListaUtilizadores().todos().get(rowIndex).getPassword();
+                        return sistema.getListaProduto().todos().get(rowIndex).getNomeProduto();
+
+                    case 2:
+                        return sistema.getListaProduto().todos().get(rowIndex).getMarca();
+
+                    case 3:
+                        return sistema.getListaProduto().todos().get(rowIndex).getReferencia();
+
                     default:
                         return "";
-                }                              
-            }            
+                }
+            }
         };
     }
-    
-    public void atualizar() {    
+
+    public void atualizar() {
         //Informa o modelo que foram efetuadas alteracoes, o modelo informa a tabela e os dados são redesenhados
         modeloTabela.fireTableDataChanged();
-    }   
-    
+    }
+
     private void adicionar() {
-        DadosUsers janela = new DadosUsers(sistema, null, this);   
+        DadosProdutos janela = new DadosProdutos(sistema, null, this);
         janela.setVisible(true);
     }
-    
+
     private void editar() {
-        int rowIndex = tabUtilizadores.getSelectedRow();
+        int rowIndex = produtosTabela.getSelectedRow();
         //Se nenhum registo selecionado, nao é possivel editar
-        if (rowIndex == -1) return;
-        
-        String username = (String) modeloTabela.getValueAt(rowIndex, 0);
-        
+        if (rowIndex == -1) {
+            return;
+        }
+
+        String codigoBarras = (String) modeloTabela.getValueAt(rowIndex, 0);
+
         try {
-            Utilizador utilizador = sistema.getListaUtilizadores().getUtilizador(username);
-            DadosUsers janela = new DadosUsers(sistema, utilizador, this);
+            Produto produto = sistema.getListaProduto().getProduto(codigoBarras);
+            DadosProdutos janela = new DadosProdutos(sistema, produto, this);
             janela.setVisible(true);
-        } catch (ListaUsers.UtilizadorNaoExistenteException ex) {
+        } catch (RepositorioProduto.ProdutoNaoExistenteException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-        
+
     }
 
     /**
@@ -109,13 +124,13 @@ public class janelaListaUsers extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabUtilizadores = new javax.swing.JTable();
+        produtosTabela = new javax.swing.JTable();
         adicionar = new javax.swing.JButton();
         editar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        tabUtilizadores.setModel(new javax.swing.table.DefaultTableModel(
+        produtosTabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -126,7 +141,7 @@ public class janelaListaUsers extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tabUtilizadores);
+        jScrollPane1.setViewportView(produtosTabela);
 
         adicionar.setText("Adicionar");
         adicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -161,13 +176,12 @@ public class janelaListaUsers extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+                .addGap(0, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(adicionar)
                     .addComponent(editar))
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -186,12 +200,11 @@ public class janelaListaUsers extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adicionar;
     private javax.swing.JButton editar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabUtilizadores;
+    private javax.swing.JTable produtosTabela;
     // End of variables declaration//GEN-END:variables
 }

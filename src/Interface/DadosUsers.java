@@ -96,7 +96,7 @@ public class DadosUsers extends javax.swing.JDialog {
         
         if (registoNovo()) {      
             username.setEditable(true);                                 
-            Administrador novo = new Administrador();
+            Utilizador novo = new Administrador();
             novo.setNome(nome.getText());
             novo.setUsername(username.getText());
             novo.setPassword(pass);
@@ -110,8 +110,8 @@ public class DadosUsers extends javax.swing.JDialog {
                   
         }else{
             username.setEditable(false);
-            utilizador.setNome(nome.getText());        
-            utilizador.setPassword(pass);       
+            utilizador.setNome(nome.getText());
+            utilizador.setPassword(pass);     
         }                       
         
         //Se tiver feito uma referencia a listagem, atualiza a listagem

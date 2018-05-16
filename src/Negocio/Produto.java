@@ -11,14 +11,27 @@ package Negocio;
  * @author daniel
  */
 public class Produto {
-    private String nomeProduto, marca, referencia;
+    private String codigoBarras,nomeProduto, marca, referencia;
         
-    public Produto(String nomeProduto, String marca, String referencia) {
+    public Produto(){}
+    
+    public Produto(String codigoBarras, String nomeProduto, String marca, String referencia) {
+        
+        this.codigoBarras = codigoBarras;
         this.nomeProduto = nomeProduto;
         this.marca = marca;
         this.referencia = referencia;
         
     }
+
+    public String getCodigoBarras() {
+        return codigoBarras;
+    }
+
+    public void setCodigoBarras(String codigoBarras) {
+        this.codigoBarras = codigoBarras;
+    }
+    
     
     public String getNomeProduto() {
         return nomeProduto;
