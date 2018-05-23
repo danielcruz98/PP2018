@@ -75,17 +75,11 @@ public class ListaUsers implements Serializable{
         }
     }
     
-    
-    
-    
-    
-    
-     
-
-    public ArrayList<Utilizador> todos() {
+     public ArrayList<Utilizador> todos() {
         return new ArrayList<>(lista.values());
     }
-    
+     
+     
     
 }
 
