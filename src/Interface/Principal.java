@@ -7,6 +7,8 @@ package Interface;
 
 import Negocio.Sistema;
 import Negocio.Administrador;
+import bd.Serializacao;
+import javax.swing.JOptionPane;
 /**
  *
  * @author daniel
@@ -14,20 +16,25 @@ import Negocio.Administrador;
 public class Principal extends javax.swing.JDialog {
 
     private Sistema sistema;
+    private Serializacao bd;
     /**
      * Creates new form Principal
      */
-    public Principal(Sistema sistema) {
+    public Principal(Sistema sistema, Serializacao bd) {
         
         initComponents();
          
         this.sistema = sistema;
+        this.bd=bd;
         
-        novoAdministrador.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
         novaLoja.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
+        listaLojas.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
         listaUsers.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
     }
 
+    private void guardarAlteracoes() {
+        bd.guardar(sistema);
+    }
     
     private void listarUsers() {
         janelaListaUsers listagem = new janelaListaUsers(sistema);
@@ -43,6 +50,12 @@ public class Principal extends javax.swing.JDialog {
         DadosUsers psw = new DadosUsers(sistema, sistema.getUtilizadorLigado(), null);
         psw.setVisible(true);
     }
+    
+    private void listarLojas() {
+        janelaListaLojas listagem = new janelaListaLojas(sistema);
+        listagem.setVisible(true);        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,12 +69,13 @@ public class Principal extends javax.swing.JDialog {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         alteraDados = new javax.swing.JMenu();
-        novoAdministrador = new javax.swing.JMenuItem();
+        guardar = new javax.swing.JMenuItem();
         listaUsers = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         Sair = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         novaLoja = new javax.swing.JMenuItem();
+        listaLojas = new javax.swing.JMenuItem();
         produtoLoja = new javax.swing.JMenuItem();
         Menu4 = new javax.swing.JMenu();
         novoProduto = new javax.swing.JMenuItem();
@@ -75,13 +89,13 @@ public class Principal extends javax.swing.JDialog {
 
         alteraDados.setText("Geral");
 
-        novoAdministrador.setText("Novo Administrador");
-        novoAdministrador.addActionListener(new java.awt.event.ActionListener() {
+        guardar.setText("Guardar");
+        guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                novoAdministradorActionPerformed(evt);
+                guardarActionPerformed(evt);
             }
         });
-        alteraDados.add(novoAdministrador);
+        alteraDados.add(guardar);
 
         listaUsers.setText("Lista Users");
         listaUsers.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +132,14 @@ public class Principal extends javax.swing.JDialog {
             }
         });
         jMenu4.add(novaLoja);
+
+        listaLojas.setText("Lista Lojas");
+        listaLojas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaLojasActionPerformed(evt);
+            }
+        });
+        jMenu4.add(listaLojas);
 
         produtoLoja.setText("Produto Loja");
         produtoLoja.addActionListener(new java.awt.event.ActionListener() {
@@ -165,9 +187,11 @@ public class Principal extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void novoAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoAdministradorActionPerformed
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_novoAdministradorActionPerformed
+        guardarAlteracoes();
+        JOptionPane.showMessageDialog(this, "Alterações guardadas.");
+    }//GEN-LAST:event_guardarActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
@@ -201,6 +225,12 @@ public class Principal extends javax.swing.JDialog {
         listarUsers();
     }//GEN-LAST:event_listaUsersActionPerformed
 
+    private void listaLojasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaLojasActionPerformed
+        // TODO add your handling code here:
+        listarLojas();
+        
+    }//GEN-LAST:event_listaLojasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -210,15 +240,16 @@ public class Principal extends javax.swing.JDialog {
     private javax.swing.JMenu Menu4;
     private javax.swing.JMenuItem Sair;
     private javax.swing.JMenu alteraDados;
+    private javax.swing.JMenuItem guardar;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem listaLojas;
     private javax.swing.JMenuItem listaProduto;
     private javax.swing.JMenuItem listaUsers;
     private javax.swing.JMenuItem novaLoja;
-    private javax.swing.JMenuItem novoAdministrador;
     private javax.swing.JMenuItem novoProduto;
     private javax.swing.JMenuItem produtoLoja;
     // End of variables declaration//GEN-END:variables

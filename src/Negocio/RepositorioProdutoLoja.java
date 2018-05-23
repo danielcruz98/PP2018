@@ -5,13 +5,14 @@
 package Negocio;
 
 import Negocio.Loja;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author daniel
  */
-public class RepositorioProdutoLoja {
+public class RepositorioProdutoLoja implements Serializable{
 
     //pq???
     public RepositorioProdutoLoja() {

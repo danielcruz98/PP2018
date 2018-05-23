@@ -48,24 +48,17 @@ public class janelaListaProdutos extends javax.swing.JDialog {
 
             @Override
             public int getRowCount() {
-                //Retorna o número de linhas que a tabela deverá ter
                 return sistema.getListaProduto().size();
             }
 
             @Override
             public int getColumnCount() {
-                //Retorna o número de colunas que a tabela deverá ter
                 return nomeColunas.length;
             }
 
             @Override
             public Object getValueAt(int rowIndex, int columnIndex) {
-                /*
-                Este método é invocado quando se pretende "popular" cada uma das células da tabela
-                Se a tabela tem 3 linhas e 2 colunas existem 6 células (3*2), logo o método será invocado 6 vezes
-                    rowIndex representa a linha da célula (0 a rowCount -1)
-                    columnIndex representa a coluna da célula (0 a ColumnCount -1)
-                 */
+               
                 switch (columnIndex) {
                     case 0:
                         return sistema.getListaProduto().todos().get(rowIndex).getCodigoBarras();
@@ -86,7 +79,6 @@ public class janelaListaProdutos extends javax.swing.JDialog {
     }
 
     public void atualizar() {
-        //Informa o modelo que foram efetuadas alteracoes, o modelo informa a tabela e os dados são redesenhados
         modeloTabela.fireTableDataChanged();
     }
 
@@ -97,7 +89,6 @@ public class janelaListaProdutos extends javax.swing.JDialog {
 
     private void editar() {
         int rowIndex = produtosTabela.getSelectedRow();
-        //Se nenhum registo selecionado, nao é possivel editar
         if (rowIndex == -1) {
             return;
         }

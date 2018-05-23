@@ -7,6 +7,7 @@ package Interface;
 
 import Negocio.Sistema;
 import Negocio.ListaUsers;
+import Negocio.Loja;
 import Negocio.Utilizador;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
@@ -26,8 +27,11 @@ public class janelaListaUsers extends javax.swing.JDialog {
         this.sistema = sistema;
         this.modeloTabela = criarModeloTabela();
         tabUtilizadores.setModel(modeloTabela);
+        
     }
     
+    
+  
     private AbstractTableModel criarModeloTabela() {   
         String[] nomeColunas = {"Username", "Nome", "Password"};
         
@@ -39,24 +43,17 @@ public class janelaListaUsers extends javax.swing.JDialog {
            
             @Override
             public int getRowCount() {
-                //Retorna o número de linhas que a tabela deverá ter
                 return sistema.getListaUtilizadores().size();
             }
 
             @Override
             public int getColumnCount() {
-                //Retorna o número de colunas que a tabela deverá ter
                 return nomeColunas.length;
             }
 
             @Override
             public Object getValueAt(int rowIndex, int columnIndex) {
-            /*
-                Este método é invocado quando se pretende "popular" cada uma das células da tabela
-                Se a tabela tem 3 linhas e 2 colunas existem 6 células (3*2), logo o método será invocado 6 vezes
-                    rowIndex representa a linha da célula (0 a rowCount -1)
-                    columnIndex representa a coluna da célula (0 a ColumnCount -1)
-            */
+          
                 switch (columnIndex) {
                     case 0: 
                         return sistema.getListaUtilizadores().todos().get(rowIndex).getUsername();
@@ -73,7 +70,6 @@ public class janelaListaUsers extends javax.swing.JDialog {
     }
     
     public void atualizar() {    
-        //Informa o modelo que foram efetuadas alteracoes, o modelo informa a tabela e os dados são redesenhados
         modeloTabela.fireTableDataChanged();
     }   
     
@@ -84,7 +80,6 @@ public class janelaListaUsers extends javax.swing.JDialog {
     
     private void editar() {
         int rowIndex = tabUtilizadores.getSelectedRow();
-        //Se nenhum registo selecionado, nao é possivel editar
         if (rowIndex == -1) return;
         
         String username = (String) modeloTabela.getValueAt(rowIndex, 0);
@@ -148,20 +143,18 @@ public class janelaListaUsers extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 1, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(adicionar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(editar)))
-                .addContainerGap())
+                        .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(adicionar)
                     .addComponent(editar))

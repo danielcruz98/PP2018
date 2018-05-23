@@ -5,11 +5,13 @@
  */
 package Negocio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author daniel
  */
-public class ProdutoLoja extends RepositorioProduto {
+public class ProdutoLoja extends RepositorioProduto implements Serializable{
 
     RepositorioProduto repositorioProduto = RepositorioProduto.INSTANCE;
     private double preco;

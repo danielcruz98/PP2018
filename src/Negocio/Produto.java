@@ -5,12 +5,14 @@
  */
 package Negocio;
 
+import java.io.Serializable;
+
 
 /**
  *
  * @author daniel
  */
-public class Produto {
+public class Produto implements Serializable{
     private String codigoBarras,nomeProduto, marca, referencia;
         
     public Produto(){}

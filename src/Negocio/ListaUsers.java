@@ -5,18 +5,22 @@
  */
 package Negocio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
  *
  * @author daniel
  */
-public class ListaUsers {
+public class ListaUsers implements Serializable{
 
     private TreeMap<String, Utilizador> lista;
+    private TreeMap<String, Loja> listaLoja;
 
-    public class UtilizadorNaoExistenteException extends Exception {
+    public class UtilizadorNaoExistenteException extends Exception  {
 
         public UtilizadorNaoExistenteException() {
         }
@@ -38,6 +42,7 @@ public class ListaUsers {
 
     public ListaUsers() {
         lista = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        listaLoja = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     }
 
     public void adicionar(Utilizador utilizador) throws UtilizadorDuplicadoException {
@@ -52,6 +57,7 @@ public class ListaUsers {
         }
 
     }
+
 
     public boolean existe(String username) {
         return lista.containsKey(username);
@@ -68,8 +74,21 @@ public class ListaUsers {
             throw new UtilizadorNaoExistenteException("O utilizador '%s' já existe na lista");
         }
     }
+    
+    
+    
+    
+    
+    
+     
 
     public ArrayList<Utilizador> todos() {
         return new ArrayList<>(lista.values());
     }
+    
+    
 }
+
+
+
+

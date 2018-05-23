@@ -32,23 +32,20 @@ public class DadosProdutos extends javax.swing.JDialog {
 
         this.sistema = sistema;
 
-        //Guarda a referencia ao utilizador
         this.produto = produto;
 
         //Guarda a referencia a listagem
         this.lista = lista;
 
-        //No caso de um registo novo
+       
         if (registoNovo()) {
-            //Altera o titulo da janela
-            //Como construimos sempre uma nova janela, as caixas de texto já estão limpas
+           
             setTitle("Criação de novo Produto");
             nome.requestFocus();
         } else {
-            //No caso de um registo existente
-            //Altera o titulo da janela
+            
             setTitle("Alteração de dados de Produto");
-            //Preenche as caixas de texto com os dados do utilizador
+            
             nome.setText(produto.getNomeProduto());
             marca.setText(produto.getMarca());
             referencia.setText(produto.getReferencia());
@@ -57,7 +54,7 @@ public class DadosProdutos extends javax.swing.JDialog {
     }
 
     private boolean registoNovo() {
-        //Se utililizador == null consideramos que é um novo registo
+        
         return produto == null;
     }
 
@@ -112,7 +109,7 @@ public class DadosProdutos extends javax.swing.JDialog {
 
         }
 
-        //Se tiver feito uma referencia a listagem, atualiza a listagem
+      
         if (lista != null) {
             lista.atualizar();
         }

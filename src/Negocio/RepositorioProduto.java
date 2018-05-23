@@ -5,6 +5,7 @@
  */
 package Negocio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,7 +13,7 @@ import java.util.HashMap;
  *
  * @author daniel
  */
-public class RepositorioProduto {
+public class RepositorioProduto implements Serializable{
     public static final RepositorioProduto INSTANCE = new RepositorioProduto();
     HashMap lista;
 

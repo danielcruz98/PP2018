@@ -5,11 +5,13 @@
  */
 package Negocio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author daniel
  */
-public class Loja extends Utilizador {
+public class Loja extends Utilizador implements Serializable{
 
     private boolean subscricao;
     private int clicks;
@@ -25,6 +27,26 @@ public class Loja extends Utilizador {
         this.clicks = clicks;
     }
 
+    public String getUsername() {
+        return super.getUsername();
+    }
+
+    
+
+    public String getPassword() {
+        return super.getPassword();
+    }
+
+    
+
+    public String getNome() {
+        return super.getNome();
+    }
+
+    
+    
+    
+    
     public int getClicksRestantes() {
         return (clicks - clicksUsados);
     }

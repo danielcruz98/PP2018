@@ -5,11 +5,13 @@
  */
 package Negocio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author daniel
  */
-public class Administrador extends Utilizador {
+public class Administrador extends Utilizador implements Serializable{
     
     public Administrador(){}
     
