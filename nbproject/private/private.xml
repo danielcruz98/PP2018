@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/daniel/NetBeansProjects/PPI/src/Interface/janelaListaLojas.java</file>
-            <file>file:/home/daniel/NetBeansProjects/PPI/src/Interface/DadosLojas.java</file>
-            <file>file:/home/daniel/NetBeansProjects/PPI/src/Interface/janelaClicks.java</file>
-            <file>file:/home/daniel/NetBeansProjects/PPI/src/Interface/Principal.java</file>
+            <file>file:/home/daniel/NetBeansProjects/PPI/src/Interface/Correr.java</file>
+            <file>file:/home/daniel/NetBeansProjects/PPI/src/Negocio/RepositorioProdutoLoja.java</file>
+            <file>file:/home/daniel/NetBeansProjects/PPI/src/Negocio/ListaUsers.java</file>
+            <file>file:/home/daniel/NetBeansProjects/PPI/src/Interface/DadosUsers.java</file>
+            <file>file:/home/daniel/NetBeansProjects/PPI/src/Interface/janelaListaProdutosLojas.java</file>
         </group>
     </open-files>
 </project-private>

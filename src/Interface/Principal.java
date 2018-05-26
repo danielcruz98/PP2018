@@ -30,6 +30,7 @@ public class Principal extends javax.swing.JDialog {
         novaLoja.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
         listaLojas.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
         listaUsers.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
+        repositorio.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
     }
 
     private void guardarAlteracoes() {
@@ -56,6 +57,11 @@ public class Principal extends javax.swing.JDialog {
         listagem.setVisible(true);        
     }
     
+    private void listarRepositorio() {
+        janelaListaProdutosLojas listagem = new janelaListaProdutosLojas(sistema);
+        listagem.setVisible(true);        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,6 +73,10 @@ public class Principal extends javax.swing.JDialog {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         alteraDados = new javax.swing.JMenu();
         guardar = new javax.swing.JMenuItem();
@@ -80,10 +90,20 @@ public class Principal extends javax.swing.JDialog {
         Menu4 = new javax.swing.JMenu();
         novoProduto = new javax.swing.JMenuItem();
         listaProduto = new javax.swing.JMenuItem();
+        repositorio = new javax.swing.JMenu();
+        associar = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
         jMenuItem6.setText("jMenuItem6");
+
+        jMenu1.setText("jMenu1");
+
+        jMenu2.setText("File");
+        jMenuBar2.add(jMenu2);
+
+        jMenu3.setText("Edit");
+        jMenuBar2.add(jMenu3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -171,6 +191,18 @@ public class Principal extends javax.swing.JDialog {
 
         jMenuBar1.add(Menu4);
 
+        repositorio.setText("Repositorio");
+
+        associar.setText("Associar");
+        associar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                associarActionPerformed(evt);
+            }
+        });
+        repositorio.add(associar);
+
+        jMenuBar1.add(repositorio);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -231,6 +263,11 @@ public class Principal extends javax.swing.JDialog {
         
     }//GEN-LAST:event_listaLojasActionPerformed
 
+    private void associarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_associarActionPerformed
+        // TODO add your handling code here:
+        listarRepositorio();
+    }//GEN-LAST:event_associarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -240,9 +277,14 @@ public class Principal extends javax.swing.JDialog {
     private javax.swing.JMenu Menu4;
     private javax.swing.JMenuItem Sair;
     private javax.swing.JMenu alteraDados;
+    private javax.swing.JMenuItem associar;
     private javax.swing.JMenuItem guardar;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem6;
@@ -252,5 +294,6 @@ public class Principal extends javax.swing.JDialog {
     private javax.swing.JMenuItem novaLoja;
     private javax.swing.JMenuItem novoProduto;
     private javax.swing.JMenuItem produtoLoja;
+    private javax.swing.JMenu repositorio;
     // End of variables declaration//GEN-END:variables
 }

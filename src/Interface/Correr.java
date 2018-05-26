@@ -21,7 +21,7 @@ public class Correr {
      public static void main(String[] args) throws ListaUsers.UtilizadorDuplicadoException {
         
         Sistema sistema;        
-        String ficheiroDados = String.format("%s\\utilizadr.data", System.getProperty("user.dir"));
+        String ficheiroDados = String.format("%s\\utilizador.data", System.getProperty("user.dir"));
         System.out.println(String.format("Ficheiro de dados: %s.", ficheiroDados));
         Serializacao bd = new Serializacao(ficheiroDados);        
         

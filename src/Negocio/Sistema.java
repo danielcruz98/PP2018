@@ -20,11 +20,13 @@ public class Sistema implements Serializable{
     private final RepositorioProduto rep;
     private Utilizador utilizadorLigado;
     private Produto produto;
+    private RepositorioProdutoLoja repProdutoLoja;
 
     public Sistema() {
         utilizadores = new ListaUsers();
         rep = new RepositorioProduto();
         produto = new Produto("dada", "dada", "dada", "dada");
+        repProdutoLoja = new RepositorioProdutoLoja();
     }
 
     public ListaUsers getListaUtilizadores() {
@@ -33,6 +35,10 @@ public class Sistema implements Serializable{
 
     public RepositorioProduto getListaProduto() {
         return rep;
+    }
+    
+    public RepositorioProdutoLoja getListaProdutoLoja() {
+        return repProdutoLoja;
     }
 
     public boolean autenticarUtilizador(String username, String password) throws ListaUsers.UtilizadorNaoExistenteException {

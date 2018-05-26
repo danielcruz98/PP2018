@@ -86,10 +86,11 @@ public class DadosLojas extends javax.swing.JDialog {
         }
         
         if (subscricao.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Introduza p.f. o seu nome!");
+            JOptionPane.showMessageDialog(this, "Introduza p.f. o estado de subscricao");
             subscricao.requestFocus();
             return;
         }
+        
         
         if (clicks.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. o seu nome!");

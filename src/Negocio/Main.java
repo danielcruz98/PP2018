@@ -76,3 +76,16 @@
 //            
 //}
 //
+// Produto p = new Produto("ola","ola","ola","ola");
+//          
+//          Loja l = new Loja("daniel","daniel","daniel",true,2);
+//          
+//          ProdutoLoja r = new ProdutoLoja(2,true,p,l);
+//          
+//          RepositorioProdutoLoja u = new RepositorioProdutoLoja();
+//        
+//        u.addProdutoLoja(r);
+//        
+//        System.out.println(r.getLoja().getNome());
+//        System.out.println(r.getProduto().getNomeProduto());
+//

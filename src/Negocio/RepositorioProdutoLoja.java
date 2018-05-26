@@ -12,69 +12,90 @@ import java.util.ArrayList;
  *
  * @author daniel
  */
-public class RepositorioProdutoLoja implements Serializable{
+public class RepositorioProdutoLoja implements Serializable {
 
-    //pq???
-    public RepositorioProdutoLoja() {
-    }
-
-    private ArrayList<ProdutoLoja> repositorio = new ArrayList();
+    private ArrayList<ProdutoLoja> repositorio;
     private static final RepositorioProdutoLoja INSTANCE = new RepositorioProdutoLoja();
 
+    public RepositorioProdutoLoja() {
+        repositorio = new ArrayList();
+    }
+
     public void addProdutoLoja(ProdutoLoja dados) throws ProdutoJaExisteNaLojaException {
-        verificarExistencia(dados);
+        for (ProdutoLoja produto : repositorio){
+            if (produto.getProduto() == dados.getProduto() && produto.getLoja() == dados.getLoja()) {
+            throw new ProdutoJaExisteNaLojaException("O Produto já existe nesta loja");
+            
+            }
+        }
         repositorio.add(dados);
     }
 
+    public boolean verificarExistencia(ProdutoLoja produto) throws ProdutoJaExisteNaLojaException {
+        for (ProdutoLoja produtoloja : repositorio) {
+            if (produtoloja.getProduto() == produto.getProduto() && produtoloja.getLoja() == produto.getLoja()) {
+
+                throw new ProdutoJaExisteNaLojaException("O Produto já existe nesta loja");
+
+            }
+        }
+        return true;
+    }
     public void removeProdutoLoja(ProdutoLoja dados) {
         repositorio.remove(dados);
     }
 
+    public ArrayList <ProdutoLoja> Lista(){
+        return new ArrayList<>(repositorio);
+    }
+    
+    public int size(){
+        return repositorio.size();
+    }
+    
     public ArrayList listarProdutosLoja(Loja loja) {
         ArrayList<ProdutoLoja> lista = new ArrayList();
         for (ProdutoLoja produtoloja : repositorio) {
             if (produtoloja.getLoja() == loja) {
                 lista.add(produtoloja);
             }
-            lista.add(produtoloja);
+            
         }
         return lista;
     }
+
     public ArrayList listarInstanciasProdutos(Produto produto) {
         ArrayList<ProdutoLoja> lista = new ArrayList();
         for (ProdutoLoja produtoloja : repositorio) {
             if (produtoloja.getProduto() == produto) {
                 lista.add(produtoloja);
             }
-            lista.add(produtoloja);
+            
         }
         return lista;
     }
+
     public ArrayList listarInstanciasProdutosEmLojasComCliquesDisponiveis(Produto produto) {
         ArrayList<ProdutoLoja> lista = new ArrayList();
         for (ProdutoLoja produtoloja : repositorio) {
-            if (produtoloja.getProduto() == produto && produtoloja.getLoja().getClicksRestantes()>0) {
+            if (produtoloja.getProduto() == produto && produtoloja.getLoja().getClicksRestantes() > 0) {
                 lista.add(produtoloja);
             }
-            lista.add(produtoloja);
+           
         }
         return lista;
     }
+
     
-    public boolean verificarExistencia(ProdutoLoja produto) throws ProdutoJaExisteNaLojaException {
-        for (ProdutoLoja produtoloja : repositorio) {
-            if (produtoloja.getProduto() == produto.getProduto() && produtoloja.getLoja()== produto.getLoja()) {
-                 
-                 throw new ProdutoJaExisteNaLojaException("O Produto já existe nesta loja");
-                 
-            }
-        }
-        return true;
-    };
+
+    
         public class ProdutoJaExisteNaLojaException extends Exception {
-        public ProdutoJaExisteNaLojaException() { }
+
+        public ProdutoJaExisteNaLojaException() {
+        }
+
         public ProdutoJaExisteNaLojaException(String message) {
-           super(message);
-       }        
-   }
+            super(message);
+        }
+    }
 }
