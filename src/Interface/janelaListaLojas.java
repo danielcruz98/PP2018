@@ -5,12 +5,13 @@
  */
 package Interface;
 
-import Negocio.ListaUsers;
-import Negocio.Loja;
+import Negocio.Users.ListaUsers;
+import Negocio.Users.Loja;
 import Negocio.Sistema;
-import Negocio.Utilizador;
+import Negocio.Users.Utilizador;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.AbstractTableModel;
 
 /**
  *
@@ -34,7 +35,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
 
     public void addTabelaLojas() {
         DefaultTableModel model = (DefaultTableModel) tabelaLojas.getModel();
-        Object rowData[] = new Object[5];
+        Object rowData[] = new Object[7];
         for (int i = 0; i < sistema.getListaUtilizadores().size(); i++) {
             if (sistema.getListaUtilizadores().todos().get(i) instanceof Loja) {
 
@@ -44,11 +45,33 @@ public class janelaListaLojas extends javax.swing.JDialog {
                 rowData[2] = u.getNome();
                 rowData[3] = u.getSubscricao();
                 rowData[4] = u.getClicks();
+                rowData[5] = u.getClicksRestantes();
+                rowData[6] = u.getClicksUsados();
                 model.addRow(rowData);
             }
         }
 
     }
+    
+    private void lojaMostrada() {
+        int rowIndex = tabelaLojas.getSelectedRow();
+        if (rowIndex == -1) return;
+        
+        String username = (String) tabelaLojas.getValueAt(rowIndex, 0);
+        
+        try {
+            Loja utilizador = (Loja)sistema.getListaUtilizadores().getUtilizador(username);
+            utilizador.addClickUsados();
+            
+        } catch (ListaUsers.UtilizadorNaoExistenteException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        
+        JOptionPane.showMessageDialog(this, "Loja visitada com sucesso.");
+        
+    }
+    
+    
     private void adicionar() {
         DadosLojas janela = new DadosLojas(sistema, null, this);   
         janela.setVisible(true);
@@ -69,6 +92,8 @@ public class janelaListaLojas extends javax.swing.JDialog {
         }
         
     }
+    
+    
     public void clicks(){
         int i = Integer.parseInt(click.getText());
         
@@ -91,6 +116,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
         adicionar = new javax.swing.JButton();
         click = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        mostra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -99,7 +125,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Username", "Password", "Nome", "Subscricao", "CLicks"
+                "Username", "Password", "Nome", "Subscricao", "CLicks", "ClicksRestantes", "ClicksUsados"
             }
         ));
         jScrollPane1.setViewportView(tabelaLojas);
@@ -125,6 +151,13 @@ public class janelaListaLojas extends javax.swing.JDialog {
             }
         });
 
+        mostra.setText("jButton2");
+        mostra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,18 +165,18 @@ public class janelaListaLojas extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(13, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(adicionar)
                         .addGap(18, 18, 18)
                         .addComponent(click, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(editar)
-                        .addGap(22, 22, 22))))
+                        .addGap(118, 118, 118)
+                        .addComponent(mostra)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                        .addComponent(editar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,8 +186,9 @@ public class janelaListaLojas extends javax.swing.JDialog {
                     .addComponent(editar)
                     .addComponent(adicionar)
                     .addComponent(click, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                    .addComponent(jButton1)
+                    .addComponent(mostra))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -176,6 +210,11 @@ public class janelaListaLojas extends javax.swing.JDialog {
         clicks();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void mostraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostraActionPerformed
+        // TODO add your handling code here:
+        lojaMostrada();
+    }//GEN-LAST:event_mostraActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -186,6 +225,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
     private javax.swing.JButton editar;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton mostra;
     private javax.swing.JTable tabelaLojas;
     // End of variables declaration//GEN-END:variables
 }

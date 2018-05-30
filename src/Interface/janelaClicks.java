@@ -5,7 +5,7 @@
  */
 package Interface;
 
-import Negocio.Loja;
+import Negocio.Users.Loja;
 import Negocio.Sistema;
 import javax.swing.table.DefaultTableModel;
 

@@ -5,10 +5,10 @@
  */
 package Interface;
 
-import Negocio.ListaUsers;
+import Negocio.Users.ListaUsers;
 import Negocio.Sistema;
-import Negocio.Loja;
-import Negocio.Utilizador;
+import Negocio.Users.Loja;
+import Negocio.Users.Utilizador;
 import javax.swing.JOptionPane;
 
 /**
@@ -122,6 +122,7 @@ public class DadosLojas extends javax.swing.JDialog {
             utilizador.setClicks(Integer.parseInt(clicks.getText()));
         }
 
+       
      
         JOptionPane.showMessageDialog(this, "Registo guardado com sucesso.");
         fechar();

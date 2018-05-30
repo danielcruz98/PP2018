@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Negocio;
+package Negocio.Produtos;
 
+import Negocio.Produtos.Produto;
+import Negocio.Produtos.RepositorioProduto;
+import Negocio.Users.Loja;
 import java.io.Serializable;
 
 /**

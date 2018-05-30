@@ -6,9 +6,9 @@
 package Interface;
 
 import Negocio.Sistema;
-import Negocio.ListaUsers;
-import Negocio.Loja;
-import Negocio.Utilizador;
+import Negocio.Users.ListaUsers;
+import Negocio.Users.Loja;
+import Negocio.Users.Utilizador;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;

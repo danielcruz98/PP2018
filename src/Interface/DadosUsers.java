@@ -8,9 +8,9 @@ package Interface;
 import javax.swing.JOptionPane;
 
 import Negocio.Sistema;
-import Negocio.ListaUsers;
-import Negocio.Utilizador;
-import Negocio.Administrador;
+import Negocio.Users.ListaUsers;
+import Negocio.Users.Utilizador;
+import Negocio.Users.Administrador;
 
 /**
  *
@@ -102,7 +102,9 @@ public class DadosUsers extends javax.swing.JDialog {
             utilizador.setPassword(pass);     
         }                       
         
-                      
+            if (lista != null) {
+            lista.atualizar();
+        }          
         
         JOptionPane.showMessageDialog(this, "Registo guardado com sucesso.");
         fechar();

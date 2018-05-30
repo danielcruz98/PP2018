@@ -6,7 +6,7 @@
 package Interface;
 
 import Negocio.Sistema;
-import Negocio.Administrador;
+import Negocio.Users.Administrador;
 import bd.Serializacao;
 import javax.swing.JOptionPane;
 /**
@@ -30,7 +30,7 @@ public class Principal extends javax.swing.JDialog {
         novaLoja.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
         listaLojas.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
         listaUsers.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
-        repositorio.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
+        //repositorio.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
     }
 
     private void guardarAlteracoes() {
@@ -59,6 +59,11 @@ public class Principal extends javax.swing.JDialog {
     
     private void listarRepositorio() {
         janelaListaProdutosLojas listagem = new janelaListaProdutosLojas(sistema);
+        listagem.setVisible(true);        
+    }
+    
+    private void teste() {
+        repositorioProdutoLojas listagem = new repositorioProdutoLojas(sistema);
         listagem.setVisible(true);        
     }
     
@@ -92,6 +97,7 @@ public class Principal extends javax.swing.JDialog {
         listaProduto = new javax.swing.JMenuItem();
         repositorio = new javax.swing.JMenu();
         associar = new javax.swing.JMenuItem();
+        novo = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -201,6 +207,14 @@ public class Principal extends javax.swing.JDialog {
         });
         repositorio.add(associar);
 
+        novo.setText("teste");
+        novo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoActionPerformed(evt);
+            }
+        });
+        repositorio.add(novo);
+
         jMenuBar1.add(repositorio);
 
         setJMenuBar(jMenuBar1);
@@ -268,6 +282,11 @@ public class Principal extends javax.swing.JDialog {
         listarRepositorio();
     }//GEN-LAST:event_associarActionPerformed
 
+    private void novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoActionPerformed
+        // TODO add your handling code here:
+        teste();
+    }//GEN-LAST:event_novoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -292,6 +311,7 @@ public class Principal extends javax.swing.JDialog {
     private javax.swing.JMenuItem listaProduto;
     private javax.swing.JMenuItem listaUsers;
     private javax.swing.JMenuItem novaLoja;
+    private javax.swing.JMenuItem novo;
     private javax.swing.JMenuItem novoProduto;
     private javax.swing.JMenuItem produtoLoja;
     private javax.swing.JMenu repositorio;

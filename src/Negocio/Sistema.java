@@ -5,6 +5,13 @@
  */
 package Negocio;
 
+import Negocio.Produtos.Produto;
+import Negocio.Produtos.RepositorioProdutoLoja;
+import Negocio.Produtos.RepositorioProduto;
+import Negocio.Users.Administrador;
+import Negocio.Users.Loja;
+import Negocio.Users.ListaUsers;
+import Negocio.Users.Utilizador;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;

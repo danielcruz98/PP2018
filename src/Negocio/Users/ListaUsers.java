@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Negocio;
+package Negocio.Users;
 
+import Negocio.Users.Utilizador;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
@@ -15,12 +17,12 @@ import java.util.TreeMap;
  *
  * @author daniel
  */
-public class ListaUsers implements Serializable{
+public class ListaUsers implements Serializable {
 
     private TreeMap<String, Utilizador> lista;
     private TreeMap<String, Loja> listaLoja;
 
-    public class UtilizadorNaoExistenteException extends Exception  {
+    public class UtilizadorNaoExistenteException extends Exception {
 
         public UtilizadorNaoExistenteException() {
         }
@@ -58,7 +60,6 @@ public class ListaUsers implements Serializable{
 
     }
 
-
     public boolean existe(String username) {
         return lista.containsKey(username);
     }
@@ -74,15 +75,9 @@ public class ListaUsers implements Serializable{
             throw new UtilizadorNaoExistenteException("O utilizador '%s' já existe na lista");
         }
     }
-    
-     public ArrayList<Utilizador> todos() {
+
+    public ArrayList<Utilizador> todos() {
         return new ArrayList<>(lista.values());
     }
-     
-     
-    
+
 }
-
-
-
-

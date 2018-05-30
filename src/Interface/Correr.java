@@ -5,12 +5,12 @@
  */
 package Interface;
 
-import Negocio.Administrador;
-import Negocio.ListaUsers;
-import Negocio.Loja;
+import Negocio.Users.Administrador;
+import Negocio.Users.ListaUsers;
+import Negocio.Users.Loja;
 import javax.swing.JOptionPane;
 import Negocio.Sistema;
-import Negocio.Utilizador;
+import Negocio.Users.Utilizador;
 import bd.Serializacao;
 
 /**
@@ -21,7 +21,7 @@ public class Correr {
      public static void main(String[] args) throws ListaUsers.UtilizadorDuplicadoException {
         
         Sistema sistema;        
-        String ficheiroDados = String.format("%s\\utilizador.data", System.getProperty("user.dir"));
+        String ficheiroDados = String.format("%s\\44.data", System.getProperty("user.dir"));
         System.out.println(String.format("Ficheiro de dados: %s.", ficheiroDados));
         Serializacao bd = new Serializacao(ficheiroDados);        
         

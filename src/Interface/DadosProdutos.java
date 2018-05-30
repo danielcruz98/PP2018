@@ -6,8 +6,8 @@
 package Interface;
 
 import Negocio.Sistema;
-import Negocio.Produto;
-import Negocio.RepositorioProduto;
+import Negocio.Produtos.Produto;
+import Negocio.Produtos.RepositorioProduto;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 

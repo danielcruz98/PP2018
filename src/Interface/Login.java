@@ -5,10 +5,10 @@
  */
 package Interface;
 
-import Negocio.ListaUsers;
-import Negocio.Loja;
+import Negocio.Users.ListaUsers;
+import Negocio.Users.Loja;
 import Negocio.Sistema;
-import Negocio.Utilizador;
+import Negocio.Users.Utilizador;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -152,6 +152,9 @@ public class Login extends javax.swing.JDialog {
 
         jLabel2.setText("Password:");
 
+        password.setToolTipText("");
+        password.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
         Login.setText("Login");
         Login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,6 +175,12 @@ public class Login extends javax.swing.JDialog {
 
         jLabel5.setText("Password");
 
+        username.setRequestFocusEnabled(false);
+
+        nome.setRequestFocusEnabled(false);
+
+        passwordLoja.setRequestFocusEnabled(false);
+
         jButton1.setText("Registar Loja");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,6 +189,8 @@ public class Login extends javax.swing.JDialog {
         });
 
         jLabel6.setText("Confirmação");
+
+        confLoja.setRequestFocusEnabled(false);
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
