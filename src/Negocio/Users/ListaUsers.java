@@ -20,7 +20,7 @@ import java.util.TreeMap;
 public class ListaUsers implements Serializable {
 
     private TreeMap<String, Utilizador> lista;
-    private TreeMap<String, Loja> listaLoja;
+   
 
     public class UtilizadorNaoExistenteException extends Exception {
 
@@ -44,7 +44,7 @@ public class ListaUsers implements Serializable {
 
     public ListaUsers() {
         lista = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
-        listaLoja = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        
     }
 
     public void adicionar(Utilizador utilizador) throws UtilizadorDuplicadoException {

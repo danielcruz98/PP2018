@@ -21,6 +21,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
 
     private Sistema sistema;
 
+
     /**
      * Creates new form janelaListaLojas
      */
@@ -31,6 +32,8 @@ public class janelaListaLojas extends javax.swing.JDialog {
         this.sistema = sistema;
 
         addTabelaLojas();
+        
+       
     }
 
     public void addTabelaLojas() {
@@ -53,6 +56,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
 
     }
     
+    
     private void lojaMostrada() {
         int rowIndex = tabelaLojas.getSelectedRow();
         if (rowIndex == -1) return;
@@ -73,6 +77,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
     
     
     private void adicionar() {
+        dispose();
         DadosLojas janela = new DadosLojas(sistema, null, this);   
         janela.setVisible(true);
     }

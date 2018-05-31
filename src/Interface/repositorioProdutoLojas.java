@@ -82,7 +82,31 @@ public class repositorioProdutoLojas extends javax.swing.JDialog {
     }
     
     public void associar() throws ListaUsers.UtilizadorNaoExistenteException, RepositorioProduto.ProdutoNaoExistenteException, RepositorioProdutoLoja.ProdutoJaExisteNaLojaException{
-       int rowIndexl = lojas.getSelectedRow();
+       if (preco.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduza p.f. o preco pretendido!");
+            preco.requestFocus();
+            return;
+        }
+       
+       if (disp.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduza p.f. a disponibilidade pretendido!");
+            disp.requestFocus();
+            return;
+        }
+       
+       if(lojas.getSelectionModel().isSelectionEmpty()){
+           JOptionPane.showMessageDialog(this, "Escolha p.f. a loja pretendido!");
+            lojas.requestFocus();
+            return;
+       }
+       
+        if(produtos.getSelectionModel().isSelectionEmpty()){
+           JOptionPane.showMessageDialog(this, "Escolha p.f. o produto pretendido!");
+            produtos.requestFocus();
+            return;
+       }
+        
+        int rowIndexl = lojas.getSelectedRow();
         if (rowIndexl == -1) return;
         int rowIndexp = produtos.getSelectedRow();
         if (rowIndexp == -1) return;
@@ -118,7 +142,46 @@ public class repositorioProdutoLojas extends javax.swing.JDialog {
         
         JOptionPane.showMessageDialog(this, "Registo guardado com sucesso.");
         fechar();
+        repositorioProdutoLojas listagem = new repositorioProdutoLojas(sistema);
+        listagem.setVisible(true);
      }
+    
+    public void editar(){
+        if (preco.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduza p.f. o preco pretendido!");
+            preco.requestFocus();
+            return;
+        }
+       
+       if (disp.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduza p.f. a disponibilidade pretendido!");
+            disp.requestFocus();
+            return;
+        }
+       
+       if(rep.getSelectionModel().isSelectionEmpty()){
+           JOptionPane.showMessageDialog(this, "Escolha p.f. o produto que pretende alterar!");
+            rep.requestFocus();
+            return;
+       }
+        
+        
+        
+        double p = Double.valueOf(preco.getText());
+        Boolean b = Boolean.parseBoolean(disp.getText());
+  
+        int i = rep.getSelectedRow();
+      
+        ProdutoLoja l = sistema.getListaProdutoLoja().getProdutoLoja(i);
+        
+        l.setPreco(p);
+        l.setDisponibilidade(b);
+        
+        JOptionPane.showMessageDialog(this, "Produto alterado com sucesso.");
+        fechar();
+        repositorioProdutoLojas listagem = new repositorioProdutoLojas(sistema);
+        listagem.setVisible(true);  
+    }
      
     
     
@@ -148,6 +211,7 @@ public class repositorioProdutoLojas extends javax.swing.JDialog {
         associar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         rep = new javax.swing.JTable();
+        editar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -192,6 +256,13 @@ public class repositorioProdutoLojas extends javax.swing.JDialog {
         ));
         jScrollPane3.setViewportView(rep);
 
+        editar.setText("Editar");
+        editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -207,9 +278,11 @@ public class repositorioProdutoLojas extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(associar))
                 .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(disp, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                    .addComponent(preco))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(disp, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                        .addComponent(preco))
+                    .addComponent(editar))
                 .addContainerGap(184, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -236,7 +309,9 @@ public class repositorioProdutoLojas extends javax.swing.JDialog {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
-                        .addComponent(associar)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(associar)
+                            .addComponent(editar))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -254,6 +329,11 @@ public class repositorioProdutoLojas extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_associarActionPerformed
 
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+        // TODO add your handling code here:
+        editar();
+    }//GEN-LAST:event_editarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -262,6 +342,7 @@ public class repositorioProdutoLojas extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton associar;
     private javax.swing.JTextField disp;
+    private javax.swing.JButton editar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

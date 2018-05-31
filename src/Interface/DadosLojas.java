@@ -42,7 +42,8 @@ public class DadosLojas extends javax.swing.JDialog {
             setTitle("Alteração de dados da Loja");
             username.setText(utilizador.getUsername());
             nome.setText(utilizador.getNome());
-            password.requestFocus();
+            password.setText(utilizador.getPassword());
+            conf.setText(utilizador.getPassword());
             subscricao.setText(String.valueOf(utilizador.getSubscricao()));
             clicks.setText(String.valueOf(utilizador.getClicks()));
         }
@@ -116,8 +117,11 @@ public class DadosLojas extends javax.swing.JDialog {
 
         } else {
             username.setEditable(false);
-            utilizador.setNome(nome.getText());
-            utilizador.setPassword(pass);
+            nome.setEditable(false);
+            password.setEditable(false);
+            conf.setEditable(false);
+           
+           
             utilizador.setSubscricao(Boolean.parseBoolean(subscricao.getText()));
             utilizador.setClicks(Integer.parseInt(clicks.getText()));
         }
@@ -126,6 +130,8 @@ public class DadosLojas extends javax.swing.JDialog {
      
         JOptionPane.showMessageDialog(this, "Registo guardado com sucesso.");
         fechar();
+        janelaListaLojas listagem = new janelaListaLojas(sistema);
+        listagem.setVisible(true);
 
     }
 
@@ -149,13 +155,13 @@ public class DadosLojas extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         nome = new javax.swing.JTextField();
-        password = new javax.swing.JTextField();
-        conf = new javax.swing.JTextField();
         subscricao = new javax.swing.JTextField();
         guardar = new javax.swing.JButton();
         fechar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         clicks = new javax.swing.JTextField();
+        password = new javax.swing.JPasswordField();
+        conf = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -211,13 +217,13 @@ public class DadosLojas extends javax.swing.JDialog {
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
                         .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                            .addComponent(nome)
-                            .addComponent(password)
-                            .addComponent(conf)
-                            .addComponent(subscricao)
-                            .addComponent(clicks))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(conf, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(username, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                            .addComponent(nome, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(subscricao, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(clicks, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(password))))
                 .addContainerGap(160, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -277,7 +283,7 @@ public class DadosLojas extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField clicks;
-    private javax.swing.JTextField conf;
+    private javax.swing.JPasswordField conf;
     private javax.swing.JButton fechar;
     private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;
@@ -287,7 +293,7 @@ public class DadosLojas extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField nome;
-    private javax.swing.JTextField password;
+    private javax.swing.JPasswordField password;
     private javax.swing.JTextField subscricao;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables

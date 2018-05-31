@@ -27,16 +27,27 @@ public class RepositorioProdutoLoja implements Serializable {
         repositorio.add(dados);
 
     }
-    public boolean retornarProdutoLoja(ProdutoLoja produto) throws ProdutoJaExisteNaLojaException {
-        for (ProdutoLoja produtoloja : repositorio) {
-            if (produtoloja.getProduto() == produto.getProduto() && produtoloja.getLoja() == produto.getLoja()) {
-
-                throw new ProdutoJaExisteNaLojaException(String.format("O Produto já existe nesta loja"));
-
+    
+    public ProdutoLoja getProdutoLoja(int i){
+        return repositorio.get(i);
+    }    
+    
+    //fazer 3 metodos diferentes de forma a procurar cada um sozoinho
+    public ArrayList<ProdutoLoja> procurarProduto(String s){
+       ArrayList<ProdutoLoja> p = new ArrayList<>();
+        
+        for(ProdutoLoja l : repositorio){
+            if(l.getProduto().getMarca() == s){
+                p.add(l);
+            }else if(l.getProduto().getNomeProduto()== s){
+                p.add(l);
+            }else if(l.getProduto().getReferencia()== s){
+                 p.add(l);
             }
         }
-        return true;
+        return p;
     }
+    
     public boolean verificarExistencia(ProdutoLoja produto) throws ProdutoJaExisteNaLojaException {
         for (ProdutoLoja produtoloja : repositorio) {
             if (produtoloja.getProduto() == produto.getProduto() && produtoloja.getLoja() == produto.getLoja()) {
@@ -99,6 +110,16 @@ public class RepositorioProdutoLoja implements Serializable {
         }
 
         public ProdutoJaExisteNaLojaException(String message) {
+            super(message);
+        }
+    }
+    
+    public class NaoConsegueEncontrar extends Exception {
+
+        public NaoConsegueEncontrar() {
+        }
+
+        public NaoConsegueEncontrar(String message) {
             super(message);
         }
     }

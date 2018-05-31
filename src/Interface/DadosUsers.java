@@ -130,10 +130,10 @@ public class DadosUsers extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         nome = new javax.swing.JTextField();
-        conf = new javax.swing.JTextField();
-        password = new javax.swing.JTextField();
         guardar = new javax.swing.JButton();
         fechar = new javax.swing.JButton();
+        password = new javax.swing.JPasswordField();
+        conf = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -166,7 +166,6 @@ public class DadosUsers extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(guardar)
                         .addGap(26, 26, 26)
@@ -175,13 +174,14 @@ public class DadosUsers extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
                         .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(conf, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                            .addComponent(nome)
-                            .addComponent(username)
-                            .addComponent(password))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(password)
+                            .addComponent(nome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                            .addComponent(username, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(conf))))
                 .addContainerGap(174, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -229,7 +229,7 @@ public class DadosUsers extends javax.swing.JDialog {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField conf;
+    private javax.swing.JPasswordField conf;
     private javax.swing.JButton fechar;
     private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;
@@ -237,7 +237,7 @@ public class DadosUsers extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField nome;
-    private javax.swing.JTextField password;
+    private javax.swing.JPasswordField password;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }
