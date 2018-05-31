@@ -156,7 +156,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
             }
         });
 
-        mostra.setText("jButton2");
+        mostra.setText("MostraLoja");
         mostra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mostraActionPerformed(evt);
@@ -179,7 +179,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
                         .addComponent(jButton1)
                         .addGap(118, 118, 118)
                         .addComponent(mostra)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                         .addComponent(editar)))
                 .addContainerGap())
         );

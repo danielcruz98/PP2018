@@ -44,7 +44,7 @@ public class DadosLojas extends javax.swing.JDialog {
             nome.setText(utilizador.getNome());
             password.setText(utilizador.getPassword());
             conf.setText(utilizador.getPassword());
-            subscricao.setText(String.valueOf(utilizador.getSubscricao()));
+            
             clicks.setText(String.valueOf(utilizador.getClicks()));
         }
     }
@@ -86,32 +86,39 @@ public class DadosLojas extends javax.swing.JDialog {
             return;
         }
         
-        if (subscricao.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Introduza p.f. o estado de subscricao");
-            subscricao.requestFocus();
-            return;
-        }
+        
         
         
         if (clicks.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Introduza p.f. o seu nome!");
+            JOptionPane.showMessageDialog(this, "Introduza p.f. o número de clicks!");
             clicks.requestFocus();
             return;
         }
 
+        boolean subs = true;
+        if(combo.getSelectedItem().toString()=="Nao Ativa"){
+            subs = false;
+            
+        }else if(combo.getSelectedItem().toString()=="Ativa"){
+            subs = true;
+        }
         if (registoNovo()) {
             username.setEditable(true);
             Loja novo = new Loja();
             novo.setNome(nome.getText());
             novo.setUsername(username.getText());
             novo.setPassword(pass);
-            novo.setSubscricao(Boolean.parseBoolean(subscricao.getText()));
+            novo.setSubscricao(subs);
+            try{
             novo.setClicks(Integer.parseInt(clicks.getText()));
-
+            }catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Introduza p.f. um número nos clicks");
+                return;}
             try {
                 sistema.getListaUtilizadores().adicionar(novo);
             } catch (ListaUsers.UtilizadorDuplicadoException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
+                 clicks.requestFocus();
                 return;
             }
 
@@ -122,7 +129,7 @@ public class DadosLojas extends javax.swing.JDialog {
             conf.setEditable(false);
            
            
-            utilizador.setSubscricao(Boolean.parseBoolean(subscricao.getText()));
+            utilizador.setSubscricao(subs);
             utilizador.setClicks(Integer.parseInt(clicks.getText()));
         }
 
@@ -152,16 +159,16 @@ public class DadosLojas extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         nome = new javax.swing.JTextField();
-        subscricao = new javax.swing.JTextField();
         guardar = new javax.swing.JButton();
         fechar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         clicks = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
         conf = new javax.swing.JPasswordField();
+        combo = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -172,8 +179,6 @@ public class DadosLojas extends javax.swing.JDialog {
         jLabel3.setText("Password");
 
         jLabel4.setText("Confirmação");
-
-        jLabel5.setText("Subscrição");
 
         username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,6 +202,10 @@ public class DadosLojas extends javax.swing.JDialog {
 
         jLabel6.setText("Clicks");
 
+        combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nao Ativa", "Ativa" }));
+
+        jLabel5.setText("Subscrição");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -214,17 +223,18 @@ public class DadosLojas extends javax.swing.JDialog {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5))
                         .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(conf, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(username, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                            .addComponent(nome, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(subscricao, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(clicks, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(password))))
-                .addContainerGap(160, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(conf, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(username, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                                .addComponent(nome, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(clicks, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(password)))))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,8 +257,8 @@ public class DadosLojas extends javax.swing.JDialog {
                     .addComponent(conf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(subscricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -257,7 +267,7 @@ public class DadosLojas extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardar)
                     .addComponent(fechar))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -283,6 +293,7 @@ public class DadosLojas extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField clicks;
+    private javax.swing.JComboBox<String> combo;
     private javax.swing.JPasswordField conf;
     private javax.swing.JButton fechar;
     private javax.swing.JButton guardar;
@@ -294,7 +305,6 @@ public class DadosLojas extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField nome;
     private javax.swing.JPasswordField password;
-    private javax.swing.JTextField subscricao;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

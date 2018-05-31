@@ -35,7 +35,7 @@
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
                       <Component id="mostra" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="140" max="32767" attributes="0"/>
+                      <EmptySpace pref="120" max="32767" attributes="0"/>
                       <Component id="editar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -155,7 +155,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="mostra">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton2"/>
+        <Property name="text" type="java.lang.String" value="MostraLoja"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mostraActionPerformed"/>

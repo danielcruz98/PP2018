@@ -88,11 +88,6 @@ public class repositorioProdutoLojas extends javax.swing.JDialog {
             return;
         }
        
-       if (disp.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Introduza p.f. a disponibilidade pretendido!");
-            disp.requestFocus();
-            return;
-        }
        
        if(lojas.getSelectionModel().isSelectionEmpty()){
            JOptionPane.showMessageDialog(this, "Escolha p.f. a loja pretendido!");
@@ -110,21 +105,30 @@ public class repositorioProdutoLojas extends javax.swing.JDialog {
         if (rowIndexl == -1) return;
         int rowIndexp = produtos.getSelectedRow();
         if (rowIndexp == -1) return;
-        
+        ProdutoLoja novo =  new ProdutoLoja();
          String username = (String) lojas.getValueAt(rowIndexl, 0);
         String codigo = (String) produtos.getValueAt(rowIndexp, 0);
-        double p = Double.valueOf(preco.getText());
-        Boolean b = Boolean.parseBoolean(disp.getText());
         
-      
+        boolean subs = true;
+        if(combo.getSelectedItem().toString()=="Indisponivel"){
+            subs = false;
+            
+        }else if(combo.getSelectedItem().toString()=="Disponivel"){
+            subs = true;
+        }
+        novo.setDisponibilidade(subs);
         try{
             Loja loja = (Loja)sistema.getListaUtilizadores().getUtilizador(username);
         Produto produto = sistema.getListaProduto().getProduto(codigo);
         
-        ProdutoLoja novo =  new ProdutoLoja();
         
+        try{double p = Double.valueOf(preco.getText());
         novo.setPreco(p);
-        novo.setDisponibilidade(b);
+        }catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Introduza p.f. um valor no preço");
+                return;}
+        
+        
         novo.setProduto(produto);
         novo.setLoja(loja);
             
@@ -153,11 +157,7 @@ public class repositorioProdutoLojas extends javax.swing.JDialog {
             return;
         }
        
-       if (disp.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Introduza p.f. a disponibilidade pretendido!");
-            disp.requestFocus();
-            return;
-        }
+       
        
        if(rep.getSelectionModel().isSelectionEmpty()){
            JOptionPane.showMessageDialog(this, "Escolha p.f. o produto que pretende alterar!");
@@ -166,16 +166,29 @@ public class repositorioProdutoLojas extends javax.swing.JDialog {
        }
         
         
-        
-        double p = Double.valueOf(preco.getText());
-        Boolean b = Boolean.parseBoolean(disp.getText());
-  
         int i = rep.getSelectedRow();
       
         ProdutoLoja l = sistema.getListaProdutoLoja().getProdutoLoja(i);
         
-        l.setPreco(p);
-        l.setDisponibilidade(b);
+       try{
+       double p = Double.valueOf(preco.getText());   
+       l.setPreco(p);
+        }catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Introduza p.f. um valor no preço");
+                return;}
+        
+        boolean subs = true;
+        if(combo.getSelectedItem().toString()=="Indisponivel"){
+            subs = false;
+            
+        }else if(combo.getSelectedItem().toString()=="Disponivel"){
+            subs = true;
+        }
+        
+  
+        
+
+        l.setDisponibilidade(subs);
         
         JOptionPane.showMessageDialog(this, "Produto alterado com sucesso.");
         fechar();
@@ -207,11 +220,11 @@ public class repositorioProdutoLojas extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         preco = new javax.swing.JTextField();
-        disp = new javax.swing.JTextField();
         associar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         rep = new javax.swing.JTable();
         editar = new javax.swing.JButton();
+        combo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -263,6 +276,8 @@ public class repositorioProdutoLojas extends javax.swing.JDialog {
             }
         });
 
+        combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Indisponivel", "Disponivel" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -278,12 +293,12 @@ public class repositorioProdutoLojas extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(associar))
                 .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(disp, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                        .addComponent(preco))
-                    .addComponent(editar))
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(preco, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editar))
+                    .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(165, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -298,10 +313,10 @@ public class repositorioProdutoLojas extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(preco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(disp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -341,7 +356,7 @@ public class repositorioProdutoLojas extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton associar;
-    private javax.swing.JTextField disp;
+    private javax.swing.JComboBox<String> combo;
     private javax.swing.JButton editar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

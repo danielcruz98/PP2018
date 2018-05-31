@@ -37,21 +37,23 @@
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="conf" alignment="0" max="32767" attributes="0"/>
-                          <Component id="username" alignment="0" pref="84" max="32767" attributes="0"/>
-                          <Component id="nome" alignment="0" max="32767" attributes="0"/>
-                          <Component id="subscricao" alignment="0" max="32767" attributes="0"/>
-                          <Component id="clicks" alignment="0" max="32767" attributes="0"/>
-                          <Component id="password" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="combo" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="conf" alignment="0" max="32767" attributes="0"/>
+                              <Component id="username" alignment="0" pref="84" max="32767" attributes="0"/>
+                              <Component id="nome" alignment="0" max="32767" attributes="0"/>
+                              <Component id="clicks" alignment="0" max="32767" attributes="0"/>
+                              <Component id="password" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="160" max="32767" attributes="0"/>
+              <EmptySpace pref="149" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -80,8 +82,8 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="combo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="subscricao" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -93,7 +95,7 @@
                   <Component id="guardar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="fechar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -119,19 +121,12 @@
         <Property name="text" type="java.lang.String" value="Confirma&#xe7;&#xe3;o"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Subscri&#xe7;&#xe3;o"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="username">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usernameActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="nome">
-    </Component>
-    <Component class="javax.swing.JTextField" name="subscricao">
     </Component>
     <Component class="javax.swing.JButton" name="guardar">
       <Properties>
@@ -159,6 +154,24 @@
     <Component class="javax.swing.JPasswordField" name="password">
     </Component>
     <Component class="javax.swing.JPasswordField" name="conf">
+    </Component>
+    <Component class="javax.swing.JComboBox" name="combo">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Nao Ativa"/>
+            <StringItem index="1" value="Ativa"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Subscri&#xe7;&#xe3;o"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
