@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import Negocio.Produtos.RepositorioProdutoLoja;
 import Negocio.Sistema;
 import Negocio.Users.Administrador;
 import bd.Serializacao;
@@ -27,8 +28,8 @@ public class Principal extends javax.swing.JDialog {
         this.sistema = sistema;
         this.bd=bd;
         
-        novaLoja.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
-        listaLojas.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
+        
+        loja.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
         listaUsers.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
         //repositorio.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
     }
@@ -57,15 +58,14 @@ public class Principal extends javax.swing.JDialog {
         listagem.setVisible(true);        
     }
     
-    private void listarRepositorio() {
-        janelaListaProdutosLojas listagem = new janelaListaProdutosLojas(sistema);
-        listagem.setVisible(true);        
-    }
+    
     
     private void teste() {
         repositorioProdutoLojas listagem = new repositorioProdutoLojas(sistema);
         listagem.setVisible(true);        
     }
+    
+   
     
   
     
@@ -90,15 +90,11 @@ public class Principal extends javax.swing.JDialog {
         listaUsers = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         Sair = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        novaLoja = new javax.swing.JMenuItem();
+        loja = new javax.swing.JMenu();
         listaLojas = new javax.swing.JMenuItem();
-        produtoLoja = new javax.swing.JMenuItem();
         Menu4 = new javax.swing.JMenu();
-        novoProduto = new javax.swing.JMenuItem();
         listaProduto = new javax.swing.JMenuItem();
         repositorio = new javax.swing.JMenu();
-        associar = new javax.swing.JMenuItem();
         novo = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
@@ -151,15 +147,7 @@ public class Principal extends javax.swing.JDialog {
 
         jMenuBar1.add(alteraDados);
 
-        jMenu4.setText("Loja");
-
-        novaLoja.setText("Nova Loja");
-        novaLoja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                novaLojaActionPerformed(evt);
-            }
-        });
-        jMenu4.add(novaLoja);
+        loja.setText("Loja");
 
         listaLojas.setText("Lista Lojas");
         listaLojas.addActionListener(new java.awt.event.ActionListener() {
@@ -167,27 +155,11 @@ public class Principal extends javax.swing.JDialog {
                 listaLojasActionPerformed(evt);
             }
         });
-        jMenu4.add(listaLojas);
+        loja.add(listaLojas);
 
-        produtoLoja.setText("Produto Loja");
-        produtoLoja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                produtoLojaActionPerformed(evt);
-            }
-        });
-        jMenu4.add(produtoLoja);
-
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(loja);
 
         Menu4.setText("Produto");
-
-        novoProduto.setText("Novo Produto");
-        novoProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                novoProdutoActionPerformed(evt);
-            }
-        });
-        Menu4.add(novoProduto);
 
         listaProduto.setText("Lista Produtos");
         listaProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -201,15 +173,7 @@ public class Principal extends javax.swing.JDialog {
 
         repositorio.setText("Repositorio");
 
-        associar.setText("Associar");
-        associar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                associarActionPerformed(evt);
-            }
-        });
-        repositorio.add(associar);
-
-        novo.setText("teste");
+        novo.setText("Lista Repositorio");
         novo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 novoActionPerformed(evt);
@@ -251,23 +215,6 @@ public class Principal extends javax.swing.JDialog {
         sistema.terminar();
     }//GEN-LAST:event_SairActionPerformed
 
-    private void novaLojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaLojaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_novaLojaActionPerformed
-
-    private void produtoLojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produtoLojaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_produtoLojaActionPerformed
-
-    private void novoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_novoProdutoActionPerformed
-
-    private void listaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaProdutoActionPerformed
-        // TODO add your handling code here:
-        listarProdutos();
-    }//GEN-LAST:event_listaProdutoActionPerformed
-
     private void listaUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaUsersActionPerformed
         // TODO add your handling code here:
         listarUsers();
@@ -279,15 +226,15 @@ public class Principal extends javax.swing.JDialog {
         
     }//GEN-LAST:event_listaLojasActionPerformed
 
-    private void associarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_associarActionPerformed
-        // TODO add your handling code here:
-        listarRepositorio();
-    }//GEN-LAST:event_associarActionPerformed
-
     private void novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoActionPerformed
         // TODO add your handling code here:
         teste();
     }//GEN-LAST:event_novoActionPerformed
+
+    private void listaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaProdutoActionPerformed
+        // TODO add your handling code here:
+        listarProdutos();
+    }//GEN-LAST:event_listaProdutoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,12 +245,10 @@ public class Principal extends javax.swing.JDialog {
     private javax.swing.JMenu Menu4;
     private javax.swing.JMenuItem Sair;
     private javax.swing.JMenu alteraDados;
-    private javax.swing.JMenuItem associar;
     private javax.swing.JMenuItem guardar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
@@ -312,10 +257,8 @@ public class Principal extends javax.swing.JDialog {
     private javax.swing.JMenuItem listaLojas;
     private javax.swing.JMenuItem listaProduto;
     private javax.swing.JMenuItem listaUsers;
-    private javax.swing.JMenuItem novaLoja;
+    private javax.swing.JMenu loja;
     private javax.swing.JMenuItem novo;
-    private javax.swing.JMenuItem novoProduto;
-    private javax.swing.JMenuItem produtoLoja;
     private javax.swing.JMenu repositorio;
     // End of variables declaration//GEN-END:variables
 }

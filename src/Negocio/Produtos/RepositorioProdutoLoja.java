@@ -33,19 +33,20 @@ public class RepositorioProdutoLoja implements Serializable {
     }    
     
     //fazer 3 metodos diferentes de forma a procurar cada um sozoinho
-    public ArrayList<ProdutoLoja> procurarProduto(String s){
+    public ArrayList<ProdutoLoja> procurarProduto(String s) throws OProdutoNaoExiste{
        ArrayList<ProdutoLoja> p = new ArrayList<>();
-        
+        boolean t = true;
         for(ProdutoLoja l : repositorio){
-            if(l.getProduto().getMarca() == s){
+            if(l.getProduto().getMarca() == s && l.getLoja().getSubscricao() == t){
                 p.add(l);
-            }else if(l.getProduto().getNomeProduto()== s){
-                p.add(l);
-            }else if(l.getProduto().getReferencia()== s){
+            }else if(l.getProduto().getNomeProduto() == s && l.getLoja().getSubscricao() == t){
+             p.add(l);
+            }else if(l.getProduto().getReferencia() == s && l.getLoja().getSubscricao() == t){
                  p.add(l);
             }
         }
-        return p;
+        return new ArrayList<>(p);
+        
     }
     
     public boolean verificarExistencia(ProdutoLoja produto) throws ProdutoJaExisteNaLojaException {
@@ -114,12 +115,14 @@ public class RepositorioProdutoLoja implements Serializable {
         }
     }
     
-    public class NaoConsegueEncontrar extends Exception {
+    
+    
+    public class OProdutoNaoExiste extends Exception {
 
-        public NaoConsegueEncontrar() {
+        public OProdutoNaoExiste() {
         }
 
-        public NaoConsegueEncontrar(String message) {
+        public OProdutoNaoExiste(String message) {
             super(message);
         }
     }

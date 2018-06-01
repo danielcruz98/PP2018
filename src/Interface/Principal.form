@@ -80,33 +80,17 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu4">
+        <Menu class="javax.swing.JMenu" name="loja">
           <Properties>
             <Property name="text" type="java.lang.String" value="Loja"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="novaLoja">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nova Loja"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="novaLojaActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="listaLojas">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Lista Lojas"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listaLojasActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="produtoLoja">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Produto Loja"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="produtoLojaActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -116,14 +100,6 @@
             <Property name="text" type="java.lang.String" value="Produto"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="novoProduto">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Novo Produto"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="novoProdutoActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="listaProduto">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Lista Produtos"/>
@@ -139,17 +115,9 @@
             <Property name="text" type="java.lang.String" value="Repositorio"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="associar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Associar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="associarActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="novo">
               <Properties>
-                <Property name="text" type="java.lang.String" value="teste"/>
+                <Property name="text" type="java.lang.String" value="Lista Repositorio"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="novoActionPerformed"/>

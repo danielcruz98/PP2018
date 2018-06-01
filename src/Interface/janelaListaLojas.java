@@ -58,23 +58,34 @@ public class janelaListaLojas extends javax.swing.JDialog {
     
     
     private void lojaMostrada() {
+       if(tabelaLojas.getSelectionModel().isSelectionEmpty()){
+           JOptionPane.showMessageDialog(this, "Escolha uma loja p.f.");
+            tabelaLojas.requestFocus();
+            return;
+       }
+        
         int rowIndex = tabelaLojas.getSelectedRow();
         if (rowIndex == -1) return;
         
         String username = (String) tabelaLojas.getValueAt(rowIndex, 0);
         
         try {
-            Loja utilizador = (Loja)sistema.getListaUtilizadores().getUtilizador(username);
-            utilizador.addClickUsados();
+            sistema.getListaUtilizadores().conta(username);
+            //Loja utilizador = (Loja)sistema.getListaUtilizadores().getUtilizador(username);
+          //  utilizador.addClickUsados();
             
-        } catch (ListaUsers.UtilizadorNaoExistenteException ex) {
+        } catch (ListaUsers.NaoVisita ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
         
         JOptionPane.showMessageDialog(this, "Loja visitada com sucesso.");
-        
+         fechar();
+        janelaListaLojas listagem = new janelaListaLojas(sistema);
+        listagem.setVisible(true);
     }
-    
+    private void fechar() {
+        dispose();
+    }
     
     private void adicionar() {
         dispose();
@@ -83,18 +94,26 @@ public class janelaListaLojas extends javax.swing.JDialog {
     }
     
     private void editar() {
+        if(tabelaLojas.getSelectionModel().isSelectionEmpty()){
+           JOptionPane.showMessageDialog(this, "Escolha uma loja p.f.");
+            tabelaLojas.requestFocus();
+            return;
+       }
+        
         int rowIndex = tabelaLojas.getSelectedRow();
         if (rowIndex == -1) return;
         
         String username = (String) tabelaLojas.getValueAt(rowIndex, 0);
         
         try {
+            fechar();
             Loja utilizador = (Loja)sistema.getListaUtilizadores().getUtilizador(username);
             DadosLojas janela = new DadosLojas(sistema, utilizador, this);
             janela.setVisible(true);
         } catch (ListaUsers.UtilizadorNaoExistenteException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
+        
         
     }
     

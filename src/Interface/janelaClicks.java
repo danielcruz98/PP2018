@@ -38,7 +38,7 @@ public class janelaClicks extends javax.swing.JDialog {
             if (sistema.getListaUtilizadores().todos().get(i) instanceof Loja) {
 
                 Loja u = (Loja) sistema.getListaUtilizadores().todos().get(i);
-                if(u.getClicks()<getI()){
+                if(u.getClicksRestantes()<getI()){
                 rowData[0] = u.getUsername();
                 rowData[1] = u.getNome();
                 model.addRow(rowData);

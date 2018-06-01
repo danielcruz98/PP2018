@@ -79,6 +79,13 @@ public class janelaListaUsers extends javax.swing.JDialog {
     }
     
     private void editar() {
+        if(tabUtilizadores.getSelectionModel().isSelectionEmpty()){
+           JOptionPane.showMessageDialog(this, "Escolha uma loja p.f.");
+            tabUtilizadores.requestFocus();
+            return;
+       }
+        
+    
         int rowIndex = tabUtilizadores.getSelectedRow();
         if (rowIndex == -1) return;
         

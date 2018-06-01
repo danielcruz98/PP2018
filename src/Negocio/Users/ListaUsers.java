@@ -41,6 +41,16 @@ public class ListaUsers implements Serializable {
             super(message);
         }
     }
+    
+    public class NaoVisita extends Exception {
+
+        public NaoVisita() {
+        }
+
+        public NaoVisita(String message) {
+            super(message);
+        }
+    }
 
     public ListaUsers() {
         lista = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
@@ -73,6 +83,15 @@ public class ListaUsers implements Serializable {
             return lista.get(username);
         } else {
             throw new UtilizadorNaoExistenteException("O utilizador '%s' já existe na lista");
+        }
+    }
+    
+    public void conta(String username) throws NaoVisita{
+        if (lista.containsKey(username)) {
+           Loja u = (Loja) lista.get(username);
+           u.addClickUsados();
+        } else {
+            throw new NaoVisita("O utilizador '%s' já existe na lista");
         }
     }
 

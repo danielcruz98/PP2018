@@ -88,6 +88,12 @@ public class janelaListaProdutos extends javax.swing.JDialog {
     }
 
     private void editar() {
+        
+        if(produtosTabela.getSelectionModel().isSelectionEmpty()){
+           JOptionPane.showMessageDialog(this, "Escolha uma loja p.f.");
+            produtosTabela.requestFocus();
+            return;
+       }
         int rowIndex = produtosTabela.getSelectedRow();
         if (rowIndex == -1) {
             return;
