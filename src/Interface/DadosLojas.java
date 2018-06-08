@@ -44,8 +44,13 @@ public class DadosLojas extends javax.swing.JDialog {
             nome.setText(utilizador.getNome());
             password.setText(utilizador.getPassword());
             conf.setText(utilizador.getPassword());
-            
             clicks.setText(String.valueOf(utilizador.getClicks()));
+            
+            username.setEnabled(false);
+            nome.setEnabled(false);
+            password.setEnabled(false);
+            conf.setEnabled(false);
+            
         }
     }
 
@@ -66,21 +71,21 @@ public class DadosLojas extends javax.swing.JDialog {
             return;
         }
 
-        if (password.getText().length() == 0) {
+        if (password.getPassword().length == 0) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. a nova password!");
             password.requestFocus();
             return;
         }
 
-        if (conf.getText().length() == 0) {
+        if (conf.getPassword().length == 0) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. a password de confirmação!");
             conf.requestFocus();
             return;
         }
 
-        String pass = new String(password.getText());
+        String pass = new String(password.getPassword());
 
-        if (!pass.equals(new String(conf.getText()))) {
+        if (!pass.equals(new String(conf.getPassword()))) {
             JOptionPane.showMessageDialog(this, "A password de confirmação não corresponde à password introduzida!");
             conf.requestFocus();
             return;
@@ -104,6 +109,10 @@ public class DadosLojas extends javax.swing.JDialog {
         }
         if (registoNovo()) {
             username.setEditable(true);
+             nome.setEditable(true);
+              password.setEditable(true);
+               conf.setEditable(true);
+               
             Loja novo = new Loja();
             novo.setNome(nome.getText());
             novo.setUsername(username.getText());
@@ -123,10 +132,9 @@ public class DadosLojas extends javax.swing.JDialog {
             }
 
         } else {
-            username.setEditable(false);
-            nome.setEditable(false);
-            password.setEditable(false);
-            conf.setEditable(false);
+            username.setEnabled(false);
+            
+            conf.setEnabled(false);
            
            
             utilizador.setSubscricao(subs);
@@ -171,6 +179,11 @@ public class DadosLojas extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setText("Username");
 
@@ -286,6 +299,12 @@ public class DadosLojas extends javax.swing.JDialog {
         // TODO add your handling code here:
         fechar();
     }//GEN-LAST:event_fecharActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        janelaListaLojas listagem = new janelaListaLojas(sistema);
+        listagem.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

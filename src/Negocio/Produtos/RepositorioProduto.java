@@ -52,6 +52,23 @@ public class RepositorioProduto implements Serializable{
     public int size() {
         return lista.size();
     }
+    
+    public Produto procurarCodigoBarras(String s){
+        Produto p = (Produto) lista.get(s);
+        return p;
+    }
+    
+    public ArrayList<Produto> procurarNome(String s){
+        ArrayList<Produto> temp = new ArrayList<>();
+        
+        for(Produto p : todos()){
+            if(p.getNomeProduto().contains(s))
+            {
+                temp.add(p);
+            }
+        }
+        return temp;
+    }
 
     public class ProdutoDuplicadoException extends Exception {
 

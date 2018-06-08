@@ -98,5 +98,21 @@ public class ListaUsers implements Serializable {
     public ArrayList<Utilizador> todos() {
         return new ArrayList<>(lista.values());
     }
+    
+    public  ArrayList<Loja> LojasMaisVisitadas(){
+        ArrayList<Loja> l = new ArrayList<>();
+        
+        for(int i = 0; i<todos().size();i++){
+            if(todos().get(i) instanceof Loja){
+               Loja u =(Loja)todos().get(i);
+               
+               l.add(u);
+               
+               
+            }
+        }
+        return new ArrayList<>(l);
+        
+    }
 
 }

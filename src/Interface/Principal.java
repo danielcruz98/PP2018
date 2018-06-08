@@ -61,12 +61,25 @@ public class Principal extends javax.swing.JDialog {
     
     
     
-    private void teste() {
+    private void listarProdutosLoja() {
         janelaProdutoLojas listagem = new janelaProdutoLojas(sistema);
         listagem.setVisible(true);        
     }
     
-   
+    private void listarProcurar() {
+        Procurar2 listagem = new Procurar2(sistema);
+        listagem.setVisible(true);        
+    }
+    
+   private void terminar() {        
+        if (JOptionPane.showConfirmDialog(null, 
+                "Deseja realmente terminar o programa?", 
+                "Terminar", 
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            guardarAlteracoes();
+            sistema.terminar();
+        }
+    }
     
   
     
@@ -97,6 +110,8 @@ public class Principal extends javax.swing.JDialog {
         listaProduto = new javax.swing.JMenuItem();
         repositorio = new javax.swing.JMenu();
         novo = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        procurar = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -111,6 +126,11 @@ public class Principal extends javax.swing.JDialog {
         jMenuBar2.add(jMenu3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         alteraDados.setText("Geral");
 
@@ -184,6 +204,18 @@ public class Principal extends javax.swing.JDialog {
 
         jMenuBar1.add(repositorio);
 
+        jMenu4.setText("Procurar");
+
+        procurar.setText("Procurar");
+        procurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                procurarActionPerformed(evt);
+            }
+        });
+        jMenu4.add(procurar);
+
+        jMenuBar1.add(jMenu4);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,7 +245,9 @@ public class Principal extends javax.swing.JDialog {
 
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
         // TODO add your handling code here:
+    
         sistema.terminar();
+     
     }//GEN-LAST:event_SairActionPerformed
 
     private void listaUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaUsersActionPerformed
@@ -229,13 +263,25 @@ public class Principal extends javax.swing.JDialog {
 
     private void novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoActionPerformed
         // TODO add your handling code here:
-        teste();
+        listarProdutosLoja();
     }//GEN-LAST:event_novoActionPerformed
 
     private void listaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaProdutoActionPerformed
         // TODO add your handling code here:
         listarProdutos();
     }//GEN-LAST:event_listaProdutoActionPerformed
+
+    private void procurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procurarActionPerformed
+        // TODO add your handling code here:
+        listarProcurar();
+        
+        
+    }//GEN-LAST:event_procurarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        terminar();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -250,6 +296,7 @@ public class Principal extends javax.swing.JDialog {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
@@ -260,6 +307,7 @@ public class Principal extends javax.swing.JDialog {
     private javax.swing.JMenuItem listaUsers;
     private javax.swing.JMenu loja;
     private javax.swing.JMenuItem novo;
+    private javax.swing.JMenuItem procurar;
     private javax.swing.JMenu repositorio;
     // End of variables declaration//GEN-END:variables
 }

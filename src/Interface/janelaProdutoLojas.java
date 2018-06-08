@@ -148,7 +148,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
     }
 
     public void editar() {
-     
+
         if (preco.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. o preco pretendido!");
             preco.requestFocus();
@@ -193,6 +193,34 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
         dispose();
     }
 
+    public void procurar() throws RepositorioProduto.ProdutoNaoExistenteException {
+        if (codigo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduza p.f. o codigo de barras que pretende procurar!");
+            codigo.requestFocus();
+            return;
+        }
+        
+        
+        String s = codigo.getText();
+
+        if (sistema.getListaProduto().verificarProduto(s) == true) {
+            try {
+                Produto p = sistema.getListaProduto().getProduto(s);
+                JOptionPane.showMessageDialog(this, "O produto existe."); 
+                codigo.setText(p.getCodigoBarras());
+                nome.setText(p.getNomeProduto());
+                marca.setText(p.getMarca());
+                referencia.setText(p.getReferencia());
+            } catch (RepositorioProduto.ProdutoNaoExistenteException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
+           
+
+        }else {
+                  JOptionPane.showMessageDialog(this, "O produto nao existe.");  
+                    }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -218,6 +246,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
         marca = new javax.swing.JTextField();
         nome = new javax.swing.JTextField();
         codigo = new javax.swing.JTextField();
+        procurar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -264,6 +293,13 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
 
         jLabel6.setText("Nome");
 
+        procurar.setText("Procurar");
+        procurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                procurarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -271,30 +307,38 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(preco, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                                    .addComponent(nome)
-                                    .addComponent(marca)
-                                    .addComponent(referencia)
-                                    .addComponent(codigo)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(associar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(editar)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(52, 52, 52)
+                                        .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(16, 16, 16)
+                                        .addComponent(preco))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(associar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editar)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(marca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                .addComponent(nome, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(referencia))))
+                    .addComponent(procurar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -305,6 +349,12 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(procurar)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -318,10 +368,6 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
                             .addComponent(referencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(preco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(15, 15, 15)
@@ -333,7 +379,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
                             .addComponent(associar)
                             .addComponent(editar))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -356,7 +402,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
 
     private void repMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_repMouseClicked
         // TODO add your handling code here:
-        
+
         associar.setEnabled(false);
         int i = rep.getSelectedRow();
 
@@ -368,12 +414,22 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
         marca.setEditable(false);
         referencia.setEditable(false);
         codigo.setEditable(false);
-        
+
         nome.setText(produto.getNomeProduto());
         marca.setText(produto.getMarca());
         referencia.setText(produto.getReferencia());
         codigo.setText(produto.getCodigoBarras());
+        preco.setText(String.valueOf(l.getPreco()));
     }//GEN-LAST:event_repMouseClicked
+
+    private void procurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procurarActionPerformed
+        try {
+            // TODO add your handling code here:
+            procurar();
+        } catch (RepositorioProduto.ProdutoNaoExistenteException ex) {
+            Logger.getLogger(janelaProdutoLojas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_procurarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -394,6 +450,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
     private javax.swing.JTextField marca;
     private javax.swing.JTextField nome;
     private javax.swing.JTextField preco;
+    private javax.swing.JButton procurar;
     private javax.swing.JTextField referencia;
     private javax.swing.JTable rep;
     // End of variables declaration//GEN-END:variables

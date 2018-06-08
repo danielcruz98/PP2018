@@ -50,6 +50,9 @@ public class DadosProdutos extends javax.swing.JDialog {
             marca.setText(produto.getMarca());
             referencia.setText(produto.getReferencia());
             codigo.setText(produto.getCodigoBarras());
+            
+            codigo.setEnabled(false);
+          
         }
     }
 

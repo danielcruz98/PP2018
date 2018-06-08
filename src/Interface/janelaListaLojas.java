@@ -113,7 +113,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
         } catch (ListaUsers.UtilizadorNaoExistenteException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-        
+       
         
     }
     
@@ -123,6 +123,11 @@ public class janelaListaLojas extends javax.swing.JDialog {
         
         janelaClicks clicks = new janelaClicks(sistema, i );
         clicks.setVisible(true);  
+    }
+    
+    public void visitadas(){
+    janelaLojasMaisVisitadas listagem = new janelaLojasMaisVisitadas(sistema);
+        listagem.setVisible(true);
     }
      
     /**
@@ -141,6 +146,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
         click = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         mostra = new javax.swing.JButton();
+        visitas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -182,6 +188,13 @@ public class janelaListaLojas extends javax.swing.JDialog {
             }
         });
 
+        visitas.setText("Mais Visitadas");
+        visitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visitasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -196,10 +209,13 @@ public class janelaListaLojas extends javax.swing.JDialog {
                         .addComponent(click, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)
-                        .addGap(118, 118, 118)
+                        .addGap(65, 65, 65)
                         .addComponent(mostra)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
-                        .addComponent(editar)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(visitas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editar)
+                        .addGap(0, 22, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -211,7 +227,8 @@ public class janelaListaLojas extends javax.swing.JDialog {
                     .addComponent(adicionar)
                     .addComponent(click, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
-                    .addComponent(mostra))
+                    .addComponent(mostra)
+                    .addComponent(visitas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -239,6 +256,11 @@ public class janelaListaLojas extends javax.swing.JDialog {
         lojaMostrada();
     }//GEN-LAST:event_mostraActionPerformed
 
+    private void visitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitasActionPerformed
+        // TODO add your handling code here:
+        visitadas();
+    }//GEN-LAST:event_visitasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -251,5 +273,6 @@ public class janelaListaLojas extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton mostra;
     private javax.swing.JTable tabelaLojas;
+    private javax.swing.JButton visitas;
     // End of variables declaration//GEN-END:variables
 }

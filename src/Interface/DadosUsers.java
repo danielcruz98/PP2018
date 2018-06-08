@@ -42,6 +42,9 @@ public class DadosUsers extends javax.swing.JDialog {
             username.setText(utilizador.getUsername());
             nome.setText(utilizador.getNome());            
             password.requestFocus();
+            
+            username.setEnabled(false);
+            nome.setEnabled(false);
         } 
     }
     
@@ -62,21 +65,21 @@ public class DadosUsers extends javax.swing.JDialog {
             return;
         }
         
-        if (password.getText().length() == 0) {
+        if (password.getPassword().length == 0) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. a nova password!");
             password.requestFocus();
             return;
         }       
         
-        if (conf.getText().length() == 0) {
+        if (conf.getPassword().length == 0) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. a password de confirmação!");
             conf.requestFocus();
             return;
         }  
         
-        String pass = new String(password.getText());
+        String pass = new String(password.getPassword());
         
-        if (!pass.equals(new String(conf.getText()))){
+        if (!pass.equals(new String(conf.getPassword()))){
             JOptionPane.showMessageDialog(this, "A password de confirmação não corresponde à password introduzida!");
             conf.requestFocus();
             return;

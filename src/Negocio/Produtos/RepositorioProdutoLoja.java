@@ -35,11 +35,11 @@ public class RepositorioProdutoLoja implements Serializable {
     //fazer 3 metodos diferentes de forma a procurar cada um sozoinho
     public ArrayList<ProdutoLoja> procurarProduto(String s) throws OProdutoNaoExiste{
        ArrayList<ProdutoLoja> p = new ArrayList<>();
-        boolean t = true;
+
         for(ProdutoLoja l : repositorio){
-            if(l.getProduto().getMarca() == s && l.getLoja().getSubscricao() == t 
-                    || l.getProduto().getNomeProduto() == s && l.getLoja().getSubscricao() == t  
-                    ||l.getProduto().getReferencia() == s && l.getLoja().getSubscricao() == t){
+            if((l.getProduto().getMarca() == s && l.getLoja().getSubscricao() == true) 
+                    || (l.getProduto().getNomeProduto() == s && l.getLoja().getSubscricao() == true)  
+                    || (l.getProduto().getReferencia() == s && l.getLoja().getSubscricao() == true)){
                 p.add(l);
             }
         }

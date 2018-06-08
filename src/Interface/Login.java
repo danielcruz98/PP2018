@@ -42,13 +42,13 @@ public class Login extends javax.swing.JDialog {
             return;
         }
 
-        if (password.getText().length() == 0) {
+        if (password.getPassword().length == 0) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. a sua password!");
             password.requestFocus();
             return;
         }
 
-        if (!sistema.autenticarUtilizador(userName.getText(), new String(password.getText()))) {
+        if (!sistema.autenticarUtilizador(userName.getText(), new String(password.getPassword()))) {
             JOptionPane.showMessageDialog(this, "As credenciais introduzidas não correspondem a um utilizador válido.",
                     "Autenticação", JOptionPane.WARNING_MESSAGE);
             userName.requestFocus();
@@ -71,21 +71,21 @@ public class Login extends javax.swing.JDialog {
             return;
         }
 
-        if (passwordLoja.getText().length() == 0) {
+        if (passwordLoja.getPassword().length == 0) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. a nova password!");
             passwordLoja.requestFocus();
             return;
         }
 
-        if (confLoja.getText().length() == 0) {
+        if (confLoja.getPassword().length == 0) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. a password de confirmação!");
             confLoja.requestFocus();
             return;
         }
 
-        String pass = new String(passwordLoja.getText());
+        String pass = new String(passwordLoja.getPassword());
 
-        if (!pass.equals(new String(confLoja.getText()))) {
+        if (!pass.equals(new String(confLoja.getPassword()))) {
             JOptionPane.showMessageDialog(this, "A password de confirmação não corresponde à password introduzida!");
             confLoja.requestFocus();
             return;
@@ -134,11 +134,11 @@ public class Login extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         nome = new javax.swing.JTextField();
-        passwordLoja = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        confLoja = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
+        passwordLoja = new javax.swing.JPasswordField();
+        confLoja = new javax.swing.JPasswordField();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -172,12 +172,6 @@ public class Login extends javax.swing.JDialog {
 
         jLabel5.setText("Password");
 
-        username.setRequestFocusEnabled(false);
-
-        nome.setRequestFocusEnabled(false);
-
-        passwordLoja.setRequestFocusEnabled(false);
-
         jButton1.setText("Registar Loja");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,8 +180,6 @@ public class Login extends javax.swing.JDialog {
         });
 
         jLabel6.setText("Confirmação");
-
-        confLoja.setRequestFocusEnabled(false);
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -217,26 +209,16 @@ public class Login extends javax.swing.JDialog {
                         .addGap(210, 210, 210))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(58, 58, 58)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(confLoja)
-                                    .addComponent(passwordLoja)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(58, 58, 58)
-                                        .addComponent(username))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(56, 56, 56)
-                                        .addComponent(nome)))))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nome)
+                            .addComponent(username)
+                            .addComponent(passwordLoja)
+                            .addComponent(confLoja))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -250,6 +232,22 @@ public class Login extends javax.swing.JDialog {
                             .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Login)
+                                    .addComponent(Sair)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(11, 11, 11)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(confLoja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -257,25 +255,9 @@ public class Login extends javax.swing.JDialog {
                             .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Login)
-                            .addComponent(Sair)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(passwordLoja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(confLoja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(passwordLoja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65)))
                 .addComponent(jButton1)
                 .addContainerGap(177, Short.MAX_VALUE))
         );
@@ -314,7 +296,7 @@ public class Login extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Login;
     private javax.swing.JButton Sair;
-    private javax.swing.JTextField confLoja;
+    private javax.swing.JPasswordField confLoja;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -325,7 +307,7 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JTextField nome;
     private javax.swing.JPasswordField password;
-    private javax.swing.JTextField passwordLoja;
+    private javax.swing.JPasswordField passwordLoja;
     private javax.swing.JTextField userName;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
