@@ -8,6 +8,7 @@ package Interface;
 import Negocio.Produtos.RepositorioProdutoLoja;
 import Negocio.Sistema;
 import Negocio.Users.Administrador;
+import Negocio.Users.Loja;
 import bd.Serializacao;
 import javax.swing.JOptionPane;
 /**
@@ -31,7 +32,7 @@ public class Principal extends javax.swing.JDialog {
         
         loja.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
         listaUsers.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
-        //repositorio.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
+        repositorio.setVisible(sistema.getUtilizadorLigado() instanceof Loja);
     }
 
     private void guardarAlteracoes() {
@@ -61,7 +62,7 @@ public class Principal extends javax.swing.JDialog {
     
     
     private void teste() {
-        repositorioProdutoLojas listagem = new repositorioProdutoLojas(sistema);
+        janelaProdutoLojas listagem = new janelaProdutoLojas(sistema);
         listagem.setVisible(true);        
     }
     

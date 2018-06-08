@@ -37,12 +37,10 @@ public class RepositorioProdutoLoja implements Serializable {
        ArrayList<ProdutoLoja> p = new ArrayList<>();
         boolean t = true;
         for(ProdutoLoja l : repositorio){
-            if(l.getProduto().getMarca() == s && l.getLoja().getSubscricao() == t){
+            if(l.getProduto().getMarca() == s && l.getLoja().getSubscricao() == t 
+                    || l.getProduto().getNomeProduto() == s && l.getLoja().getSubscricao() == t  
+                    ||l.getProduto().getReferencia() == s && l.getLoja().getSubscricao() == t){
                 p.add(l);
-            }else if(l.getProduto().getNomeProduto() == s && l.getLoja().getSubscricao() == t){
-             p.add(l);
-            }else if(l.getProduto().getReferencia() == s && l.getLoja().getSubscricao() == t){
-                 p.add(l);
             }
         }
         return new ArrayList<>(p);
@@ -72,10 +70,10 @@ public class RepositorioProdutoLoja implements Serializable {
         return repositorio.size();
     }
 
-    public ArrayList listarProdutosLoja(Loja loja) {
+    public ArrayList listarProdutosLoja(String loja) {
         ArrayList<ProdutoLoja> lista = new ArrayList();
         for (ProdutoLoja produtoloja : repositorio) {
-            if (produtoloja.getLoja() == loja) {
+            if (produtoloja.getLoja().getUsername() == loja) {
                 lista.add(produtoloja);
             }
 

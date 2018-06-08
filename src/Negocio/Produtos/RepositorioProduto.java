@@ -14,7 +14,6 @@ import java.util.HashMap;
  * @author daniel
  */
 public class RepositorioProduto implements Serializable{
-    public static final RepositorioProduto INSTANCE = new RepositorioProduto();
     HashMap lista;
 
     public RepositorioProduto() {
@@ -45,22 +44,11 @@ public class RepositorioProduto implements Serializable{
         return lista.containsKey(codigoBarras);
     }
 
-    public Produto obterProduto(String codigoBarras) {
-        return (Produto) lista.get(codigoBarras);
-    }
-
-    public HashMap getLista() {
-        return lista;
-    }
-
-    public void setLista(HashMap lista) {
-        this.lista = lista;
-    }
-
     public ArrayList<Produto> todos() {
         return new ArrayList<>(lista.values());
     }
 
+    
     public int size() {
         return lista.size();
     }

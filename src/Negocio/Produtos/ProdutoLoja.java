@@ -16,7 +16,7 @@ import java.io.Serializable;
  */
 public class ProdutoLoja extends RepositorioProduto implements Serializable{
 
-    RepositorioProduto repositorioProduto = RepositorioProduto.INSTANCE;
+
     private double preco;
     private boolean disponibilidade;
     private Produto produto;

@@ -78,7 +78,7 @@ public class Main {
 //                
 //                
             Produto p = new Produto("f","nome","marca","referencia");
-            Produto p1 = new Produto("f","nomep1","marcap1","referenciap1");
+            Produto p1 = new Produto("f","nomep1","nomep1","referenciap1");
             
             Loja l = new Loja("l","l","l",true,1);
             Loja l1 = new Loja("12332113","l313231","3131231l",true,1);
@@ -101,6 +101,13 @@ public class Main {
             for(int i = 0; i < d.size();i++){
                 System.out.println(d.get(i).getPreco());
                 System.out.println(d.get(i).getLoja().getUsername());
+            }
+            System.out.println("----------------");
+            
+            ArrayList<ProdutoLoja>q = rep.procurarProduto("nomep1");
+            for(int i = 0; i < q.size();i++){
+                System.out.println(q.get(i).getPreco());
+                System.out.println(q.get(i).getLoja().getUsername());
             }
             System.out.println("----------------");
             
