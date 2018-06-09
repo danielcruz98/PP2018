@@ -3,22 +3,22 @@
 // * To change this template file, choose Tools | Templates
 // * and open the template in the editor.
 // */
-package Negocio;
+package Sistema;
 //
 ///**
 
-import Negocio.Produtos.Produto;
-import Negocio.Produtos.ProdutoLoja;
-import Negocio.Produtos.RepositorioProdutoLoja;
-import Negocio.Users.Loja;
+import Produtos.Produto;
+import Produtos.ProdutoLoja;
+import Produtos.RepositorioProdutoLoja;
+import Users.Loja;
 import java.util.ArrayList;
 
 // *
 // * @author daniel
 // */
-public class Main {
-    public static void main(String[]args) throws RepositorioProdutoLoja.ProdutoJaExisteNaLojaException, RepositorioProdutoLoja.OProdutoNaoExiste{
-////        Produto p1 = new Produto("Telemovel", "huawei", "dadsadasdada");
+//public class Main {
+//    public static void main(String[]args) throws RepositorioProdutoLoja.ProdutoJaExisteNaLojaException, RepositorioProdutoLoja.OProdutoNaoExiste{
+//////        Produto p1 = new Produto("Telemovel", "huawei", "dadsadasdada");
 ////        
 ////        RepositorioProduto r = new RepositorioProduto();
 ////        
@@ -77,56 +77,62 @@ public class Main {
 //                        +u.Lojas().get(i).getClicks()+"      "+u.Lojas().size());
 //                
 //                
-            Produto p = new Produto("f","nome","marca","referencia");
-            Produto p1 = new Produto("f","nomep1","nomep1","referenciap1");
-            
-            Loja l = new Loja("l","l","l",true,1);
-            Loja l1 = new Loja("12332113","l313231","3131231l",true,1);
-            
-            ProdutoLoja pl = new ProdutoLoja(2,true,p,l);
-            
-            ProdutoLoja pl1 = new ProdutoLoja(5,true,p,l1);
-            
-            ProdutoLoja pl2 = new ProdutoLoja(2,true,p,l1);
-            
-            ProdutoLoja pl12 = new ProdutoLoja(5,true,p1,l1);
-            
-            RepositorioProdutoLoja rep = new RepositorioProdutoLoja();
-            rep.addProdutoLoja(pl);
-            rep.addProdutoLoja(pl1);
-            
-            rep.addProdutoLoja(pl12);
-            
-            ArrayList<ProdutoLoja>d = rep.procurarProduto("nomep1");
-            for(int i = 0; i < d.size();i++){
-                System.out.println(d.get(i).getPreco());
-                System.out.println(d.get(i).getLoja().getUsername());
-            }
-            System.out.println("----------------");
-            
-            ArrayList<ProdutoLoja>q = rep.procurarProduto("nomep1");
-            for(int i = 0; i < q.size();i++){
-                System.out.println(q.get(i).getPreco());
-                System.out.println(q.get(i).getLoja().getUsername());
-            }
-            System.out.println("----------------");
-            
-            ArrayList<ProdutoLoja>x = rep.procurarProduto("1");
-            for(int i = 0; i < x.size();i++){
-                System.out.println(x.get(i).getPreco());
-                System.out.println(x.get(i).getLoja().getUsername());
-            }
-            
-            System.out.println("--------------------");
-            
-            ArrayList<ProdutoLoja>v = rep.procurarProduto("referencia");
-            for(int i = 0; i < v.size();i++){
-                System.out.println(v.get(i).getPreco());
-                System.out.println(v.get(i).getLoja().getUsername());
-            }
-            
-           }
- }
+
+
+
+
+
+
+//            Produto p = new Produto("f","nome","marca","referencia");
+//            Produto p1 = new Produto("f","nomep1","nomep1","referenciap1");
+//            
+//            Loja l = new Loja("l","l","l",true,1);
+//            Loja l1 = new Loja("12332113","l313231","3131231l",true,1);
+//            
+//            ProdutoLoja pl = new ProdutoLoja(2,true,p,l);
+//            
+//            ProdutoLoja pl1 = new ProdutoLoja(5,true,p,l1);
+//            
+//            ProdutoLoja pl2 = new ProdutoLoja(2,true,p,l1);
+//            
+//            ProdutoLoja pl12 = new ProdutoLoja(5,true,p1,l1);
+//            
+//            RepositorioProdutoLoja rep = new RepositorioProdutoLoja();
+//            rep.addProdutoLoja(pl);
+//            rep.addProdutoLoja(pl1);
+//            
+//            rep.addProdutoLoja(pl12);
+//            
+//            ArrayList<ProdutoLoja>d = rep.procurarProduto("nomep1");
+//            for(int i = 0; i < d.size();i++){
+//                System.out.println(d.get(i).getPreco());
+//                System.out.println(d.get(i).getLoja().getUsername());
+//            }
+//            System.out.println("----------------");
+//            
+//            ArrayList<ProdutoLoja>q = rep.procurarProduto("nomep1");
+//            for(int i = 0; i < q.size();i++){
+//                System.out.println(q.get(i).getPreco());
+//                System.out.println(q.get(i).getLoja().getUsername());
+//            }
+//            System.out.println("----------------");
+//            
+//            ArrayList<ProdutoLoja>x = rep.procurarProduto("1");
+//            for(int i = 0; i < x.size();i++){
+//                System.out.println(x.get(i).getPreco());
+//                System.out.println(x.get(i).getLoja().getUsername());
+//            }
+//            
+//            System.out.println("--------------------");
+//            
+//            ArrayList<ProdutoLoja>v = rep.procurarProduto("referencia");
+//            for(int i = 0; i < v.size();i++){
+//                System.out.println(v.get(i).getPreco());
+//                System.out.println(v.get(i).getLoja().getUsername());
+//            }
+//            
+//           }
+// }
 //        
 //            
 //}

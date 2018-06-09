@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Negocio.Produtos;
+package Produtos;
 
-import Negocio.Produtos.Produto;
-import Negocio.Produtos.RepositorioProduto;
-import Negocio.Users.Loja;
+import Produtos.Produto;
+import Produtos.RepositorioProduto;
+import Users.Loja;
 import java.io.Serializable;
 
 /**
@@ -20,14 +20,21 @@ public class ProdutoLoja extends RepositorioProduto implements Serializable{
     private double preco;
     private boolean disponibilidade;
     private Produto produto;
-    private Loja loja;
-
+    private  Loja loja;
     public ProdutoLoja(){}
     
     public ProdutoLoja(double preco, boolean disponibilidade, Produto produto, Loja loja) {
         this.preco = preco;
         this.disponibilidade = disponibilidade;
         this.produto = produto;
+    this.loja = loja;
+    }
+
+    public Loja getLoja() {
+        return loja;
+    }
+
+    public void setLoja(Loja loja) {
         this.loja = loja;
     }
 
@@ -55,13 +62,7 @@ public class ProdutoLoja extends RepositorioProduto implements Serializable{
         this.produto = produto;
     }
 
-    public Loja getLoja() {
-        return loja;
-    }
-
-    public void setLoja(Loja loja) {
-        this.loja = loja;
-    }
+    
     
 
 }

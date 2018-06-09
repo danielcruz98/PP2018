@@ -7,24 +7,27 @@ package Interface;
 
 import javax.swing.JOptionPane;
 
-import Negocio.Sistema;
-import Negocio.Users.ListaUsers;
-import Negocio.Users.Utilizador;
-import Negocio.Users.Administrador;
+import Sistema.Sistema;
+import Users.ListaAdmins;
+import Users.Utilizador;
+import Users.Administrador;
 
 /**
  *
  * @author daniel
  */
-public class DadosUsers extends javax.swing.JDialog {
+public class DadosAdmins extends javax.swing.JDialog {
 
-    private Sistema sistema;    
-    private janelaListaUsers lista;
-    private Utilizador utilizador; 
+    private final Sistema sistema;    
+    private final janelaListaAdmins lista;
+    private final Utilizador utilizador; 
     /**
-     * Creates new form DadosUsers
+     * 
+     * @param sistema
+     * @param utilizador
+     * @param lista
      */
-    public DadosUsers(Sistema sistema, Utilizador utilizador, janelaListaUsers lista) {
+    public DadosAdmins(Sistema sistema, Utilizador utilizador, janelaListaAdmins lista) {
         
         initComponents();
         
@@ -47,11 +50,17 @@ public class DadosUsers extends javax.swing.JDialog {
             nome.setEnabled(false);
         } 
     }
-    
+    /**
+     * 
+     * 
+     */
     private boolean registoNovo() {
         return utilizador == null;
     }   
-    
+    /**
+     * 
+     * 
+     */
     private void guardar() {
          if (registoNovo() && username.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. o username pretendido!");            
@@ -93,8 +102,8 @@ public class DadosUsers extends javax.swing.JDialog {
             novo.setPassword(pass);
           
             try {
-                sistema.getListaUtilizadores().adicionar(novo);
-            } catch (ListaUsers.UtilizadorDuplicadoException ex) {
+                sistema.getListaAdmins().adicionar((Administrador) novo);
+            } catch (ListaAdmins.UtilizadorDuplicadoException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
                 return;
             }                      
@@ -113,7 +122,10 @@ public class DadosUsers extends javax.swing.JDialog {
         fechar();
         
     }
-    
+    /**
+     * 
+     * 
+     */
     private void fechar() {
         dispose();
     }
@@ -146,7 +158,7 @@ public class DadosUsers extends javax.swing.JDialog {
 
         jLabel3.setText("Password");
 
-        jLabel4.setText("COnfirmação");
+        jLabel4.setText("Confirmação");
 
         guardar.setText("Guardar");
         guardar.addActionListener(new java.awt.event.ActionListener() {

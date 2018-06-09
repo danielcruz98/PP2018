@@ -5,10 +5,9 @@
  */
 package Interface;
 
-import Negocio.Sistema;
-import Negocio.Produtos.Produto;
-import Negocio.Produtos.RepositorioProduto;
-import java.io.IOException;
+import Sistema.Sistema;
+import Produtos.Produto;
+import Produtos.RepositorioProduto;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,14 +16,18 @@ import javax.swing.JOptionPane;
  */
 public class DadosProdutos extends javax.swing.JDialog {
 
-    private Sistema sistema;
+    private final Sistema sistema;
 
-    private janelaListaProdutos lista;
+    private final janelaListaProdutos lista;
 
-    private Produto produto;
+    private final Produto produto;
 
     /**
      * Creates new form DadosProdutos
+     *
+     * @param sistema
+     * @param produto
+     * @param lista
      */
     public DadosProdutos(Sistema sistema, Produto produto, janelaListaProdutos lista) {
 
@@ -37,30 +40,37 @@ public class DadosProdutos extends javax.swing.JDialog {
         //Guarda a referencia a listagem
         this.lista = lista;
 
-       
         if (registoNovo()) {
-           
+
             setTitle("Criação de novo Produto");
             nome.requestFocus();
         } else {
-            
+
             setTitle("Alteração de dados de Produto");
-            
+
             nome.setText(produto.getNomeProduto());
             marca.setText(produto.getMarca());
             referencia.setText(produto.getReferencia());
             codigo.setText(produto.getCodigoBarras());
-            
+
             codigo.setEnabled(false);
-          
+
         }
     }
 
+    /**
+     *
+     *
+     */
     private boolean registoNovo() {
-        
+
         return produto == null;
     }
 
+    /**
+     *
+     *
+     */
     private void guardar() {
         if (registoNovo() && nome.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. o username pretendido!");
@@ -112,7 +122,6 @@ public class DadosProdutos extends javax.swing.JDialog {
 
         }
 
-      
         if (lista != null) {
             lista.atualizar();
         }
@@ -122,6 +131,10 @@ public class DadosProdutos extends javax.swing.JDialog {
 
     }
 
+    /**
+     *
+     *
+     */
     private void fechar() {
         dispose();
     }

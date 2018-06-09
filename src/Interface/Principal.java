@@ -5,11 +5,11 @@
  */
 package Interface;
 
-import Negocio.Produtos.RepositorioProdutoLoja;
-import Negocio.Sistema;
-import Negocio.Users.Administrador;
-import Negocio.Users.Loja;
-import bd.Serializacao;
+import Produtos.RepositorioProdutoLoja;
+import Sistema.Sistema;
+import Users.Administrador;
+import Users.Loja;
+import BaseDados.Serializacao;
 import javax.swing.JOptionPane;
 /**
  *
@@ -29,10 +29,11 @@ public class Principal extends javax.swing.JDialog {
         this.sistema = sistema;
         this.bd=bd;
         
-        
+        produto.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
         loja.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
         listaUsers.setVisible(sistema.getUtilizadorLigado() instanceof Administrador);
         repositorio.setVisible(sistema.getUtilizadorLigado() instanceof Loja);
+        clicks.setVisible(sistema.getUtilizadorLigado() instanceof Loja);
     }
 
     private void guardarAlteracoes() {
@@ -40,7 +41,7 @@ public class Principal extends javax.swing.JDialog {
     }
     
     private void listarUsers() {
-        janelaListaUsers listagem = new janelaListaUsers(sistema);
+        janelaListaAdmins listagem = new janelaListaAdmins(sistema);
         listagem.setVisible(true);        
     }
     
@@ -50,7 +51,7 @@ public class Principal extends javax.swing.JDialog {
     }
     
     private void alterarPassword() {        
-        DadosUsers psw = new DadosUsers(sistema, sistema.getUtilizadorLigado(), null);
+        DadosAdmins psw = new DadosAdmins(sistema, sistema.getUtilizadorLigado(), null);
         psw.setVisible(true);
     }
     
@@ -67,7 +68,7 @@ public class Principal extends javax.swing.JDialog {
     }
     
     private void listarProcurar() {
-        Procurar2 listagem = new Procurar2(sistema);
+        janelaProcurarProduto listagem = new janelaProcurarProduto(sistema);
         listagem.setVisible(true);        
     }
     
@@ -80,7 +81,10 @@ public class Principal extends javax.swing.JDialog {
             sistema.terminar();
         }
     }
-    
+    public void verClicks(){
+        DadosClicksLojas listagem = new DadosClicksLojas(sistema);
+        listagem.setVisible(true);  
+    }
   
     
     /**
@@ -102,11 +106,12 @@ public class Principal extends javax.swing.JDialog {
         alteraDados = new javax.swing.JMenu();
         guardar = new javax.swing.JMenuItem();
         listaUsers = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        clicks = new javax.swing.JMenuItem();
+        alterarDados = new javax.swing.JMenuItem();
         Sair = new javax.swing.JMenuItem();
         loja = new javax.swing.JMenu();
         listaLojas = new javax.swing.JMenuItem();
-        Menu4 = new javax.swing.JMenu();
+        produto = new javax.swing.JMenu();
         listaProduto = new javax.swing.JMenuItem();
         repositorio = new javax.swing.JMenu();
         novo = new javax.swing.JMenuItem();
@@ -142,7 +147,7 @@ public class Principal extends javax.swing.JDialog {
         });
         alteraDados.add(guardar);
 
-        listaUsers.setText("Lista Users");
+        listaUsers.setText("Lista Admins");
         listaUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listaUsersActionPerformed(evt);
@@ -150,13 +155,21 @@ public class Principal extends javax.swing.JDialog {
         });
         alteraDados.add(listaUsers);
 
-        jMenuItem2.setText("Alterar Dados");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        clicks.setText("Clicks");
+        clicks.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                clicksActionPerformed(evt);
             }
         });
-        alteraDados.add(jMenuItem2);
+        alteraDados.add(clicks);
+
+        alterarDados.setText("Alterar Dados");
+        alterarDados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alterarDadosActionPerformed(evt);
+            }
+        });
+        alteraDados.add(alterarDados);
 
         Sair.setText("Sair");
         Sair.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +193,7 @@ public class Principal extends javax.swing.JDialog {
 
         jMenuBar1.add(loja);
 
-        Menu4.setText("Produto");
+        produto.setText("Produto");
 
         listaProduto.setText("Lista Produtos");
         listaProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -188,9 +201,9 @@ public class Principal extends javax.swing.JDialog {
                 listaProdutoActionPerformed(evt);
             }
         });
-        Menu4.add(listaProduto);
+        produto.add(listaProduto);
 
-        jMenuBar1.add(Menu4);
+        jMenuBar1.add(produto);
 
         repositorio.setText("Repositorio");
 
@@ -238,10 +251,10 @@ public class Principal extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(this, "Alterações guardadas.");
     }//GEN-LAST:event_guardarActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void alterarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarDadosActionPerformed
         // TODO add your handling code here:
         alterarPassword();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_alterarDadosActionPerformed
 
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
         // TODO add your handling code here:
@@ -283,15 +296,22 @@ public class Principal extends javax.swing.JDialog {
         terminar();
     }//GEN-LAST:event_formWindowClosing
 
+    private void clicksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clicksActionPerformed
+        // TODO add your handling code here:
+        
+        verClicks();
+    }//GEN-LAST:event_clicksActionPerformed
+
     /**
      * @param args the command line arguments
      */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu Menu4;
     private javax.swing.JMenuItem Sair;
     private javax.swing.JMenu alteraDados;
+    private javax.swing.JMenuItem alterarDados;
+    private javax.swing.JMenuItem clicks;
     private javax.swing.JMenuItem guardar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -300,7 +320,6 @@ public class Principal extends javax.swing.JDialog {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem listaLojas;
     private javax.swing.JMenuItem listaProduto;
@@ -308,6 +327,7 @@ public class Principal extends javax.swing.JDialog {
     private javax.swing.JMenu loja;
     private javax.swing.JMenuItem novo;
     private javax.swing.JMenuItem procurar;
+    private javax.swing.JMenu produto;
     private javax.swing.JMenu repositorio;
     // End of variables declaration//GEN-END:variables
 }

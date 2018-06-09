@@ -5,44 +5,58 @@
  */
 package Interface;
 
-import Negocio.Users.Loja;
-import Negocio.Sistema;
+import Users.Loja;
+import Sistema.Sistema;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author daniel
  */
-public class janelaClicks extends javax.swing.JDialog {
-    private Sistema sistema;
-    private int i ;
+public class janelaListagemDeClicks extends javax.swing.JDialog {
+
+    private final Sistema sistema;
+    private final int i;
+
     /**
-     * Creates new form janelaClicks
+     *
+     *
+     * @param sistema
+     * @param i
      */
-    public janelaClicks(Sistema sistema, int i) {
-        
+    public janelaListagemDeClicks(Sistema sistema, int i) {
+
         initComponents();
-    
-           this.sistema = sistema;
-           this.i=i;
-           addTabelaLojas();
+
+        this.sistema = sistema;
+        this.i = i;
+        addTabelaLojas();
     }
-    public int getI(){
+
+    /**
+     *
+     *
+     * @return
+     */
+    public int getI() {
         return i;
     }
-    
+
+    /**
+     *
+     *
+     */
     public void addTabelaLojas() {
         DefaultTableModel model = (DefaultTableModel) tabelaClicks.getModel();
         Object rowData[] = new Object[5];
-        for (int i = 0; i < sistema.getListaUtilizadores().size(); i++) {
-            if (sistema.getListaUtilizadores().todos().get(i) instanceof Loja) {
+        for (int i = 0; i < sistema.getListaLojas().size(); i++) {
 
-                Loja u = (Loja) sistema.getListaUtilizadores().todos().get(i);
-                if(u.getClicksRestantes()<getI()){
+            Loja u = (Loja) sistema.getListaLojas().todos().get(i);
+            if (u.getClicksRestantes() < getI()) {
                 rowData[0] = u.getUsername();
                 rowData[1] = u.getNome();
                 model.addRow(rowData);
-            }}
+            }
         }
 
     }
@@ -94,7 +108,7 @@ public class janelaClicks extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaClicks;

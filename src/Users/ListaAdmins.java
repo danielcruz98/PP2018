@@ -3,25 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Negocio.Users;
+package Users;
 
-import Negocio.Users.Utilizador;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.TreeMap;
 
 /**
  *
  * @author daniel
  */
-public class ListaUsers implements Serializable {
+public class ListaAdmins implements Serializable {
 
-    private TreeMap<String, Utilizador> lista;
-   
+    private TreeMap<String, Administrador> lista;
 
+    /**
+     *
+     *
+     */
     public class UtilizadorNaoExistenteException extends Exception {
 
         public UtilizadorNaoExistenteException() {
@@ -32,6 +31,10 @@ public class ListaUsers implements Serializable {
         }
     }
 
+    /**
+     *
+     *
+     */
     public class UtilizadorDuplicadoException extends Exception {
 
         public UtilizadorDuplicadoException() {
@@ -41,7 +44,11 @@ public class ListaUsers implements Serializable {
             super(message);
         }
     }
-    
+
+    /**
+     *
+     *
+     */
     public class NaoVisita extends Exception {
 
         public NaoVisita() {
@@ -52,12 +59,22 @@ public class ListaUsers implements Serializable {
         }
     }
 
-    public ListaUsers() {
+    /**
+     *
+     *
+     */
+    public ListaAdmins() {
         lista = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
-        
+
     }
 
-    public void adicionar(Utilizador utilizador) throws UtilizadorDuplicadoException {
+    /**
+     *
+     *
+     * @param utilizador
+     * @throws Users.ListaAdmins.UtilizadorDuplicadoException
+     */
+    public void adicionar(Administrador utilizador) throws UtilizadorDuplicadoException {
         if (utilizador == null) {
             throw new NullPointerException("O parâmetro 'utilizador' não pode ser um valor nulo");
         }
@@ -70,6 +87,12 @@ public class ListaUsers implements Serializable {
 
     }
 
+    /**
+     *
+     *
+     * @param username
+     * @return
+     */
     public boolean existe(String username) {
         return lista.containsKey(username);
     }
@@ -78,6 +101,13 @@ public class ListaUsers implements Serializable {
         return lista.size();
     }
 
+    /**
+     *
+     *
+     * @param username
+     * @return
+     * @throws Users.ListaAdmins.UtilizadorNaoExistenteException
+     */
     public Utilizador getUtilizador(String username) throws UtilizadorNaoExistenteException {
         if (lista.containsKey(username)) {
             return lista.get(username);
@@ -85,34 +115,14 @@ public class ListaUsers implements Serializable {
             throw new UtilizadorNaoExistenteException("O utilizador '%s' já existe na lista");
         }
     }
-    
-    public void conta(String username) throws NaoVisita{
-        if (lista.containsKey(username)) {
-           Loja u = (Loja) lista.get(username);
-           u.addClickUsados();
-        } else {
-            throw new NaoVisita("O utilizador '%s' já existe na lista");
-        }
-    }
 
-    public ArrayList<Utilizador> todos() {
+    /**
+     *
+     *
+     * @return
+     */
+    public ArrayList<Administrador> todos() {
         return new ArrayList<>(lista.values());
-    }
-    
-    public  ArrayList<Loja> LojasMaisVisitadas(){
-        ArrayList<Loja> l = new ArrayList<>();
-        
-        for(int i = 0; i<todos().size();i++){
-            if(todos().get(i) instanceof Loja){
-               Loja u =(Loja)todos().get(i);
-               
-               l.add(u);
-               
-               
-            }
-        }
-        return new ArrayList<>(l);
-        
     }
 
 }

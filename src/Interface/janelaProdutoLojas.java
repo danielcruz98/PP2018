@@ -5,20 +5,18 @@
  */
 package Interface;
 
-import Negocio.Produtos.Produto;
-import Negocio.Produtos.ProdutoLoja;
-import Negocio.Produtos.RepositorioProduto;
-import Negocio.Produtos.RepositorioProdutoLoja;
-import Negocio.Sistema;
-import Negocio.Users.Administrador;
-import Negocio.Users.ListaUsers;
-import Negocio.Users.Loja;
+import Produtos.Produto;
+import Produtos.ProdutoLoja;
+import Produtos.RepositorioProduto;
+import Produtos.RepositorioProdutoLoja;
+import Sistema.Sistema;
+import Users.ListaLojas;
+import Users.Loja;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.AbstractTableModel;
 
 /**
  *
@@ -26,10 +24,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class janelaProdutoLojas extends javax.swing.JDialog {
 
-    private Sistema sistema;
+    private final Sistema sistema;
+
+    private AbstractTableModel modeloTabela;
 
     /**
-     * Creates new form repositorioProdutoLojas
+     *
+     *
+     * @param sistema
      */
     public janelaProdutoLojas(Sistema sistema) {
 
@@ -37,26 +39,72 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
 
         this.sistema = sistema;
 
-        addTabelaRep();
+        this.modeloTabela = criarModeloTabela();
+        rep.setModel(modeloTabela);
 
     }
 
-    public void addTabelaRep() {
-        DefaultTableModel model = (DefaultTableModel) rep.getModel();
-        Object rowData[] = new Object[5];
-        for (int i = 0; i < sistema.getListaProdutoLoja().size(); i++) {
+    /**
+     *
+     *
+     */
+    private AbstractTableModel criarModeloTabela() {
+        String[] nomeColunas = {"Nome", "Marca", "referencia", "codigo", "Preco", "Dsponibilidade"};
 
-            rowData[0] = sistema.getListaProdutoLoja().lista().get(i).getProduto().getNomeProduto();
-            rowData[1] = sistema.getListaProdutoLoja().lista().get(i).getPreco();
-            rowData[2] = sistema.getListaProdutoLoja().lista().get(i).getDisponibilidade();
-            rowData[3] = sistema.getListaProdutoLoja().lista().get(i).getLoja().getNome();
-            model.addRow(rowData);
+        Loja l = (Loja) sistema.getUtilizadorLigado();
+        String s = l.getUsername();
 
-        }
+        ArrayList<ProdutoLoja> produto = sistema.getListaProdutoLoja().listarProdutosLoja(s);
 
+        return new AbstractTableModel() {
+            @Override
+            public String getColumnName(int column) {
+                return nomeColunas[column];
+            }
+
+            @Override
+            public int getRowCount() {
+
+                return produto.size();
+            }
+
+            @Override
+            public int getColumnCount() {
+                return nomeColunas.length;
+            }
+
+            @Override
+            public Object getValueAt(int rowIndex, int columnIndex) {
+
+                switch (columnIndex) {
+                    case 0:
+                        return produto.get(rowIndex).getProduto().getNomeProduto();
+                    case 1:
+                        return produto.get(rowIndex).getProduto().getMarca();
+                    case 2:
+                        return produto.get(rowIndex).getProduto().getReferencia();
+                    case 3:
+                        return produto.get(rowIndex).getProduto().getCodigoBarras();
+
+                    case 4:
+                        return produto.get(rowIndex).getPreco();
+                    case 5:
+                        return produto.get(rowIndex).getDisponibilidade();
+                    default:
+                        return "";
+                }
+            }
+        };
     }
 
-    public void associar() throws ListaUsers.UtilizadorNaoExistenteException, RepositorioProduto.ProdutoNaoExistenteException, RepositorioProdutoLoja.ProdutoJaExisteNaLojaException {
+    /**
+     *
+     *
+     * @throws Users.ListaLojas.UtilizadorNaoExistenteException
+     * @throws Produtos.RepositorioProduto.ProdutoNaoExistenteException
+     * @throws Produtos.RepositorioProdutoLoja.ProdutoJaExisteNaLojaException
+     */
+    public void associar() throws ListaLojas.UtilizadorNaoExistenteException, RepositorioProduto.ProdutoNaoExistenteException, RepositorioProdutoLoja.ProdutoJaExisteNaLojaException {
         if (nome.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. o username pretendido!");
             nome.requestFocus();
@@ -141,12 +189,16 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
             return;
         }
 
+        modeloTabela = criarModeloTabela();
+        rep.setModel(modeloTabela);
         JOptionPane.showMessageDialog(this, "Registo guardado com sucesso.");
-        fechar();
-        janelaProdutoLojas listagem = new janelaProdutoLojas(sistema);
-        listagem.setVisible(true);
+
     }
 
+    /**
+     *
+     *
+     */
     public void editar() {
 
         if (preco.getText().isEmpty()) {
@@ -183,30 +235,45 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
 
         l.setDisponibilidade(subs);
 
+        atualizar();
         JOptionPane.showMessageDialog(this, "Produto alterado com sucesso.");
-        fechar();
-        janelaProdutoLojas listagem = new janelaProdutoLojas(sistema);
-        listagem.setVisible(true);
+
     }
 
+    /**
+     *
+     *
+     */
     private void fechar() {
         dispose();
     }
 
+    /**
+     *
+     *
+     */
+    public void atualizar() {
+        modeloTabela.fireTableDataChanged();
+    }
+
+    /**
+     *
+     *
+     * @throws Produtos.RepositorioProduto.ProdutoNaoExistenteException
+     */
     public void procurar() throws RepositorioProduto.ProdutoNaoExistenteException {
         if (codigo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. o codigo de barras que pretende procurar!");
             codigo.requestFocus();
             return;
         }
-        
-        
+
         String s = codigo.getText();
 
         if (sistema.getListaProduto().verificarProduto(s) == true) {
             try {
                 Produto p = sistema.getListaProduto().getProduto(s);
-                JOptionPane.showMessageDialog(this, "O produto existe."); 
+                JOptionPane.showMessageDialog(this, "O produto existe.");
                 codigo.setText(p.getCodigoBarras());
                 nome.setText(p.getNomeProduto());
                 marca.setText(p.getMarca());
@@ -214,11 +281,10 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
             } catch (RepositorioProduto.ProdutoNaoExistenteException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
             }
-           
 
-        }else {
-                  JOptionPane.showMessageDialog(this, "O produto nao existe.");  
-                    }
+        } else {
+            JOptionPane.showMessageDialog(this, "O produto nao existe.");
+        }
     }
 
     /**
@@ -390,7 +456,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
         try {
             // TODO add your handling code here:
             associar();
-        } catch (ListaUsers.UtilizadorNaoExistenteException | RepositorioProduto.ProdutoNaoExistenteException | RepositorioProdutoLoja.ProdutoJaExisteNaLojaException ex) {
+        } catch (ListaLojas.UtilizadorNaoExistenteException | RepositorioProduto.ProdutoNaoExistenteException | RepositorioProdutoLoja.ProdutoJaExisteNaLojaException ex) {
             Logger.getLogger(janelaProdutoLojas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_associarActionPerformed

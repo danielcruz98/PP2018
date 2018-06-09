@@ -5,44 +5,74 @@
  */
 package Interface;
 
-import Negocio.Sistema;
-import Negocio.Users.Loja;
-import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
+import Sistema.Sistema;
+import Users.Loja;
+import javax.swing.table.AbstractTableModel;
 
 /**
  *
  * @author daniel
  */
 public class janelaLojasMaisVisitadas extends javax.swing.JDialog {
-private Sistema sistema;
-    /**
-     * Creates new form janelaLojasMaisVisitadas
-     */
-    public janelaLojasMaisVisitadas(Sistema sistema) {        
-        initComponents();
-        
-        this.sistema = sistema;
-    }
-    
-    
-    public void add(){
-    DefaultTableModel model = (DefaultTableModel) tabela.getModel();
-        Object rowData[] = new Object[2];
-        
-        ArrayList<Loja> l = new ArrayList<>(sistema.getListaUtilizadores().LojasMaisVisitadas());
-        for (int i = 0; i < l.size(); i++) {
-         
 
-          
-                rowData[0] =l.get(i).getUsername();
-                
-                rowData[1] = l.get(i).getNome();
-               
-                model.addRow(rowData);
-            
-        }
-    
+    private final Sistema sistema;
+    private final AbstractTableModel modeloTabela;
+
+    /**
+     *
+     * @param sistema
+     */
+    public janelaLojasMaisVisitadas(Sistema sistema) {
+        initComponents();
+
+        this.sistema = sistema;
+
+        this.modeloTabela = criarModeloTabela();
+        tabela.setModel(modeloTabela);
+
+    }
+
+    /**
+     *
+     *
+     */
+    private AbstractTableModel criarModeloTabela() {
+        String[] nomeColunas = {"Username", "Nome", "ClicksUsados"};
+
+        return new AbstractTableModel() {
+            @Override
+            public String getColumnName(int column) {
+                return nomeColunas[column];
+            }
+
+            @Override
+            public int getRowCount() {
+                return sistema.getListaLojas().size();
+            }
+
+            @Override
+            public int getColumnCount() {
+                return nomeColunas.length;
+            }
+
+            @Override
+            public Object getValueAt(int rowIndex, int columnIndex) {
+
+                Loja l = (Loja) sistema.getListaLojas().todos().get(rowIndex);
+
+                switch (columnIndex) {
+                    case 0:
+                        return l.getUsername();
+                    case 1:
+                        return l.getNome();
+
+                    case 2:
+                        return l.getClicksUsados();
+                    default:
+                        return "";
+                }
+            }
+        };
     }
 
     /**
@@ -92,7 +122,6 @@ private Sistema sistema;
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

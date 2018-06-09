@@ -5,10 +5,9 @@
  */
 package Interface;
 
-import Negocio.Users.ListaUsers;
-import Negocio.Sistema;
-import Negocio.Users.Loja;
-import Negocio.Users.Utilizador;
+import Sistema.Sistema;
+import Users.ListaLojas;
+import Users.Loja;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,13 +16,16 @@ import javax.swing.JOptionPane;
  */
 public class DadosLojas extends javax.swing.JDialog {
 
-    private Sistema sistema;
-    private janelaListaLojas lista;
-    private Loja utilizador;
-    
+    private final Sistema sistema;
+    private final janelaListaLojas lista;
+    private final Loja utilizador;
 
     /**
      * Creates new form DadosUsers
+     *
+     * @param sistema
+     * @param utilizador
+     * @param lista
      */
     public DadosLojas(Sistema sistema, Loja utilizador, janelaListaLojas lista) {
 
@@ -45,19 +47,27 @@ public class DadosLojas extends javax.swing.JDialog {
             password.setText(utilizador.getPassword());
             conf.setText(utilizador.getPassword());
             clicks.setText(String.valueOf(utilizador.getClicks()));
-            
+
             username.setEnabled(false);
             nome.setEnabled(false);
             password.setEnabled(false);
             conf.setEnabled(false);
-            
+
         }
     }
 
+    /**
+     *
+     *
+     */
     private boolean registoNovo() {
         return utilizador == null;
     }
 
+    /**
+     *
+     *
+     */
     private void guardar() {
         if (registoNovo() && username.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. o username pretendido!");
@@ -90,10 +100,7 @@ public class DadosLojas extends javax.swing.JDialog {
             conf.requestFocus();
             return;
         }
-        
-        
-        
-        
+
         if (clicks.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. o número de clicks!");
             clicks.requestFocus();
@@ -101,55 +108,59 @@ public class DadosLojas extends javax.swing.JDialog {
         }
 
         boolean subs = true;
-        if(combo.getSelectedItem().toString()=="Nao Ativa"){
+        if (combo.getSelectedItem().toString() == "Nao Ativa") {
             subs = false;
-            
-        }else if(combo.getSelectedItem().toString()=="Ativa"){
+
+        } else if (combo.getSelectedItem().toString() == "Ativa") {
             subs = true;
         }
         if (registoNovo()) {
             username.setEditable(true);
-             nome.setEditable(true);
-              password.setEditable(true);
-               conf.setEditable(true);
-               
+            nome.setEditable(true);
+            password.setEditable(true);
+            conf.setEditable(true);
+
             Loja novo = new Loja();
             novo.setNome(nome.getText());
             novo.setUsername(username.getText());
             novo.setPassword(pass);
             novo.setSubscricao(subs);
-            try{
-            novo.setClicks(Integer.parseInt(clicks.getText()));
-            }catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Introduza p.f. um número nos clicks");
-                return;}
             try {
-                sistema.getListaUtilizadores().adicionar(novo);
-            } catch (ListaUsers.UtilizadorDuplicadoException ex) {
+                novo.setClicks(Integer.parseInt(clicks.getText()));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Introduza p.f. um número nos clicks");
+                return;
+            }
+            try {
+                sistema.getListaLojas().adicionar(novo);
+            } catch (ListaLojas.UtilizadorDuplicadoException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
-                 clicks.requestFocus();
+                clicks.requestFocus();
                 return;
             }
 
         } else {
             username.setEnabled(false);
-            
+
             conf.setEnabled(false);
-           
-           
+
             utilizador.setSubscricao(subs);
             utilizador.setClicks(Integer.parseInt(clicks.getText()));
         }
 
-       
-     
+        if (lista != null) {
+            lista.atualizar();
+        }
+
         JOptionPane.showMessageDialog(this, "Registo guardado com sucesso.");
         fechar();
-        janelaListaLojas listagem = new janelaListaLojas(sistema);
-        listagem.setVisible(true);
 
     }
 
+    /**
+     *
+     *
+     */
     private void fechar() {
         dispose();
     }
@@ -302,8 +313,7 @@ public class DadosLojas extends javax.swing.JDialog {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        janelaListaLojas listagem = new janelaListaLojas(sistema);
-        listagem.setVisible(true);
+
     }//GEN-LAST:event_formWindowClosed
 
     /**

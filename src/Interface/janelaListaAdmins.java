@@ -5,45 +5,47 @@
  */
 package Interface;
 
-import Negocio.Sistema;
-import Negocio.Users.ListaUsers;
-import Negocio.Users.Loja;
-import Negocio.Users.Utilizador;
+import Sistema.Sistema;
+import Users.Administrador;
+import Users.ListaAdmins;
+import Users.Utilizador;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author daniel
  */
-public class janelaListaUsers extends javax.swing.JDialog {
+public class janelaListaAdmins extends javax.swing.JDialog {
 
-    private Sistema sistema;
-    
-    private AbstractTableModel modeloTabela;
-    
-    public janelaListaUsers(Sistema sistema) {
+    private final Sistema sistema;
+
+    private final AbstractTableModel modeloTabela;
+
+    public janelaListaAdmins(Sistema sistema) {
         initComponents();
         this.sistema = sistema;
         this.modeloTabela = criarModeloTabela();
         tabUtilizadores.setModel(modeloTabela);
-        
+
     }
-    
-    
-  
-    private AbstractTableModel criarModeloTabela() {   
+
+    /**
+     *
+     *
+     */
+    private AbstractTableModel criarModeloTabela() {
         String[] nomeColunas = {"Username", "Nome", "Password"};
-        
-        return new AbstractTableModel() {     
+
+        return new AbstractTableModel() {
             @Override
             public String getColumnName(int column) {
                 return nomeColunas[column];
             }
-           
+
             @Override
             public int getRowCount() {
-                return sistema.getListaUtilizadores().size();
+                return sistema.getListaAdmins().size();
             }
 
             @Override
@@ -53,52 +55,67 @@ public class janelaListaUsers extends javax.swing.JDialog {
 
             @Override
             public Object getValueAt(int rowIndex, int columnIndex) {
-          
+
+                Administrador a = (Administrador) sistema.getListaAdmins().todos().get(rowIndex);
+
                 switch (columnIndex) {
-                    case 0: 
-                        return sistema.getListaUtilizadores().todos().get(rowIndex).getUsername();
+                    case 0:
+                        return a.getUsername();
                     case 1:
-                        return sistema.getListaUtilizadores().todos().get(rowIndex).getNome();
-                        
-                        case 2:
-                        return sistema.getListaUtilizadores().todos().get(rowIndex).getPassword();
+                        return a.getNome();
+
+                    case 2:
+                        return a.getPassword();
                     default:
                         return "";
-                }                              
-            }            
+                }
+            }
         };
     }
-    
-    public void atualizar() {    
+
+    /**
+     *
+     *
+     */
+    public void atualizar() {
         modeloTabela.fireTableDataChanged();
-    }   
-    
+    }
+
+    /**
+     *
+     *
+     */
     private void adicionar() {
-        DadosUsers janela = new DadosUsers(sistema, null, this);   
+        DadosAdmins janela = new DadosAdmins(sistema, null, this);
         janela.setVisible(true);
     }
-    
+
+    /**
+     *
+     *
+     */
     private void editar() {
-        if(tabUtilizadores.getSelectionModel().isSelectionEmpty()){
-           JOptionPane.showMessageDialog(this, "Escolha uma loja p.f.");
+        if (tabUtilizadores.getSelectionModel().isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(this, "Escolha uma loja p.f.");
             tabUtilizadores.requestFocus();
             return;
-       }
-        
-    
+        }
+
         int rowIndex = tabUtilizadores.getSelectedRow();
-        if (rowIndex == -1) return;
-        
+        if (rowIndex == -1) {
+            return;
+        }
+
         String username = (String) modeloTabela.getValueAt(rowIndex, 0);
-        
+
         try {
-            Utilizador utilizador = sistema.getListaUtilizadores().getUtilizador(username);
-            DadosUsers janela = new DadosUsers(sistema, utilizador, this);
+            Utilizador utilizador = sistema.getListaAdmins().getUtilizador(username);
+            DadosAdmins janela = new DadosAdmins(sistema, utilizador, this);
             janela.setVisible(true);
-        } catch (ListaUsers.UtilizadorNaoExistenteException ex) {
+        } catch (ListaAdmins.UtilizadorNaoExistenteException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-        
+
     }
 
     /**
@@ -186,7 +203,6 @@ public class janelaListaUsers extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adicionar;

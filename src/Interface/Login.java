@@ -5,10 +5,10 @@
  */
 package Interface;
 
-import Negocio.Users.ListaUsers;
-import Negocio.Users.Loja;
-import Negocio.Sistema;
-import Negocio.Users.Utilizador;
+import Users.ListaAdmins;
+import Users.Loja;
+import Sistema.Sistema;
+import Users.ListaLojas;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -19,10 +19,12 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JDialog {
 
-    private Sistema sistema;
+    private final Sistema sistema;
 
     /**
      * Creates new form Logins
+     *
+     * @param sistema
      */
     public Login(Sistema sistema) {
 
@@ -35,7 +37,11 @@ public class Login extends javax.swing.JDialog {
         userName.requestFocus();
     }
 
-    private void autenticar() throws ListaUsers.UtilizadorNaoExistenteException {
+    /**
+     *
+     *
+     */
+    private void autenticar() throws ListaAdmins.UtilizadorNaoExistenteException, ListaLojas.UtilizadorNaoExistenteException {
         if (userName.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. o nome de utilizador!");
             userName.requestFocus();
@@ -58,6 +64,10 @@ public class Login extends javax.swing.JDialog {
         }
     }
 
+    /**
+     *
+     *
+     */
     private void registar() {
         if (username.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. o username pretendido!");
@@ -100,17 +110,20 @@ public class Login extends javax.swing.JDialog {
         novo.setClicks(0);
 
         try {
-            sistema.getListaUtilizadores().adicionar(novo);
-        } catch (ListaUsers.UtilizadorDuplicadoException ex) {
+            sistema.getListaLojas().adicionar(novo);
+        } catch (ListaLojas.UtilizadorDuplicadoException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
             return;
         }
 
         JOptionPane.showMessageDialog(this, "Registo guardado com sucesso.");
-        
 
     }
 
+    /**
+     *
+     *
+     */
     private void fechar() {
         dispose();
     }
@@ -269,7 +282,9 @@ public class Login extends javax.swing.JDialog {
         try {
             // TODO add your handling code here:
             autenticar();
-        } catch (ListaUsers.UtilizadorNaoExistenteException ex) {
+        } catch (ListaAdmins.UtilizadorNaoExistenteException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ListaLojas.UtilizadorNaoExistenteException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_LoginActionPerformed

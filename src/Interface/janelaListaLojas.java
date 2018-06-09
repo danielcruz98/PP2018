@@ -5,12 +5,10 @@
  */
 package Interface;
 
-import Negocio.Users.ListaUsers;
-import Negocio.Users.Loja;
-import Negocio.Sistema;
-import Negocio.Users.Utilizador;
+import Users.Loja;
+import Sistema.Sistema;
+import Users.ListaLojas;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -19,11 +17,13 @@ import javax.swing.table.AbstractTableModel;
  */
 public class janelaListaLojas extends javax.swing.JDialog {
 
-    private Sistema sistema;
-
+    private final Sistema sistema;
+    private final AbstractTableModel modeloTabela;
 
     /**
      * Creates new form janelaListaLojas
+     *
+     * @param sistema
      */
     public janelaListaLojas(Sistema sistema) {
 
@@ -31,105 +31,168 @@ public class janelaListaLojas extends javax.swing.JDialog {
 
         this.sistema = sistema;
 
-        addTabelaLojas();
-        
-       
+        this.modeloTabela = criarModeloTabela();
+        tabelaLojas.setModel(modeloTabela);
+
     }
 
-    public void addTabelaLojas() {
-        DefaultTableModel model = (DefaultTableModel) tabelaLojas.getModel();
-        Object rowData[] = new Object[7];
-        for (int i = 0; i < sistema.getListaUtilizadores().size(); i++) {
-            if (sistema.getListaUtilizadores().todos().get(i) instanceof Loja) {
+    /**
+     *
+     *
+     */
+    private AbstractTableModel criarModeloTabela() {
+        String[] nomeColunas = {"Username", "Nome", "Subscricao", "Clicks", "ClicksRestantes", "ClicksUsados"};
 
-                Loja u = (Loja) sistema.getListaUtilizadores().todos().get(i);
-                rowData[0] = u.getUsername();
-                rowData[1] = u.getPassword();
-                rowData[2] = u.getNome();
-                rowData[3] = u.getSubscricao();
-                rowData[4] = u.getClicks();
-                rowData[5] = u.getClicksRestantes();
-                rowData[6] = u.getClicksUsados();
-                model.addRow(rowData);
+        return new AbstractTableModel() {
+            @Override
+            public String getColumnName(int column) {
+                return nomeColunas[column];
             }
-        }
 
+            @Override
+            public int getRowCount() {
+                return sistema.getListaLojas().size();
+            }
+
+            @Override
+            public int getColumnCount() {
+                return nomeColunas.length;
+            }
+
+            @Override
+            public Object getValueAt(int rowIndex, int columnIndex) {
+
+                Loja l = (Loja) sistema.getListaLojas().todos().get(rowIndex);
+
+                switch (columnIndex) {
+                    case 0:
+                        return l.getUsername();
+                    case 1:
+                        return l.getNome();
+
+                    case 2:
+                        return l.getSubscricao();
+                    case 3:
+                        return l.getClicks();
+                    case 4:
+                        return l.getClicksRestantes();
+                    case 5:
+                        return l.getClicksUsados();
+                    default:
+                        return "";
+                }
+            }
+        };
     }
-    
-    
+
+    /**
+     *
+     *
+     */
     private void lojaMostrada() {
-       if(tabelaLojas.getSelectionModel().isSelectionEmpty()){
-           JOptionPane.showMessageDialog(this, "Escolha uma loja p.f.");
+        if (tabelaLojas.getSelectionModel().isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(this, "Escolha uma loja p.f.");
             tabelaLojas.requestFocus();
             return;
-       }
-        
+        }
+
         int rowIndex = tabelaLojas.getSelectedRow();
-        if (rowIndex == -1) return;
-        
+        if (rowIndex == -1) {
+            return;
+        }
+
         String username = (String) tabelaLojas.getValueAt(rowIndex, 0);
-        
+
         try {
-            sistema.getListaUtilizadores().conta(username);
+            sistema.getListaLojas().conta(username);
             //Loja utilizador = (Loja)sistema.getListaUtilizadores().getUtilizador(username);
-          //  utilizador.addClickUsados();
-            
-        } catch (ListaUsers.NaoVisita ex) {
+            //  utilizador.addClickUsados();
+
+        } catch (ListaLojas.NaoVisita ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-        
+
         JOptionPane.showMessageDialog(this, "Loja visitada com sucesso.");
-         fechar();
+        fechar();
         janelaListaLojas listagem = new janelaListaLojas(sistema);
         listagem.setVisible(true);
     }
+
+    /**
+     *
+     *
+     */
     private void fechar() {
         dispose();
     }
-    
+
+    /**
+     *
+     *
+     */
+    public void atualizar() {
+        modeloTabela.fireTableDataChanged();
+    }
+
+    /**
+     *
+     *
+     */
     private void adicionar() {
-        dispose();
-        DadosLojas janela = new DadosLojas(sistema, null, this);   
+
+        DadosLojas janela = new DadosLojas(sistema, null, this);
         janela.setVisible(true);
     }
-    
+
+    /**
+     *
+     *
+     */
     private void editar() {
-        if(tabelaLojas.getSelectionModel().isSelectionEmpty()){
-           JOptionPane.showMessageDialog(this, "Escolha uma loja p.f.");
+        if (tabelaLojas.getSelectionModel().isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(this, "Escolha uma loja p.f.");
             tabelaLojas.requestFocus();
             return;
-       }
-        
+        }
+
         int rowIndex = tabelaLojas.getSelectedRow();
-        if (rowIndex == -1) return;
-        
+        if (rowIndex == -1) {
+            return;
+        }
+
         String username = (String) tabelaLojas.getValueAt(rowIndex, 0);
-        
+
         try {
-            fechar();
-            Loja utilizador = (Loja)sistema.getListaUtilizadores().getUtilizador(username);
+
+            Loja utilizador = (Loja) sistema.getListaLojas().getUtilizador(username);
             DadosLojas janela = new DadosLojas(sistema, utilizador, this);
             janela.setVisible(true);
-        } catch (ListaUsers.UtilizadorNaoExistenteException ex) {
+        } catch (ListaLojas.UtilizadorNaoExistenteException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-       
-        
+
     }
-    
-    
-    public void clicks(){
+
+    /**
+     *
+     *
+     */
+    public void clicks() {
         int i = Integer.parseInt(click.getText());
-        
-        janelaClicks clicks = new janelaClicks(sistema, i );
-        clicks.setVisible(true);  
+
+        janelaListagemDeClicks clicks = new janelaListagemDeClicks(sistema, i);
+        clicks.setVisible(true);
     }
-    
-    public void visitadas(){
-    janelaLojasMaisVisitadas listagem = new janelaLojasMaisVisitadas(sistema);
+
+    /**
+     *
+     *
+     */
+    public void visitadas() {
+        janelaLojasMaisVisitadas listagem = new janelaLojasMaisVisitadas(sistema);
         listagem.setVisible(true);
     }
-     
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

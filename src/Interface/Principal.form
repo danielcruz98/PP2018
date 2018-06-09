@@ -56,18 +56,26 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="listaUsers">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Lista Users"/>
+                <Property name="text" type="java.lang.String" value="Lista Admins"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listaUsersActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+            <MenuItem class="javax.swing.JMenuItem" name="clicks">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Clicks"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clicksActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="alterarDados">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Alterar Dados"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alterarDadosActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Sair">
@@ -95,7 +103,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="Menu4">
+        <Menu class="javax.swing.JMenu" name="produto">
           <Properties>
             <Property name="text" type="java.lang.String" value="Produto"/>
           </Properties>

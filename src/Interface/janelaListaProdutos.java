@@ -5,13 +5,11 @@
  */
 package Interface;
 
-import Negocio.Sistema;
-import Negocio.Produtos.Produto;
-import Negocio.Produtos.RepositorioProduto;
-import Negocio.Produtos.RepositorioProdutoLoja;
+import Sistema.Sistema;
+import Produtos.Produto;
+import Produtos.RepositorioProduto;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,12 +17,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class janelaListaProdutos extends javax.swing.JDialog {
 
-    private Sistema sistema;
+    private final Sistema sistema;
 
-    private AbstractTableModel modeloTabela;
+    private final AbstractTableModel modeloTabela;
 
     /**
-     * Creates new form janelaListaProdutos
+     *
+     * @param sistema
      */
     public janelaListaProdutos(Sistema sistema) {
 
@@ -37,6 +36,10 @@ public class janelaListaProdutos extends javax.swing.JDialog {
 
     }
 
+    /**
+     *
+     *
+     */
     private AbstractTableModel criarModeloTabela() {
         String[] nomeColunas = {"Codigo Barras", "Nome", "Marca", "Referencia"};
 
@@ -58,7 +61,7 @@ public class janelaListaProdutos extends javax.swing.JDialog {
 
             @Override
             public Object getValueAt(int rowIndex, int columnIndex) {
-               
+
                 switch (columnIndex) {
                     case 0:
                         return sistema.getListaProduto().todos().get(rowIndex).getCodigoBarras();
@@ -78,22 +81,34 @@ public class janelaListaProdutos extends javax.swing.JDialog {
         };
     }
 
+    /**
+     *
+     *
+     */
     public void atualizar() {
         modeloTabela.fireTableDataChanged();
     }
 
+    /**
+     *
+     *
+     */
     private void adicionar() {
         DadosProdutos janela = new DadosProdutos(sistema, null, this);
         janela.setVisible(true);
     }
 
+    /**
+     *
+     *
+     */
     private void editar() {
-        
-        if(produtosTabela.getSelectionModel().isSelectionEmpty()){
-           JOptionPane.showMessageDialog(this, "Escolha uma loja p.f.");
+
+        if (produtosTabela.getSelectionModel().isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(this, "Escolha uma loja p.f.");
             produtosTabela.requestFocus();
             return;
-       }
+        }
         int rowIndex = produtosTabela.getSelectedRow();
         if (rowIndex == -1) {
             return;

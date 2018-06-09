@@ -2,9 +2,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Negocio.Produtos;
+package Produtos;
 
-import Negocio.Users.Loja;
+import Users.Loja;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -33,23 +33,44 @@ public class RepositorioProdutoLoja implements Serializable {
     }    
     
     //fazer 3 metodos diferentes de forma a procurar cada um sozoinho
-    public ArrayList<ProdutoLoja> procurarProduto(String s) throws OProdutoNaoExiste{
-       ArrayList<ProdutoLoja> p = new ArrayList<>();
-
-        for(ProdutoLoja l : repositorio){
-            if((l.getProduto().getMarca() == s && l.getLoja().getSubscricao() == true) 
-                    || (l.getProduto().getNomeProduto() == s && l.getLoja().getSubscricao() == true)  
-                    || (l.getProduto().getReferencia() == s && l.getLoja().getSubscricao() == true)){
-                p.add(l);
+   
+    
+    public ArrayList<ProdutoLoja> procurarNome(String s){
+        ArrayList<ProdutoLoja> temp = new ArrayList<>();
+        
+        for(ProdutoLoja p : lista()){
+            if(p.getProduto().getNomeProduto().contains(s)){
+                temp.add(p);
             }
         }
-        return new ArrayList<>(p);
         
+        return temp;
     }
-    
+  public ArrayList<ProdutoLoja> procurarMarca(String s){
+        ArrayList<ProdutoLoja> temp = new ArrayList<>();
+        
+        for(ProdutoLoja p : lista()){
+            if(p.getProduto().getMarca().contains(s)){
+                temp.add(p);
+            }
+        }
+        
+        return temp;
+    }
+   public ArrayList<ProdutoLoja> procurarReferencia(String s){
+        ArrayList<ProdutoLoja> temp = new ArrayList<>();
+        
+        for(ProdutoLoja p : lista()){
+            if(p.getProduto().getReferencia().contains(s)){
+                temp.add(p);
+            }
+        }
+        
+        return temp;
+    }
     public boolean verificarExistencia(ProdutoLoja produto) throws ProdutoJaExisteNaLojaException {
         for (ProdutoLoja produtoloja : repositorio) {
-            if (produtoloja.getProduto() == produto.getProduto() && produtoloja.getLoja() == produto.getLoja()) {
+            if (produtoloja.getProduto() == produto.getProduto()) {
 
                 throw new ProdutoJaExisteNaLojaException(String.format("O Produto já existe nesta loja"));
 
@@ -92,16 +113,16 @@ public class RepositorioProdutoLoja implements Serializable {
         return lista;
     }
 
-    public ArrayList listarInstanciasProdutosEmLojasComCliquesDisponiveis(Produto produto) {
-        ArrayList<ProdutoLoja> lista = new ArrayList();
-        for (ProdutoLoja produtoloja : repositorio) {
-            if (produtoloja.getProduto() == produto && produtoloja.getLoja().getClicksRestantes() > 0) {
-                lista.add(produtoloja);
-            }
-
-        }
-        return lista;
-    }
+//    public ArrayList listarInstanciasProdutosEmLojasComCliquesDisponiveis(Produto produto) {
+//        ArrayList<ProdutoLoja> lista = new ArrayList();
+//        for (ProdutoLoja produtoloja : repositorio) {
+//            if (produtoloja.getProduto() == produto && produtoloja.getLoja().getClicksRestantes() > 0) {
+//                lista.add(produtoloja);
+//            }
+//
+//        }
+//        return lista;
+//    }
 
     public class ProdutoJaExisteNaLojaException extends Exception {
 

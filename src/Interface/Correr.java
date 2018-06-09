@@ -5,46 +5,43 @@
  */
 package Interface;
 
-import Negocio.Users.Administrador;
-import Negocio.Users.ListaUsers;
-import Negocio.Users.Loja;
-import javax.swing.JOptionPane;
-import Negocio.Sistema;
-import Negocio.Users.Utilizador;
-import bd.Serializacao;
+import Users.Administrador;
+import Users.ListaAdmins;
+import Users.Loja;
+import Sistema.Sistema;
+import Users.ListaLojas;
+import BaseDados.Serializacao;
 
 /**
  *
  * @author daniel
  */
 public class Correr {
-     public static void main(String[] args) throws ListaUsers.UtilizadorDuplicadoException {
-        
-        Sistema sistema;        
-        String ficheiroDados = String.format("%s\\fafa.data", System.getProperty("user.dir"));
+
+    public static void main(String[] args) throws ListaAdmins.UtilizadorDuplicadoException, ListaLojas.UtilizadorDuplicadoException {
+
+        Sistema sistema;
+        String ficheiroDados = String.format("%s\\fzfffzff.data", System.getProperty("user.dir"));
         System.out.println(String.format("Ficheiro de dados: %s.", ficheiroDados));
-        Serializacao bd = new Serializacao(ficheiroDados);        
-        
-       
-        if (! bd.getFicheiro().exists()) {
-            
-            sistema = new Sistema();      
+        Serializacao bd = new Serializacao(ficheiroDados);
+
+        if (!bd.getFicheiro().exists()) {
+
+            sistema = new Sistema();
             //Adiciona dois utilizadores para que possa ser possivel entrar no sistema
-            sistema.getListaUtilizadores().adicionar(new Administrador("admin", "admin", "Aministrador"));
-        sistema.getListaUtilizadores().adicionar(new Loja("daniel", "daniel", "daniel",true,1111));
-         sistema.getListaUtilizadores().adicionar(new Loja("quim", "quim", "quim",false,1111));                
-        }else{
-            sistema = bd.carregar();            
-        }                 
-        
-               
-        Login login = new Login(sistema);               
+            sistema.getListaAdmins().adicionar(new Administrador("admin", "admin", "Aministrador"));
+            sistema.getListaLojas().adicionar(new Loja("daniel", "daniel", "daniel", true, 1111));
+            sistema.getListaLojas().adicionar(new Loja("quim", "quim", "quim", false, 1111));
+        } else {
+            sistema = bd.carregar();
+        }
+
+        Login login = new Login(sistema);
         login.setVisible(true);
-    
+
         Principal principal = new Principal(sistema, bd);
-        principal.setVisible(true);        
-        
+        principal.setVisible(true);
+
     }
-         
-        
+
 }
