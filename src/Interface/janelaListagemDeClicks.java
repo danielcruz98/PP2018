@@ -7,6 +7,8 @@ package Interface;
 
 import Users.Loja;
 import Sistema.Sistema;
+import java.util.ArrayList;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,6 +19,7 @@ public class janelaListagemDeClicks extends javax.swing.JDialog {
 
     private final Sistema sistema;
     private final int i;
+        private final AbstractTableModel modeloTabela;
 
     /**
      *
@@ -30,7 +33,8 @@ public class janelaListagemDeClicks extends javax.swing.JDialog {
 
         this.sistema = sistema;
         this.i = i;
-        addTabelaLojas();
+        this.modeloTabela = criarModeloTabela();
+        tabelaClicks.setModel(modeloTabela);
     }
 
     /**
@@ -46,19 +50,44 @@ public class janelaListagemDeClicks extends javax.swing.JDialog {
      *
      *
      */
-    public void addTabelaLojas() {
-        DefaultTableModel model = (DefaultTableModel) tabelaClicks.getModel();
-        Object rowData[] = new Object[5];
-        for (int i = 0; i < sistema.getListaLojas().size(); i++) {
-
-            Loja u = (Loja) sistema.getListaLojas().todos().get(i);
-            if (u.getClicksRestantes() < getI()) {
-                rowData[0] = u.getUsername();
-                rowData[1] = u.getNome();
-                model.addRow(rowData);
+    private AbstractTableModel criarModeloTabela() {
+        String[] nomeColunas = {"Username", "Nome", "Subscricao"};
+        ArrayList<Loja> l = sistema.getListaLojas().lojaComMenosXClicks(i);
+        return new AbstractTableModel() {
+            @Override
+            public String getColumnName(int column) {
+                return nomeColunas[column];
             }
-        }
 
+            @Override
+            public int getRowCount() {
+                return l.size();
+            }
+
+            @Override
+            public int getColumnCount() {
+                return nomeColunas.length;
+            }
+
+            @Override
+            public Object getValueAt(int rowIndex, int columnIndex) {
+
+            
+
+                switch (columnIndex) {
+                    case 0:
+                        return l.get(rowIndex).getUsername();
+                    case 1:
+                        return l.get(rowIndex).getNome();
+
+                    case 2:
+                        return l.get(rowIndex).getSubscricao();
+                   
+                    default:
+                        return "";
+                }
+            }
+        };
     }
 
     /**

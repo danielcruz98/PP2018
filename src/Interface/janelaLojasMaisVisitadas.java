@@ -7,6 +7,9 @@ package Interface;
 
 import Sistema.Sistema;
 import Users.Loja;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -38,6 +41,31 @@ public class janelaLojasMaisVisitadas extends javax.swing.JDialog {
      */
     private AbstractTableModel criarModeloTabela() {
         String[] nomeColunas = {"Username", "Nome", "ClicksUsados"};
+        //Cria uma copia da lista de entradas, para nao alterarmos a lista original
+        List<Loja> listas = new ArrayList<>(sistema.getListaLojas().todos());
+        //Um Comparator permite-nos comparar dois objectos
+        listas.sort(new Comparator<Loja>(){
+           
+            @Override
+            public int compare(Loja o2, Loja o1) {
+            /*
+                Este metodo compara dois objectos do mesmo tipo, serve para o metodo sort saber como ordenar a lista
+                O retorno deste metodo é:
+                    0  -> se consideramos que os objectos sao iguais,
+                    -1 -> se consideramos que o primeiro objecto/argumento é menor que o segundo
+                    1 -> se consideramos que o segundo objecto/argumento é maior que o primeiro               
+
+                Como queremos ordenar os registos pela data decrescente do acesso, vamos comparar as datas de 
+              cada registo de acesso.
+                
+                Porque a classe LocalDateTime já tem um método que permite comparar dois LocalDateTime (compareTo),
+             vamos utilizar esse método, contudo como queremos ordenar os registos de forma descendente vamos
+             inverter a ordem dos parametros que passamos 
+
+            */                
+                return String.valueOf(o2.getClicksRestantes()).compareTo(String.valueOf(o1.getClicksRestantes()));
+            }            
+        });
 
         return new AbstractTableModel() {
             @Override
@@ -47,7 +75,7 @@ public class janelaLojasMaisVisitadas extends javax.swing.JDialog {
 
             @Override
             public int getRowCount() {
-                return sistema.getListaLojas().size();
+                return listas.size();
             }
 
             @Override
@@ -58,7 +86,7 @@ public class janelaLojasMaisVisitadas extends javax.swing.JDialog {
             @Override
             public Object getValueAt(int rowIndex, int columnIndex) {
 
-                Loja l = (Loja) sistema.getListaLojas().todos().get(rowIndex);
+                Loja l = (Loja) listas.get(rowIndex);
 
                 switch (columnIndex) {
                     case 0:

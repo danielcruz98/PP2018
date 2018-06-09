@@ -145,17 +145,18 @@ public class ListaLojas implements Serializable {
     public ArrayList<Loja> todos() {
         return new ArrayList<>(lista.values());
     }
-
-    /**
-     *
-     *
-     * @return
-     */
-    public Loja[] LojasMaisVisitadas() {
-        Loja[] l = new Loja[todos().size()];
-
-        Arrays.sort(l);
-
+    
+    public ArrayList<Loja> lojaComMenosXClicks(int i){
+        ArrayList<Loja> l = new ArrayList<>();
+        
+        for(Loja p : todos()){
+            if(p.getClicksRestantes()<i){
+                l.add(p);
+            }
+            
+        }
+        
         return l;
     }
+
 }

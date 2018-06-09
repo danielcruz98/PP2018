@@ -21,7 +21,7 @@ public class Correr {
     public static void main(String[] args) throws ListaAdmins.UtilizadorDuplicadoException, ListaLojas.UtilizadorDuplicadoException {
 
         Sistema sistema;
-        String ficheiroDados = String.format("%s\\fzfffzff.data", System.getProperty("user.dir"));
+        String ficheiroDados = String.format("%s\\adadada.data", System.getProperty("user.dir"));
         System.out.println(String.format("Ficheiro de dados: %s.", ficheiroDados));
         Serializacao bd = new Serializacao(ficheiroDados);
 
@@ -31,7 +31,7 @@ public class Correr {
             //Adiciona dois utilizadores para que possa ser possivel entrar no sistema
             sistema.getListaAdmins().adicionar(new Administrador("admin", "admin", "Aministrador"));
             sistema.getListaLojas().adicionar(new Loja("daniel", "daniel", "daniel", true, 1111));
-            sistema.getListaLojas().adicionar(new Loja("quim", "quim", "quim", false, 1111));
+            sistema.getListaLojas().adicionar(new Loja("quim", "quim", "quim", true, 1111));
         } else {
             sistema = bd.carregar();
         }
