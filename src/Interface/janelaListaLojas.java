@@ -89,39 +89,6 @@ public class janelaListaLojas extends javax.swing.JDialog {
      *
      *
      */
-    private void lojaMostrada() {
-        if (tabelaLojas.getSelectionModel().isSelectionEmpty()) {
-            JOptionPane.showMessageDialog(this, "Escolha uma loja p.f.");
-            tabelaLojas.requestFocus();
-            return;
-        }
-
-        int rowIndex = tabelaLojas.getSelectedRow();
-        if (rowIndex == -1) {
-            return;
-        }
-
-        String username = (String) tabelaLojas.getValueAt(rowIndex, 0);
-
-        try {
-            sistema.getListaLojas().conta(username);
-            //Loja utilizador = (Loja)sistema.getListaUtilizadores().getUtilizador(username);
-            //  utilizador.addClickUsados();
-
-        } catch (ListaLojas.NaoVisita ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
-
-        JOptionPane.showMessageDialog(this, "Loja visitada com sucesso.");
-        fechar();
-        janelaListaLojas listagem = new janelaListaLojas(sistema);
-        listagem.setVisible(true);
-    }
-
-    /**
-     *
-     *
-     */
     private void fechar() {
         dispose();
     }
@@ -208,7 +175,6 @@ public class janelaListaLojas extends javax.swing.JDialog {
         adicionar = new javax.swing.JButton();
         click = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        mostra = new javax.swing.JButton();
         visitas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -244,13 +210,6 @@ public class janelaListaLojas extends javax.swing.JDialog {
             }
         });
 
-        mostra.setText("MostraLoja");
-        mostra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mostraActionPerformed(evt);
-            }
-        });
-
         visitas.setText("Mais Visitadas");
         visitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,13 +231,10 @@ public class janelaListaLojas extends javax.swing.JDialog {
                         .addComponent(click, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)
-                        .addGap(65, 65, 65)
-                        .addComponent(mostra)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(191, 191, 191)
                         .addComponent(visitas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(editar)
-                        .addGap(0, 22, Short.MAX_VALUE)))
+                        .addComponent(editar, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -290,7 +246,6 @@ public class janelaListaLojas extends javax.swing.JDialog {
                     .addComponent(adicionar)
                     .addComponent(click, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
-                    .addComponent(mostra)
                     .addComponent(visitas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -314,11 +269,6 @@ public class janelaListaLojas extends javax.swing.JDialog {
         clicks();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void mostraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostraActionPerformed
-        // TODO add your handling code here:
-        lojaMostrada();
-    }//GEN-LAST:event_mostraActionPerformed
-
     private void visitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitasActionPerformed
         // TODO add your handling code here:
         visitadas();
@@ -334,7 +284,6 @@ public class janelaListaLojas extends javax.swing.JDialog {
     private javax.swing.JButton editar;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton mostra;
     private javax.swing.JTable tabelaLojas;
     private javax.swing.JButton visitas;
     // End of variables declaration//GEN-END:variables

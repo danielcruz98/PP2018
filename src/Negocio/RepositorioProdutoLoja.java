@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class RepositorioProdutoLoja implements Serializable {
 
     private ArrayList<ProdutoLoja> repositorio;
-    private static final RepositorioProdutoLoja INSTANCE = new RepositorioProdutoLoja();
 
     /**
      *

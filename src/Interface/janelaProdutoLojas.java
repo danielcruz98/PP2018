@@ -39,6 +39,8 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
 
         this.sistema = sistema;
 
+        codigo.requestFocus();
+        
         this.modeloTabela = criarModeloTabela();
         rep.setModel(modeloTabela);
 

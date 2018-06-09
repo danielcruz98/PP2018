@@ -124,7 +124,7 @@ public class Principal extends javax.swing.JDialog {
     public void logout() {
 
         guardarAlteracoes();
-        janelaProcurarProduto inicio = new janelaProcurarProduto(sistema, bd);
+        inicioJanelaProcurarProduto inicio = new inicioJanelaProcurarProduto(sistema, bd);
         dispose();
         inicio.setVisible(true);
 

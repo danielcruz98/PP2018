@@ -43,7 +43,7 @@ public class Correr {
             sistema = bd.carregar();
         }
 
-        janelaProcurarProduto login = new janelaProcurarProduto(sistema, bd);
+        inicioJanelaProcurarProduto login = new inicioJanelaProcurarProduto(sistema, bd);
         login.setVisible(true);
 
     }
