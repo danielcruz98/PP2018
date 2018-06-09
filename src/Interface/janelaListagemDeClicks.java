@@ -9,7 +9,6 @@ import Users.Loja;
 import Sistema.Sistema;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,7 +18,7 @@ public class janelaListagemDeClicks extends javax.swing.JDialog {
 
     private final Sistema sistema;
     private final int i;
-        private final AbstractTableModel modeloTabela;
+    private final AbstractTableModel modeloTabela;
 
     /**
      *
@@ -72,8 +71,6 @@ public class janelaListagemDeClicks extends javax.swing.JDialog {
             @Override
             public Object getValueAt(int rowIndex, int columnIndex) {
 
-            
-
                 switch (columnIndex) {
                     case 0:
                         return l.get(rowIndex).getUsername();
@@ -82,7 +79,7 @@ public class janelaListagemDeClicks extends javax.swing.JDialog {
 
                     case 2:
                         return l.get(rowIndex).getSubscricao();
-                   
+
                     default:
                         return "";
                 }

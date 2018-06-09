@@ -13,13 +13,24 @@ import java.util.HashMap;
  *
  * @author daniel
  */
-public class RepositorioProduto implements Serializable{
+public class RepositorioProduto implements Serializable {
+
     HashMap lista;
 
+    /**
+     *
+     *
+     */
     public RepositorioProduto() {
         lista = new HashMap<String, Produto>();
     }
 
+    /**
+     *
+     *
+     * @param produto
+     * @throws Produtos.RepositorioProduto.ProdutoDuplicadoException
+     */
     public void registarProduto(Produto produto) throws ProdutoDuplicadoException {
         if (produto == null) {
             throw new NullPointerException("O parâmetro 'produto' não pode ser um valor nulo");
@@ -32,6 +43,13 @@ public class RepositorioProduto implements Serializable{
         }
     }
 
+    /**
+     *
+     *
+     * @param codigoBarras
+     * @return
+     * @throws Produtos.RepositorioProduto.ProdutoNaoExistenteException
+     */
     public Produto getProduto(String codigoBarras) throws ProdutoNaoExistenteException {
         if (lista.containsKey(codigoBarras)) {
             return (Produto) lista.get(codigoBarras);
@@ -40,51 +58,103 @@ public class RepositorioProduto implements Serializable{
         }
     }
 
+    /**
+     *
+     *
+     * @param codigoBarras
+     * @return
+     */
     public boolean verificarProduto(String codigoBarras) {
         return lista.containsKey(codigoBarras);
     }
 
+    /**
+     *
+     *
+     * @return
+     */
     public ArrayList<Produto> todos() {
         return new ArrayList<>(lista.values());
     }
 
-    
+    /**
+     *
+     *
+     * @return
+     */
     public int size() {
         return lista.size();
     }
-    
-    public Produto procurarCodigoBarras(String s){
+
+    /**
+     *
+     *
+     * @param s
+     * @return
+     */
+    public Produto procurarCodigoBarras(String s) {
         Produto p = (Produto) lista.get(s);
         return p;
     }
-    
-    public ArrayList<Produto> procurarNome(String s){
+
+    /**
+     *
+     *
+     * @param s
+     * @return
+     */
+    public ArrayList<Produto> procurarNome(String s) {
         ArrayList<Produto> temp = new ArrayList<>();
-        
-        for(Produto p : todos()){
-            if(p.getNomeProduto().contains(s))
-            {
+
+        for (Produto p : todos()) {
+            if (p.getNomeProduto().contains(s)) {
                 temp.add(p);
             }
         }
         return temp;
     }
 
+    /**
+     *
+     *
+     */
     public class ProdutoDuplicadoException extends Exception {
 
+        /**
+         *
+         *
+         */
         public ProdutoDuplicadoException() {
         }
 
+        /**
+         *
+         *
+         * @param message
+         */
         public ProdutoDuplicadoException(String message) {
             super(message);
         }
     }
 
+    /**
+     *
+     *
+     */
     public class ProdutoNaoExistenteException extends Exception {
 
+        /**
+         *
+         *
+         */
         public ProdutoNaoExistenteException() {
         }
 
+        /**
+         *
+         *
+         * @param message
+         */
         public ProdutoNaoExistenteException(String message) {
             super(message);
         }

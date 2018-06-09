@@ -5,67 +5,38 @@
  */
 package Interface;
 
-import javax.swing.JOptionPane;
-
+import BaseDados.Serializacao;
 import Sistema.Sistema;
-import Users.ListaAdmins;
-import Users.Utilizador;
-import Users.Administrador;
+import Users.ListaLojas;
+import Users.Loja;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author daniel
  */
-public class DadosAdmins extends javax.swing.JDialog {
-
-    private final Sistema sistema;
-    private final janelaListaAdmins lista;
-    private final Utilizador utilizador;
-
+public class DadosRegistarLoja extends javax.swing.JDialog {
+private final Sistema sistema;
+private final Serializacao bd;
     /**
-     *
+     * Creates new form DadosRegistarLoja
      * @param sistema
-     * @param utilizador
-     * @param lista
+     * @param bd
      */
-    public DadosAdmins(Sistema sistema, Utilizador utilizador, janelaListaAdmins lista) {
-
+    public DadosRegistarLoja(Sistema sistema,Serializacao bd) {
+       
         initComponents();
-
+        
         this.sistema = sistema;
-
-        this.utilizador = utilizador;
-
-        this.lista = lista;
-
-        if (registoNovo()) {
-            setTitle("Criação de novo utilizador");
-            username.requestFocus();
-        } else {
-            setTitle("Alteração de dados de utilizador");
-            username.setText(utilizador.getUsername());
-            nome.setText(utilizador.getNome());
-            password.requestFocus();
-
-            username.setEnabled(false);
-            nome.setEnabled(false);
-        }
+        this.bd=bd;
     }
 
     /**
      *
      *
      */
-    private boolean registoNovo() {
-        return utilizador == null;
-    }
-
-    /**
-     *
-     *
-     */
-    private void guardar() {
-        if (registoNovo() && username.getText().isEmpty()) {
+    private void registar() {
+        if (username.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Introduza p.f. o username pretendido!");
             username.requestFocus();
             return;
@@ -97,43 +68,26 @@ public class DadosAdmins extends javax.swing.JDialog {
             return;
         }
 
-        if (registoNovo()) {
-            username.setEditable(true);
-            Utilizador novo = new Administrador();
-            novo.setNome(nome.getText());
-            novo.setUsername(username.getText());
-            novo.setPassword(pass);
+        username.setEditable(true);
+        Loja novo = new Loja();
+        novo.setNome(nome.getText());
+        novo.setUsername(username.getText());
+        novo.setPassword(pass);
+        novo.setSubscricao(false);
+        novo.setClicks(0);
 
-            try {
-                sistema.getListaAdmins().adicionar((Administrador) novo);
-            } catch (ListaAdmins.UtilizadorDuplicadoException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage());
-                return;
-            }
-
-        } else {
-            username.setEditable(false);
-            utilizador.setNome(nome.getText());
-            utilizador.setPassword(pass);
-        }
-
-        if (lista != null) {
-            lista.atualizar();
+        try {
+            sistema.getListaLojas().adicionar(novo);
+        } catch (ListaLojas.UtilizadorDuplicadoException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            return;
         }
 
         JOptionPane.showMessageDialog(this, "Registo guardado com sucesso.");
-        fechar();
 
-    }
-
-    /**
-     *
-     *
-     */
-    private void fechar() {
         dispose();
+        janelaProcurarProduto janela = new janelaProcurarProduto(sistema,bd);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -149,32 +103,32 @@ public class DadosAdmins extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         nome = new javax.swing.JTextField();
-        guardar = new javax.swing.JButton();
-        fechar = new javax.swing.JButton();
         password = new javax.swing.JPasswordField();
         conf = new javax.swing.JPasswordField();
+        registar = new javax.swing.JButton();
+        sair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Username");
+        jLabel1.setText("Username:");
 
-        jLabel2.setText("Nome");
+        jLabel2.setText("Nome:");
 
-        jLabel3.setText("Password");
+        jLabel3.setText("Password:");
 
-        jLabel4.setText("Confirmação");
+        jLabel4.setText("Confirmação:");
 
-        guardar.setText("Guardar");
-        guardar.addActionListener(new java.awt.event.ActionListener() {
+        registar.setText("Registar");
+        registar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarActionPerformed(evt);
+                registarActionPerformed(evt);
             }
         });
 
-        fechar.setText("Fechar");
-        fechar.addActionListener(new java.awt.event.ActionListener() {
+        sair.setText("Sair");
+        sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fecharActionPerformed(evt);
+                sairActionPerformed(evt);
             }
         });
 
@@ -183,79 +137,87 @@ public class DadosAdmins extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(guardar)
-                        .addGap(26, 26, 26)
-                        .addComponent(fechar))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel1)))
+                        .addGap(39, 39, 39))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(registar)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nome, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                    .addComponent(username)
+                    .addComponent(password)
+                    .addComponent(conf)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(password)
-                            .addComponent(nome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                            .addComponent(username, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(conf))))
-                .addContainerGap(174, Short.MAX_VALUE))
+                        .addGap(12, 12, 12)
+                        .addComponent(sair, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(conf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guardar)
-                    .addComponent(fechar))
-                .addContainerGap(103, Short.MAX_VALUE))
+                    .addComponent(registar)
+                    .addComponent(sair))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+    private void registarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registarActionPerformed
         // TODO add your handling code here:
-        guardar();
-    }//GEN-LAST:event_guardarActionPerformed
+        registar();
+    }//GEN-LAST:event_registarActionPerformed
 
-    private void fecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharActionPerformed
+    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
         // TODO add your handling code here:
-        fechar();
-    }//GEN-LAST:event_fecharActionPerformed
+        dispose();
+        janelaProcurarProduto procurar = new janelaProcurarProduto(sistema,bd);
+        procurar.setVisible(true);
+    }//GEN-LAST:event_sairActionPerformed
 
     /**
      * @param args the command line arguments
      */
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField conf;
-    private javax.swing.JButton fechar;
-    private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField nome;
     private javax.swing.JPasswordField password;
+    private javax.swing.JButton registar;
+    private javax.swing.JButton sair;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

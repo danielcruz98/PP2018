@@ -18,6 +18,13 @@ import BaseDados.Serializacao;
  */
 public class Correr {
 
+    /**
+     *
+     *
+     * @param args
+     * @throws Users.ListaAdmins.UtilizadorDuplicadoException
+     * @throws Users.ListaLojas.UtilizadorDuplicadoException
+     */
     public static void main(String[] args) throws ListaAdmins.UtilizadorDuplicadoException, ListaLojas.UtilizadorDuplicadoException {
 
         Sistema sistema;
@@ -36,11 +43,8 @@ public class Correr {
             sistema = bd.carregar();
         }
 
-        Login login = new Login(sistema);
+        janelaProcurarProduto login = new janelaProcurarProduto(sistema, bd);
         login.setVisible(true);
-
-        Principal principal = new Principal(sistema, bd);
-        principal.setVisible(true);
 
     }
 

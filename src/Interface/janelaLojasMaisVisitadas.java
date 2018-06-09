@@ -44,11 +44,11 @@ public class janelaLojasMaisVisitadas extends javax.swing.JDialog {
         //Cria uma copia da lista de entradas, para nao alterarmos a lista original
         List<Loja> listas = new ArrayList<>(sistema.getListaLojas().todos());
         //Um Comparator permite-nos comparar dois objectos
-        listas.sort(new Comparator<Loja>(){
-           
+        listas.sort(new Comparator<Loja>() {
+
             @Override
             public int compare(Loja o2, Loja o1) {
-            /*
+                /*
                 Este metodo compara dois objectos do mesmo tipo, serve para o metodo sort saber como ordenar a lista
                 O retorno deste metodo é:
                     0  -> se consideramos que os objectos sao iguais,
@@ -62,9 +62,9 @@ public class janelaLojasMaisVisitadas extends javax.swing.JDialog {
              vamos utilizar esse método, contudo como queremos ordenar os registos de forma descendente vamos
              inverter a ordem dos parametros que passamos 
 
-            */                
+                 */
                 return String.valueOf(o2.getClicksRestantes()).compareTo(String.valueOf(o1.getClicksRestantes()));
-            }            
+            }
         });
 
         return new AbstractTableModel() {

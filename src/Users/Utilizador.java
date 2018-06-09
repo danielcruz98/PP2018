@@ -11,17 +11,21 @@ import java.io.Serializable;
  *
  * @author daniel
  */
-public class Utilizador implements Serializable{
+public class Utilizador implements Serializable {
+
     private String username;
     private String password;
     private String nome;
+
     /**
      *
      *
      */
-    public Utilizador(){}
+    public Utilizador() {
+    }
+
     /**
-     * 
+     *
      *
      * @param username
      * @param password
@@ -32,23 +36,26 @@ public class Utilizador implements Serializable{
         this.password = password;
         this.nome = nome;
     }
-/**
-     * 
+
+    /**
      *
-     * @return 
+     *
+     * @return
      */
     public String getUsername() {
         return username;
     }
-/**
-     * 
+
+    /**
+     *
      *
      * @param username
      */
     public void setUsername(String username) {
         this.username = username;
     }
-/**
+
+    /**
      *
      *
      * @return
@@ -56,31 +63,32 @@ public class Utilizador implements Serializable{
     public String getPassword() {
         return password;
     }
-/**
-     * 
+
+    /**
+     *
      *
      * @param password
      */
     public void setPassword(String password) {
         this.password = password;
     }
-/**
-     * 
+
+    /**
+     *
      *
      * @return
      */
     public String getNome() {
         return nome;
     }
-/**
-     * 
+
+    /**
+     *
      *
      * @param nome
      */
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    
-    
+
 }

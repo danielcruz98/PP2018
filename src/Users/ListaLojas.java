@@ -7,7 +7,6 @@ package Users;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.TreeMap;
 
 /**
@@ -145,17 +144,23 @@ public class ListaLojas implements Serializable {
     public ArrayList<Loja> todos() {
         return new ArrayList<>(lista.values());
     }
-    
-    public ArrayList<Loja> lojaComMenosXClicks(int i){
+
+    /**
+     *
+     *
+     * @param i
+     * @return
+     */
+    public ArrayList<Loja> lojaComMenosXClicks(int i) {
         ArrayList<Loja> l = new ArrayList<>();
-        
-        for(Loja p : todos()){
-            if(p.getClicksRestantes()<i){
+
+        for (Loja p : todos()) {
+            if (p.getClicksRestantes() < i) {
                 l.add(p);
             }
-            
+
         }
-        
+
         return l;
     }
 

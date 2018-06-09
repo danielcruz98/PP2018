@@ -5,8 +5,8 @@
  */
 package Interface;
 
+import BaseDados.Serializacao;
 import Users.ListaAdmins;
-import Users.Loja;
 import Sistema.Sistema;
 import Users.ListaLojas;
 import java.util.logging.Level;
@@ -20,20 +20,19 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JDialog {
 
     private final Sistema sistema;
+    private final Serializacao bd;
 
     /**
      * Creates new form Logins
      *
      * @param sistema
      */
-    public Login(Sistema sistema) {
+    public Login(Sistema sistema, Serializacao bd) {
 
         initComponents();
 
-        this.setModal(true);
-
         this.sistema = sistema;
-
+        this.bd = bd;
         userName.requestFocus();
     }
 
@@ -68,62 +67,6 @@ public class Login extends javax.swing.JDialog {
      *
      *
      */
-    private void registar() {
-        if (username.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Introduza p.f. o username pretendido!");
-            username.requestFocus();
-            return;
-        }
-
-        if (nome.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Introduza p.f. o seu nome!");
-            nome.requestFocus();
-            return;
-        }
-
-        if (passwordLoja.getPassword().length == 0) {
-            JOptionPane.showMessageDialog(this, "Introduza p.f. a nova password!");
-            passwordLoja.requestFocus();
-            return;
-        }
-
-        if (confLoja.getPassword().length == 0) {
-            JOptionPane.showMessageDialog(this, "Introduza p.f. a password de confirmação!");
-            confLoja.requestFocus();
-            return;
-        }
-
-        String pass = new String(passwordLoja.getPassword());
-
-        if (!pass.equals(new String(confLoja.getPassword()))) {
-            JOptionPane.showMessageDialog(this, "A password de confirmação não corresponde à password introduzida!");
-            confLoja.requestFocus();
-            return;
-        }
-
-        username.setEditable(true);
-        Loja novo = new Loja();
-        novo.setNome(nome.getText());
-        novo.setUsername(username.getText());
-        novo.setPassword(pass);
-        novo.setSubscricao(false);
-        novo.setClicks(0);
-
-        try {
-            sistema.getListaLojas().adicionar(novo);
-        } catch (ListaLojas.UtilizadorDuplicadoException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-            return;
-        }
-
-        JOptionPane.showMessageDialog(this, "Registo guardado com sucesso.");
-
-    }
-
-    /**
-     *
-     *
-     */
     private void fechar() {
         dispose();
     }
@@ -142,16 +85,7 @@ public class Login extends javax.swing.JDialog {
         userName = new javax.swing.JTextField();
         Login = new javax.swing.JButton();
         Sair = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        username = new javax.swing.JTextField();
-        nome = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
-        passwordLoja = new javax.swing.JPasswordField();
-        confLoja = new javax.swing.JPasswordField();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -178,21 +112,6 @@ public class Login extends javax.swing.JDialog {
                 SairActionPerformed(evt);
             }
         });
-
-        jLabel3.setText("Username");
-
-        jLabel4.setText("Nome");
-
-        jLabel5.setText("Password");
-
-        jButton1.setText("Registar Loja");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("Confirmação");
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -206,7 +125,7 @@ public class Login extends javax.swing.JDialog {
                         .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(112, 112, 112))
+                        .addGap(458, 458, 458))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -215,64 +134,24 @@ public class Login extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(userName, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
                             .addComponent(password))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                        .addGap(210, 210, 210))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5))
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nome)
-                            .addComponent(username)
-                            .addComponent(passwordLoja)
-                            .addComponent(confLoja))
-                        .addContainerGap())))
+                        .addContainerGap(450, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(32, 32, 32)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(Login)
-                                    .addComponent(Sair)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(11, 11, 11)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(confLoja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(passwordLoja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)))
-                .addComponent(jButton1)
-                .addContainerGap(177, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Login)
+                    .addComponent(Sair))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
 
         pack();
@@ -287,22 +166,27 @@ public class Login extends javax.swing.JDialog {
         } catch (ListaLojas.UtilizadorNaoExistenteException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
+        Principal janela = new Principal(sistema, bd);
+        janela.setVisible(true);
     }//GEN-LAST:event_LoginActionPerformed
-
+    /**
+     *
+     *
+     */
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
         // TODO add your handling code here:
-        sistema.terminar();
+        dispose();
+        janelaProcurarProduto procurar = new janelaProcurarProduto(sistema, bd);
+        procurar.setVisible(true);
     }//GEN-LAST:event_SairActionPerformed
-
+    /**
+     *
+     *
+     */
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         sistema.terminar();
     }//GEN-LAST:event_formWindowClosing
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        registar();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -311,19 +195,10 @@ public class Login extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Login;
     private javax.swing.JButton Sair;
-    private javax.swing.JPasswordField confLoja;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JTextField nome;
     private javax.swing.JPasswordField password;
-    private javax.swing.JPasswordField passwordLoja;
     private javax.swing.JTextField userName;
-    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }
