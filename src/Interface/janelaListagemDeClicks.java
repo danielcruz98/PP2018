@@ -5,8 +5,8 @@
  */
 package Interface;
 
-import Users.Loja;
-import Sistema.Sistema;
+import Negocio.Loja;
+import Negocio.Sistema;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 

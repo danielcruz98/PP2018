@@ -5,11 +5,11 @@
  */
 package Interface;
 
-import Users.Administrador;
-import Users.ListaAdmins;
-import Users.Loja;
-import Sistema.Sistema;
-import Users.ListaLojas;
+import Negocio.Administrador;
+import Negocio.ListaAdmins;
+import Negocio.Loja;
+import Negocio.Sistema;
+import Negocio.ListaLojas;
 import BaseDados.Serializacao;
 
 /**
@@ -28,7 +28,7 @@ public class Correr {
     public static void main(String[] args) throws ListaAdmins.UtilizadorDuplicadoException, ListaLojas.UtilizadorDuplicadoException {
 
         Sistema sistema;
-        String ficheiroDados = String.format("%s\\adadada.data", System.getProperty("user.dir"));
+        String ficheiroDados = String.format("%s\\ficheiro.data", System.getProperty("user.dir"));
         System.out.println(String.format("Ficheiro de dados: %s.", ficheiroDados));
         Serializacao bd = new Serializacao(ficheiroDados);
 

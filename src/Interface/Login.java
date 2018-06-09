@@ -6,9 +6,9 @@
 package Interface;
 
 import BaseDados.Serializacao;
-import Users.ListaAdmins;
-import Sistema.Sistema;
-import Users.ListaLojas;
+import Negocio.ListaAdmins;
+import Negocio.Sistema;
+import Negocio.ListaLojas;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;

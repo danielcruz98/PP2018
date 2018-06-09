@@ -5,8 +5,8 @@
  */
 package Interface;
 
-import Sistema.Sistema;
-import Users.Loja;
+import Negocio.Sistema;
+import Negocio.Loja;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;

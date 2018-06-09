@@ -3,14 +3,14 @@
 // * To change this template file, choose Tools | Templates
 // * and open the template in the editor.
 // */
-package Sistema;
+package Negocio;
 //
 ///**
 
-import Produtos.Produto;
-import Produtos.ProdutoLoja;
-import Produtos.RepositorioProdutoLoja;
-import Users.Loja;
+import Negocio.Produto;
+import Negocio.ProdutoLoja;
+import Negocio.RepositorioProdutoLoja;
+import Negocio.Loja;
 import java.util.ArrayList;
 
 // *

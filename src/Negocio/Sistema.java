@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Sistema;
+package Negocio;
 
-import Produtos.Produto;
-import Produtos.RepositorioProdutoLoja;
-import Produtos.RepositorioProduto;
-import Users.Administrador;
-import Users.Loja;
-import Users.ListaAdmins;
-import Users.ListaLojas;
-import Users.Utilizador;
+import Negocio.Produto;
+import Negocio.RepositorioProdutoLoja;
+import Negocio.RepositorioProduto;
+import Negocio.Administrador;
+import Negocio.Loja;
+import Negocio.ListaAdmins;
+import Negocio.ListaLojas;
+import Negocio.Utilizador;
 import java.io.Serializable;
 
 /**

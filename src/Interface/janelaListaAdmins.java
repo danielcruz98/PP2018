@@ -5,10 +5,10 @@
  */
 package Interface;
 
-import Sistema.Sistema;
-import Users.Administrador;
-import Users.ListaAdmins;
-import Users.Utilizador;
+import Negocio.Sistema;
+import Negocio.Administrador;
+import Negocio.ListaAdmins;
+import Negocio.Utilizador;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 

@@ -7,10 +7,10 @@ package Interface;
 
 import javax.swing.JOptionPane;
 
-import Sistema.Sistema;
-import Users.ListaAdmins;
-import Users.Utilizador;
-import Users.Administrador;
+import Negocio.Sistema;
+import Negocio.ListaAdmins;
+import Negocio.Utilizador;
+import Negocio.Administrador;
 
 /**
  *

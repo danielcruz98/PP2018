@@ -5,9 +5,9 @@
  */
 package Interface;
 
-import Sistema.Sistema;
-import Produtos.Produto;
-import Produtos.RepositorioProduto;
+import Negocio.Sistema;
+import Negocio.Produto;
+import Negocio.RepositorioProduto;
 import javax.swing.JOptionPane;
 
 /**

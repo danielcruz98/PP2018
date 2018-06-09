@@ -6,9 +6,9 @@
 package Interface;
 
 import BaseDados.Serializacao;
-import Produtos.ProdutoLoja;
-import Sistema.Sistema;
-import Users.ListaLojas;
+import Negocio.ProdutoLoja;
+import Negocio.Sistema;
+import Negocio.ListaLojas;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;

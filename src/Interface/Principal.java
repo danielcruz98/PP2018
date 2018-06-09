@@ -5,9 +5,9 @@
  */
 package Interface;
 
-import Sistema.Sistema;
-import Users.Administrador;
-import Users.Loja;
+import Negocio.Sistema;
+import Negocio.Administrador;
+import Negocio.Loja;
 import BaseDados.Serializacao;
 import javax.swing.JOptionPane;
 

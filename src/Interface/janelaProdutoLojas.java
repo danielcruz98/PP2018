@@ -5,13 +5,13 @@
  */
 package Interface;
 
-import Produtos.Produto;
-import Produtos.ProdutoLoja;
-import Produtos.RepositorioProduto;
-import Produtos.RepositorioProdutoLoja;
-import Sistema.Sistema;
-import Users.ListaLojas;
-import Users.Loja;
+import Negocio.Produto;
+import Negocio.ProdutoLoja;
+import Negocio.RepositorioProduto;
+import Negocio.RepositorioProdutoLoja;
+import Negocio.Sistema;
+import Negocio.ListaLojas;
+import Negocio.Loja;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
