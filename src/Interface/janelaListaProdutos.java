@@ -22,6 +22,7 @@ public class janelaListaProdutos extends javax.swing.JDialog {
     private final AbstractTableModel modeloTabela;
 
     /**
+     * Creates new form janelaListaProdutos
      *
      * @param sistema
      */
@@ -37,7 +38,7 @@ public class janelaListaProdutos extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * cria o modelo da tabela e adiciona os dados
      *
      */
     private AbstractTableModel criarModeloTabela() {
@@ -82,7 +83,7 @@ public class janelaListaProdutos extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * atualiza a tabela
      *
      */
     public void atualizar() {
@@ -90,7 +91,7 @@ public class janelaListaProdutos extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * abre a janela DadosProdutos
      *
      */
     private void adicionar() {
@@ -99,7 +100,7 @@ public class janelaListaProdutos extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * recebe todos os dados e permite alterar o produto em questao
      *
      */
     private void editar() {

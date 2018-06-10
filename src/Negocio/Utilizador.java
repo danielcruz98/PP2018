@@ -18,14 +18,14 @@ public class Utilizador implements Serializable {
     private String nome;
 
     /**
-     *
+     *construtor Utilizador
      *
      */
     public Utilizador() {
     }
 
     /**
-     *
+     *construtor Utilizador
      *
      * @param username
      * @param password
@@ -38,7 +38,7 @@ public class Utilizador implements Serializable {
     }
 
     /**
-     *
+     *get usernam
      *
      * @return
      */
@@ -47,7 +47,7 @@ public class Utilizador implements Serializable {
     }
 
     /**
-     *
+     *set username
      *
      * @param username
      */
@@ -56,7 +56,7 @@ public class Utilizador implements Serializable {
     }
 
     /**
-     *
+     *get password
      *
      * @return
      */
@@ -65,7 +65,7 @@ public class Utilizador implements Serializable {
     }
 
     /**
-     *
+     *set password
      *
      * @param password
      */
@@ -74,7 +74,7 @@ public class Utilizador implements Serializable {
     }
 
     /**
-     *
+     *get nome
      *
      * @return
      */
@@ -83,7 +83,7 @@ public class Utilizador implements Serializable {
     }
 
     /**
-     *
+     *set nome
      *
      * @param nome
      */

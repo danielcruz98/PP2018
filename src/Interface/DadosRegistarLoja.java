@@ -36,7 +36,7 @@ public class DadosRegistarLoja extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * recebe os dados todos e cria uma loja
      *
      */
     private void registar() {

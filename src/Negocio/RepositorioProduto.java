@@ -18,7 +18,7 @@ public class RepositorioProduto implements Serializable {
     HashMap lista;
 
     /**
-     *
+     *construtor RepositorioProduto
      *
      */
     public RepositorioProduto() {
@@ -26,7 +26,7 @@ public class RepositorioProduto implements Serializable {
     }
 
     /**
-     *
+     *faz o registo do produto
      *
      * @param produto
      * @throws Negocio.RepositorioProduto.ProdutoDuplicadoException
@@ -44,7 +44,7 @@ public class RepositorioProduto implements Serializable {
     }
 
     /**
-     *
+     *retorna o produto
      *
      * @param codigoBarras
      * @return
@@ -59,7 +59,7 @@ public class RepositorioProduto implements Serializable {
     }
 
     /**
-     *
+     *verifica se o produto existe no hash map
      *
      * @param codigoBarras
      * @return
@@ -69,7 +69,7 @@ public class RepositorioProduto implements Serializable {
     }
 
     /**
-     *
+     *retorna uma ArrayList com todos os produtos do hash map
      *
      * @return
      */
@@ -78,7 +78,7 @@ public class RepositorioProduto implements Serializable {
     }
 
     /**
-     *
+     *retorna o tamanho do hash map
      *
      * @return
      */
@@ -87,35 +87,7 @@ public class RepositorioProduto implements Serializable {
     }
 
     /**
-     *
-     *
-     * @param s
-     * @return
-     */
-    public Produto procurarCodigoBarras(String s) {
-        Produto p = (Produto) lista.get(s);
-        return p;
-    }
-
-    /**
-     *
-     *
-     * @param s
-     * @return
-     */
-    public ArrayList<Produto> procurarNome(String s) {
-        ArrayList<Produto> temp = new ArrayList<>();
-
-        for (Produto p : todos()) {
-            if (p.getNomeProduto().contains(s)) {
-                temp.add(p);
-            }
-        }
-        return temp;
-    }
-
-    /**
-     *
+     *Exception
      *
      */
     public class ProdutoDuplicadoException extends Exception {
@@ -128,7 +100,7 @@ public class RepositorioProduto implements Serializable {
         }
 
         /**
-         *
+         *Exception
          *
          * @param message
          */
@@ -138,20 +110,20 @@ public class RepositorioProduto implements Serializable {
     }
 
     /**
-     *
+     *Exception
      *
      */
     public class ProdutoNaoExistenteException extends Exception {
 
         /**
-         *
+         *Exception
          *
          */
         public ProdutoNaoExistenteException() {
         }
 
         /**
-         *
+         *Exception
          *
          * @param message
          */

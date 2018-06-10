@@ -37,7 +37,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * cria o modelo da tabela e adiciona os dados
      *
      */
     private AbstractTableModel criarModeloTabela() {
@@ -86,7 +86,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * fecha o sistema
      *
      */
     private void fechar() {
@@ -94,7 +94,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * atualiza a tabela
      *
      */
     public void atualizar() {
@@ -102,7 +102,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * abre a janela DadosLojas
      *
      */
     private void adicionar() {
@@ -112,7 +112,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * recebe os dados e permite alterar a loja em questao
      *
      */
     private void editar() {
@@ -141,7 +141,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * abre a janela janelaListagemDeClicks
      *
      */
     public void clicks() {
@@ -152,7 +152,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * abre a janela janelaLojasMaisVisitadas
      *
      */
     public void visitadas() {
@@ -161,7 +161,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * abre a janela ativas
      *
      */
     public void ativas() {

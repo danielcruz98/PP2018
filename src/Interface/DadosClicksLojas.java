@@ -30,7 +30,7 @@ public class DadosClicksLojas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * coloca os clicks referente a loja no labels
      *
      */
     public void dados() {

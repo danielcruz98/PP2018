@@ -21,7 +21,7 @@ public class Serializacao {
     }
 
     /**
-     *
+     *retorna um ficheiro
      *
      * @return
      */
@@ -30,7 +30,7 @@ public class Serializacao {
     }
 
     /**
-     *
+     *le os dados do ficheiro para o sistema
      *
      * @return
      */
@@ -47,7 +47,7 @@ public class Serializacao {
     }
 
     /**
-     *
+     *guarda os dados do sistema no ficheiro
      *
      * @param sistema
      */

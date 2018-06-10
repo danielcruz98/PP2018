@@ -23,6 +23,7 @@ public class DadosAdmins extends javax.swing.JDialog {
     private final Utilizador utilizador;
 
     /**
+     * Creates new form DadosAdmins
      *
      * @param sistema
      * @param utilizador
@@ -53,7 +54,7 @@ public class DadosAdmins extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * registo novo
      *
      */
     private boolean registoNovo() {
@@ -61,7 +62,7 @@ public class DadosAdmins extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * recebe os dados todos e cria o admin
      *
      */
     private void guardar() {
@@ -127,7 +128,7 @@ public class DadosAdmins extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * fecha a janela
      *
      */
     private void fechar() {

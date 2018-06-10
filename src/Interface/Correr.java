@@ -35,7 +35,7 @@ public class Correr {
         if (!bd.getFicheiro().exists()) {
 
             sistema = new Sistema();
-            //Adiciona dois utilizadores para que possa ser possivel entrar no sistema
+            //Adiciona quatro utilizadores para que possa ser possivel entrar no sistema
             sistema.getListaAdmins().adicionar(new Administrador("admin", "admin", "Aministrador"));
             sistema.getListaLojas().adicionar(new Loja("daniel", "daniel", "daniel", true, 1111));
             sistema.getListaLojas().adicionar(new Loja("quim", "quim", "quim", true, 1111));

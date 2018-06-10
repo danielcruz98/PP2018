@@ -18,7 +18,7 @@ public class ListaAdmins implements Serializable {
     private TreeMap<String, Administrador> lista;
 
     /**
-     *
+     *Exception
      *
      */
     public class UtilizadorNaoExistenteException extends Exception {
@@ -32,7 +32,7 @@ public class ListaAdmins implements Serializable {
     }
 
     /**
-     *
+     *Exception
      *
      */
     public class UtilizadorDuplicadoException extends Exception {
@@ -46,7 +46,7 @@ public class ListaAdmins implements Serializable {
     }
 
     /**
-     *
+     *Exception
      *
      */
     public class NaoVisita extends Exception {
@@ -60,7 +60,7 @@ public class ListaAdmins implements Serializable {
     }
 
     /**
-     *
+     *Construtor ListaAdmins
      *
      */
     public ListaAdmins() {
@@ -69,7 +69,7 @@ public class ListaAdmins implements Serializable {
     }
 
     /**
-     *
+     *adiciona o administrador ao tree map
      *
      * @param utilizador
      * @throws Negocio.ListaAdmins.UtilizadorDuplicadoException
@@ -88,7 +88,7 @@ public class ListaAdmins implements Serializable {
     }
 
     /**
-     *
+     *Verifica se o tree map contem o administrador
      *
      * @param username
      * @return
@@ -97,12 +97,18 @@ public class ListaAdmins implements Serializable {
         return lista.containsKey(username);
     }
 
+    
+    /**
+     *retorna o tamanho do tree map
+     *
+     * @return
+     */
     public int size() {
         return lista.size();
     }
 
     /**
-     *
+     *retorna o administrador
      *
      * @param username
      * @return
@@ -117,7 +123,7 @@ public class ListaAdmins implements Serializable {
     }
 
     /**
-     *
+     *retorna um ArrayList com todos os administradore
      *
      * @return
      */

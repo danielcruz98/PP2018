@@ -42,7 +42,7 @@ public class Principal extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * guarda na base de dados o sistema
      *
      */
     private void guardarAlteracoes() {
@@ -50,7 +50,7 @@ public class Principal extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * abre a janela janelaListaAdmins
      *
      */
     private void listarUsers() {
@@ -59,7 +59,7 @@ public class Principal extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * abre a janela janelaListaProdutos
      *
      */
     private void listarProdutos() {
@@ -68,7 +68,7 @@ public class Principal extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * abre a janela DadosAdmins
      *
      */
     private void alterarPassword() {
@@ -77,7 +77,7 @@ public class Principal extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * abre a janela janelaListaLojas
      *
      */
     private void listarLojas() {
@@ -86,7 +86,7 @@ public class Principal extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * abre a janela janelaProdutoLojas
      *
      */
     private void listarProdutosLoja() {
@@ -95,7 +95,7 @@ public class Principal extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * termina o programa e guarda o sistema na base de dados
      *
      */
     private void terminar() {
@@ -109,7 +109,7 @@ public class Principal extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * DadosClicksLojas
      *
      */
     public void verClicks() {
@@ -118,7 +118,7 @@ public class Principal extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * faz o logout do utilizador
      *
      */
     public void logout() {

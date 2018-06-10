@@ -19,14 +19,14 @@ public class ProdutoLoja extends RepositorioProduto implements Serializable {
     private Loja loja;
 
     /**
-     *
+     *construtor ProdutoLoja
      *
      */
     public ProdutoLoja() {
     }
 
     /**
-     *
+     *construtor ProdutoLoja
      *
      * @param preco
      * @param disponibilidade
@@ -41,7 +41,7 @@ public class ProdutoLoja extends RepositorioProduto implements Serializable {
     }
 
     /**
-     *
+     *get loja
      *
      * @return
      */
@@ -50,7 +50,7 @@ public class ProdutoLoja extends RepositorioProduto implements Serializable {
     }
 
     /**
-     *
+     *set loja
      *
      * @param loja
      */
@@ -59,7 +59,7 @@ public class ProdutoLoja extends RepositorioProduto implements Serializable {
     }
 
     /**
-     *
+     *get preco
      *
      * @return
      */
@@ -68,7 +68,7 @@ public class ProdutoLoja extends RepositorioProduto implements Serializable {
     }
 
     /**
-     *
+     *set preco
      *
      * @param preco
      */
@@ -77,7 +77,7 @@ public class ProdutoLoja extends RepositorioProduto implements Serializable {
     }
 
     /**
-     *
+     *get disponibilidade
      *
      * @return
      */
@@ -86,7 +86,7 @@ public class ProdutoLoja extends RepositorioProduto implements Serializable {
     }
 
     /**
-     *
+     *set disponibilidade
      *
      * @param disponibilidade
      */
@@ -95,7 +95,7 @@ public class ProdutoLoja extends RepositorioProduto implements Serializable {
     }
 
     /**
-     *
+     *get produto
      *
      * @return
      */
@@ -104,7 +104,7 @@ public class ProdutoLoja extends RepositorioProduto implements Serializable {
     }
 
     /**
-     *
+     *set produto
      *
      * @param produto
      */

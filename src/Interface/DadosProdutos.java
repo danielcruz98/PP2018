@@ -59,7 +59,7 @@ public class DadosProdutos extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * registo novo
      *
      */
     private boolean registoNovo() {
@@ -68,7 +68,7 @@ public class DadosProdutos extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * recebe os dados todos e cria o produto
      *
      */
     private void guardar() {
@@ -132,7 +132,7 @@ public class DadosProdutos extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * fecha a janela
      *
      */
     private void fechar() {

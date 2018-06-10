@@ -31,15 +31,15 @@ public class janelaLojasAtivas extends javax.swing.JDialog {
 
         this.sistema = sistema;
 
-        this.modeloTabela = criarModeloTabela();
+        this.modeloTabela = criarModeloTabelaLojasAtivas();
         tabela.setModel(modeloTabela);
     }
 
     /**
-     *
+     * cria o modelo da tabela e adiciona os dados
      *
      */
-    private AbstractTableModel criarModeloTabela() {
+    private AbstractTableModel criarModeloTabelaLojasAtivas() {
         String[] nomeColunas = {"Username", "Nome", "Subscricao"};
 
         ArrayList<Loja> listas = new ArrayList<>(sistema.getListaLojas().lojasAtivas());

@@ -23,7 +23,7 @@ public class Login extends javax.swing.JDialog {
     private final Serializacao bd;
 
     /**
-     * Creates new form Logins
+     * Creates new form Login
      *
      * @param sistema
      * @param bd
@@ -39,7 +39,7 @@ public class Login extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * permite autenticar o utilizador
      *
      */
     private void autenticar() throws ListaAdmins.UtilizadorNaoExistenteException, ListaLojas.UtilizadorNaoExistenteException {
@@ -66,7 +66,7 @@ public class Login extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * fecha a janela
      *
      */
     private void fechar() {

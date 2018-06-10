@@ -14,14 +14,14 @@ import java.io.Serializable;
 public class Administrador extends Utilizador implements Serializable {
 
     /**
-     *
+     *Contrutor administrador
      *
      */
     public Administrador() {
     }
 
     /**
-     *
+     *Contrutor administrador
      *
      * @param username
      * @param password

@@ -29,7 +29,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
     private AbstractTableModel modeloTabela;
 
     /**
-     *
+     * Creates new form janelaProdutoLojas
      *
      * @param sistema
      */
@@ -41,16 +41,16 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
 
         codigo.requestFocus();
 
-        this.modeloTabela = criarModeloTabela();
+        this.modeloTabela = criarModeloTabelaProdutoLojas();
         rep.setModel(modeloTabela);
 
     }
 
     /**
-     *
+     * cria o modelo da tabela e adiciona os dados
      *
      */
-    private AbstractTableModel criarModeloTabela() {
+    private AbstractTableModel criarModeloTabelaProdutoLojas() {
         String[] nomeColunas = {"Nome", "Marca", "referencia", "codigo", "Preco", "Dsponibilidade"};
 
         Loja l = (Loja) sistema.getUtilizadorLigado();
@@ -100,7 +100,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * associa os dados todos e cria o produto loja
      *
      * @throws Negocio.ListaLojas.UtilizadorNaoExistenteException
      * @throws Negocio.RepositorioProduto.ProdutoNaoExistenteException
@@ -228,7 +228,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
 
         }
 
-        modeloTabela = criarModeloTabela();
+        modeloTabela = criarModeloTabelaProdutoLojas();
         rep.setModel(modeloTabela);
         codigo.setText("");
         nome.setText("");
@@ -246,7 +246,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * permite editar os dados do produto loja
      *
      */
     public void editar() {
@@ -305,7 +305,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * fecha a janela
      *
      */
     private void fechar() {
@@ -313,7 +313,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * atualiza a tabela
      *
      */
     public void atualizar() {
@@ -321,7 +321,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * procurar um produto no repositorio dos produtos
      *
      * @throws Negocio.RepositorioProduto.ProdutoNaoExistenteException
      */

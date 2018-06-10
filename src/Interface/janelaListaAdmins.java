@@ -22,6 +22,10 @@ public class janelaListaAdmins extends javax.swing.JDialog {
 
     private final AbstractTableModel modeloTabela;
 
+    /**
+     * Creates new form janelaListaAdmins
+     *
+     */
     public janelaListaAdmins(Sistema sistema) {
         initComponents();
         this.sistema = sistema;
@@ -31,7 +35,7 @@ public class janelaListaAdmins extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * cria o modelo da tabela e adiciona os dados
      *
      */
     private AbstractTableModel criarModeloTabela() {
@@ -74,7 +78,7 @@ public class janelaListaAdmins extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * atualiza a tabela
      *
      */
     public void atualizar() {
@@ -82,7 +86,7 @@ public class janelaListaAdmins extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * abre a janela DadosAdmins
      *
      */
     private void adicionar() {
@@ -91,7 +95,7 @@ public class janelaListaAdmins extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * recebe os dados e permite alterar o admin em questao
      *
      */
     private void editar() {

@@ -27,6 +27,7 @@ public class inicioJanelaProcurarProduto extends javax.swing.JDialog {
     private AbstractTableModel modeloTabela;
 
     /**
+     * Creates new form inicioJanelaProcurarProduto
      *
      * @param sistema
      * @param bd
@@ -45,7 +46,7 @@ public class inicioJanelaProcurarProduto extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * cria o modelo da tabela e adiciona os dados
      *
      */
     private AbstractTableModel criarModeloTabela() {
@@ -111,7 +112,8 @@ public class inicioJanelaProcurarProduto extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * procura o repositorio de produtos lojas e coloca num array list todos os
+     * produtos que conferem
      *
      */
     public void procurar() {
@@ -133,7 +135,7 @@ public class inicioJanelaProcurarProduto extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * metodos que retira um click a loja em questao
      *
      */
     private void lojaMostrada() {
@@ -165,7 +167,7 @@ public class inicioJanelaProcurarProduto extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * abre a janela Login
      *
      */
     public void login() {
@@ -175,7 +177,7 @@ public class inicioJanelaProcurarProduto extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * abre a janela DadosRegistarLoja
      *
      */
     public void registar() {
@@ -185,7 +187,7 @@ public class inicioJanelaProcurarProduto extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * termina e guarda o sistema na base de dados
      *
      */
     private void terminar() {
@@ -196,7 +198,7 @@ public class inicioJanelaProcurarProduto extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * guarda o sistema na base de dados
      *
      */
     private void guardarAlteracoes() {

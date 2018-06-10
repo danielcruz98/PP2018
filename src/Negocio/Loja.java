@@ -18,14 +18,14 @@ public class Loja extends Utilizador implements Serializable {
     private int clicksUsados;
 
     /**
-     *
+     *contrutor Loja
      *
      */
     public Loja() {
     }
 
     /**
-     *
+     *construtor Loja
      *
      * @param username
      * @param password
@@ -41,7 +41,7 @@ public class Loja extends Utilizador implements Serializable {
     }
 
     /**
-     *
+     *get username
      *
      * @return
      */
@@ -51,7 +51,7 @@ public class Loja extends Utilizador implements Serializable {
     }
 
     /**
-     *
+     *get password
      *
      * @return
      */
@@ -61,7 +61,7 @@ public class Loja extends Utilizador implements Serializable {
     }
 
     /**
-     *
+     *get nome
      *
      * @return
      */
@@ -71,7 +71,7 @@ public class Loja extends Utilizador implements Serializable {
     }
 
     /**
-     *
+     *get clicks restantes
      *
      * @return
      */
@@ -80,15 +80,15 @@ public class Loja extends Utilizador implements Serializable {
     }
 
     /**
+     *get clicks usados
      *
-     * @author daniel
      */
     public void addClickUsados() {
         clicksUsados++;
     }
 
     /**
-     *
+     *get subscricao
      *
      * @return
      */
@@ -97,7 +97,7 @@ public class Loja extends Utilizador implements Serializable {
     }
 
     /**
-     *
+     *set susbscricao
      *
      * @param subscricao
      */
@@ -106,7 +106,7 @@ public class Loja extends Utilizador implements Serializable {
     }
 
     /**
-     *
+     *get clicks
      *
      * @return
      */
@@ -115,7 +115,7 @@ public class Loja extends Utilizador implements Serializable {
     }
 
     /**
-     *
+     *set clicks
      *
      * @param clicks
      */
@@ -124,7 +124,7 @@ public class Loja extends Utilizador implements Serializable {
     }
 
     /**
-     *
+     *get clicks usados
      *
      * @return
      */
@@ -133,7 +133,7 @@ public class Loja extends Utilizador implements Serializable {
     }
 
     /**
-     *
+     *set clicks usados
      *
      * @param clicksUsados
      */

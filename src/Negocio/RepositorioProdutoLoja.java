@@ -16,7 +16,7 @@ public class RepositorioProdutoLoja implements Serializable {
     private ArrayList<ProdutoLoja> repositorio;
 
     /**
-     *
+     * construtor RepositorioProdutoLoja
      *
      */
     public RepositorioProdutoLoja() {
@@ -24,6 +24,7 @@ public class RepositorioProdutoLoja implements Serializable {
     }
 
     /**
+     * adiciona um produto loja ao array list
      *
      * @param dados
      * @throws Negocio.RepositorioProdutoLoja.ProdutoJaExisteNaLojaException
@@ -36,7 +37,7 @@ public class RepositorioProdutoLoja implements Serializable {
     }
 
     /**
-     *
+     * retorna o produto loja
      *
      * @param l
      * @param p
@@ -57,7 +58,7 @@ public class RepositorioProdutoLoja implements Serializable {
 
     //fazer 3 metodos diferentes de forma a procurar cada um sozoinho
     /**
-     *
+     * procura o produto loja pelo nome do produto
      *
      * @param s
      * @return
@@ -75,6 +76,7 @@ public class RepositorioProdutoLoja implements Serializable {
     }
 
     /**
+     * procura o produto loja pela marca do produto
      *
      * @param s
      * @return
@@ -92,6 +94,7 @@ public class RepositorioProdutoLoja implements Serializable {
     }
 
     /**
+     * procura o produto loja pela referencia do produto
      *
      * @param s
      * @return
@@ -109,6 +112,7 @@ public class RepositorioProdutoLoja implements Serializable {
     }
 
     /**
+     * verifica se o produto loja existe no array list
      *
      * @param produto
      * @return
@@ -126,16 +130,7 @@ public class RepositorioProdutoLoja implements Serializable {
     }
 
     /**
-     *
-     *
-     * @param dados
-     */
-    public void removeProdutoLoja(ProdutoLoja dados) {
-        repositorio.remove(dados);
-    }
-
-    /**
-     *
+     * retorna um array list de todos os produtos lojas
      *
      * @return
      */
@@ -144,7 +139,7 @@ public class RepositorioProdutoLoja implements Serializable {
     }
 
     /**
-     *
+     * retorna o tamanho do array list
      *
      * @return
      */
@@ -153,7 +148,7 @@ public class RepositorioProdutoLoja implements Serializable {
     }
 
     /**
-     *
+     * retorna um array list com todos os produtos de uma determinada loja
      *
      * @param loja
      * @return
@@ -170,51 +165,43 @@ public class RepositorioProdutoLoja implements Serializable {
     }
 
     /**
-     *
-     *
-     * @param produto
-     * @return
-     */
-    public ArrayList listarInstanciasProdutos(Produto produto) {
-        ArrayList<ProdutoLoja> lista = new ArrayList();
-        for (ProdutoLoja produtoloja : repositorio) {
-            if (produtoloja.getProduto() == produto) {
-                lista.add(produtoloja);
-            }
-
-        }
-        return lista;
-    }
-
-    /**
-     *
+     * Exception
      *
      */
     public class ProdutoJaExisteNaLojaException extends Exception {
 
+        /**
+         * Exception
+         *
+         */
         public ProdutoJaExisteNaLojaException() {
         }
 
+        /**
+         * Exception
+         *
+         * @param message
+         */
         public ProdutoJaExisteNaLojaException(String message) {
             super(message);
         }
     }
 
     /**
-     *
+     * Exception
      *
      */
     public class OProdutoNaoExiste extends Exception {
 
         /**
-         *
+         * Exception
          *
          */
         public OProdutoNaoExiste() {
         }
 
         /**
-         *
+         * Exception
          *
          * @param message
          */

@@ -22,6 +22,7 @@ public class janelaLojasMaisVisitadas extends javax.swing.JDialog {
     private final AbstractTableModel modeloTabela;
 
     /**
+     * Creates new form janelaLojasMaisVisitadas
      *
      * @param sistema
      */
@@ -36,7 +37,7 @@ public class janelaLojasMaisVisitadas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * cria o modelo da tabela e adiciona os dados
      *
      */
     private AbstractTableModel criarModeloTabela() {

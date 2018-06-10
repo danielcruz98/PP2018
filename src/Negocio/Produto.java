@@ -16,14 +16,14 @@ public class Produto implements Serializable {
     private String codigoBarras, nomeProduto, marca, referencia;
 
     /**
-     *
+     *construtor Produto
      *
      */
     public Produto() {
     }
 
     /**
-     *
+     *construtor Produto
      *
      * @param codigoBarras
      * @param nomeProduto
@@ -40,7 +40,7 @@ public class Produto implements Serializable {
     }
 
     /**
-     *
+     *get codigo de barras
      *
      * @return
      */
@@ -49,7 +49,7 @@ public class Produto implements Serializable {
     }
 
     /**
-     *
+     *set codigo de barras
      *
      * @param codigoBarras
      */
@@ -58,7 +58,7 @@ public class Produto implements Serializable {
     }
 
     /**
-     *
+     *get nome do produto
      *
      * @return
      */
@@ -67,7 +67,7 @@ public class Produto implements Serializable {
     }
 
     /**
-     *
+     *set nome do produto
      *
      * @param nomeProduto
      */
@@ -76,7 +76,7 @@ public class Produto implements Serializable {
     }
 
     /**
-     *
+     *get marca
      *
      * @return
      */
@@ -85,7 +85,7 @@ public class Produto implements Serializable {
     }
 
     /**
-     *
+     *set marca
      *
      * @param marca
      */
@@ -94,7 +94,7 @@ public class Produto implements Serializable {
     }
 
     /**
-     *
+     *get referencia
      *
      * @return
      */
@@ -103,7 +103,7 @@ public class Produto implements Serializable {
     }
 
     /**
-     *
+     *set referencia
      *
      * @param referencia
      */

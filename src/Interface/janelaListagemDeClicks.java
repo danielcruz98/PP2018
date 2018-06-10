@@ -21,7 +21,7 @@ public class janelaListagemDeClicks extends javax.swing.JDialog {
     private final AbstractTableModel modeloTabela;
 
     /**
-     *
+     * Creates new form janelaListaProdutos
      *
      * @param sistema
      * @param i
@@ -37,7 +37,7 @@ public class janelaListagemDeClicks extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * get i
      *
      * @return
      */
@@ -46,7 +46,7 @@ public class janelaListagemDeClicks extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * cria o modelo da tabela e adiciona os dados
      *
      */
     private AbstractTableModel criarModeloTabela() {

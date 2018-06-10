@@ -21,7 +21,7 @@ public class Sistema implements Serializable {
     private final RepositorioProdutoLoja repProdutoLoja;
 
     /**
-     *
+     *construtor sistema
      *
      */
     public Sistema() {
@@ -33,7 +33,7 @@ public class Sistema implements Serializable {
     }
 
     /**
-     *
+     *retorna um objeto com todos os metodos da lista admins
      *
      * @return
      */
@@ -42,7 +42,7 @@ public class Sistema implements Serializable {
     }
 
     /**
-     *
+     *retorna um objeto com todos os metodos da lista lojas
      *
      * @return
      */
@@ -51,7 +51,7 @@ public class Sistema implements Serializable {
     }
 
     /**
-     *
+     *retorna um objeto com todos os metodos do produto
      *
      * @return
      */
@@ -60,7 +60,7 @@ public class Sistema implements Serializable {
     }
 
     /**
-     *
+     *retorna um objeto com todos os metodos do produto loja
      *
      * @return
      */
@@ -69,7 +69,7 @@ public class Sistema implements Serializable {
     }
 
     /**
-     *
+     *faz a autenticacao do utilizador
      *
      * @param username
      * @param password
@@ -105,7 +105,7 @@ public class Sistema implements Serializable {
     }
 
     /**
-     *
+     *retorna o utilizador que se encontra ligado
      *
      * @return
      */
@@ -114,7 +114,7 @@ public class Sistema implements Serializable {
     }
 
     /**
-     *
+     *iniciliza o sistema
      *
      * @throws Negocio.ListaAdmins.UtilizadorDuplicadoException
      * @throws Negocio.RepositorioProduto.ProdutoDuplicadoException
@@ -128,7 +128,7 @@ public class Sistema implements Serializable {
     }
 
     /**
-     *
+     *termina o programa
      *
      */
     public void terminar() {

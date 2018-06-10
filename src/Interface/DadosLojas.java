@@ -57,7 +57,7 @@ public class DadosLojas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * registo novo
      *
      */
     private boolean registoNovo() {
@@ -65,7 +65,7 @@ public class DadosLojas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * recebe os dados todos e cria a loja
      *
      */
     private void guardar() {
@@ -158,7 +158,7 @@ public class DadosLojas extends javax.swing.JDialog {
     }
 
     /**
-     *
+     * fecha a janela
      *
      */
     private void fechar() {
