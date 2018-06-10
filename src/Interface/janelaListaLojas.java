@@ -161,11 +161,20 @@ public class janelaListaLojas extends javax.swing.JDialog {
     }
 
     /**
-     * abre a janela ativas
+     * abre a janela janelaLojasAtivas
      *
      */
     public void ativas() {
         janelaLojasAtivas listagem = new janelaLojasAtivas(sistema);
+        listagem.setVisible(true);
+    }
+    
+    /**
+     * abre a janela janelaLojasSuspensas
+     *
+     */
+    public void suspensas() {
+        janelaLojasSuspensas listagem = new janelaLojasSuspensas(sistema);
         listagem.setVisible(true);
     }
 
@@ -186,6 +195,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         visitas = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -234,6 +244,13 @@ public class janelaListaLojas extends javax.swing.JDialog {
             }
         });
 
+        jButton3.setText("Lojas Suspensas");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -248,7 +265,9 @@ public class janelaListaLojas extends javax.swing.JDialog {
                         .addComponent(click, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)
-                        .addGap(91, 91, 91)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(visitas)
@@ -266,7 +285,8 @@ public class janelaListaLojas extends javax.swing.JDialog {
                     .addComponent(click, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addComponent(visitas)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -299,6 +319,11 @@ public class janelaListaLojas extends javax.swing.JDialog {
         ativas();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        suspensas();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -309,6 +334,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
     private javax.swing.JButton editar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaLojas;
     private javax.swing.JButton visitas;

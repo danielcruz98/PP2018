@@ -18,7 +18,7 @@ public class ListaLojas implements Serializable {
     private TreeMap<String, Loja> lista;
 
     /**
-     *Exception
+     * Exception
      *
      */
     public class UtilizadorNaoExistenteException extends Exception {
@@ -32,7 +32,7 @@ public class ListaLojas implements Serializable {
     }
 
     /**
-     *Exception
+     * Exception
      *
      */
     public class UtilizadorDuplicadoException extends Exception {
@@ -46,7 +46,7 @@ public class ListaLojas implements Serializable {
     }
 
     /**
-     *Exception
+     * Exception
      *
      */
     public class NaoVisita extends Exception {
@@ -60,7 +60,7 @@ public class ListaLojas implements Serializable {
     }
 
     /**
-     *Construtor ListaLojas
+     * Construtor ListaLojas
      *
      */
     public ListaLojas() {
@@ -69,7 +69,7 @@ public class ListaLojas implements Serializable {
     }
 
     /**
-     *adiciona uma loja ao tree map
+     * adiciona uma loja ao tree map
      *
      * @param utilizador
      * @throws Negocio.ListaLojas.UtilizadorDuplicadoException
@@ -88,7 +88,7 @@ public class ListaLojas implements Serializable {
     }
 
     /**
-     *verifica se a loja existe no tree map
+     * verifica se a loja existe no tree map
      *
      * @param username
      * @return
@@ -98,7 +98,7 @@ public class ListaLojas implements Serializable {
     }
 
     /**
-     *retorna o tamanho do tree map
+     * retorna o tamanho do tree map
      *
      * @return
      */
@@ -107,7 +107,7 @@ public class ListaLojas implements Serializable {
     }
 
     /**
-     *retorna a loja
+     * retorna a loja
      *
      * @param username
      * @return
@@ -122,7 +122,7 @@ public class ListaLojas implements Serializable {
     }
 
     /**
-     *adiciona um click a loja em questao
+     * adiciona um click a loja em questao
      *
      * @param username
      * @throws Negocio.ListaLojas.NaoVisita
@@ -137,7 +137,7 @@ public class ListaLojas implements Serializable {
     }
 
     /**
-     *retorna um ArrayList com todas as lojas
+     * retorna um ArrayList com todas as lojas
      *
      * @return
      */
@@ -146,7 +146,7 @@ public class ListaLojas implements Serializable {
     }
 
     /**
-     *retorna um ArrayList com todas as lojas abaixo de x clicks
+     * retorna um ArrayList com todas as lojas abaixo de x clicks
      *
      * @param i
      * @return
@@ -165,7 +165,7 @@ public class ListaLojas implements Serializable {
     }
 
     /**
-     *retorna todas as lojas ativas
+     * retorna todas as lojas ativas
      *
      * @return
      */
@@ -174,6 +174,24 @@ public class ListaLojas implements Serializable {
 
         for (Loja p : todos()) {
             if (p.getSubscricao() == true) {
+                l.add(p);
+            }
+
+        }
+
+        return l;
+    }
+
+    /**
+     * retorna todas as lojas suspensas
+     *
+     * @return
+     */
+    public ArrayList<Loja> lojasSuspensas() {
+        ArrayList<Loja> l = new ArrayList<>();
+
+        for (Loja p : todos()) {
+            if (p.getSubscricao() == false) {
                 l.add(p);
             }
 
