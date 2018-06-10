@@ -63,9 +63,9 @@ public class inicioJanelaProcurarProduto extends javax.swing.JDialog {
         });
 
         for (int i = 0; i < listas.size(); i++) {
-            min.setText(String.format("O preço máximo é: %s ", String.valueOf(listas.get(listas.size() - 1).getPreco())));
+            min.setText(String.format("O preço minimo é: %s ", String.valueOf(listas.get(listas.size() - 1).getPreco())));
             min.setVisible(true);
-            max.setText(String.format("O preço minimo é: %s", String.valueOf(listas.get(0).getPreco())));
+            max.setText(String.format("O preço máximo é: %s", String.valueOf(listas.get(0).getPreco())));
             max.setVisible(true);
         }
 
@@ -77,7 +77,7 @@ public class inicioJanelaProcurarProduto extends javax.swing.JDialog {
 
             @Override
             public int getRowCount() {
-                return listas.size();
+                return p.size();
             }
 
             @Override
@@ -88,8 +88,8 @@ public class inicioJanelaProcurarProduto extends javax.swing.JDialog {
             @Override
             public Object getValueAt(int rowIndex, int columnIndex) {
 
-                ProdutoLoja produto = listas.get(rowIndex);
-
+                ProdutoLoja produto = p.get(rowIndex);
+System.out.println(produto.getLoja().getUsername());
                 switch (columnIndex) {
                     case 0:
                         return produto.getProduto().getNomeProduto();
@@ -102,6 +102,7 @@ public class inicioJanelaProcurarProduto extends javax.swing.JDialog {
                         return produto.getPreco();
                     case 4:
                         return produto.getDisponibilidade();
+                        
                     default:
                         return "";
                 }
