@@ -175,15 +175,26 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
                 produto.setProduto(novo);
             } catch (RepositorioProduto.ProdutoDuplicadoException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
+
                 return;
             }
             produto.setLoja(l);
             try {
                 sistema.getListaProdutoLoja().addProdutoLoja(produto);
             } catch (RepositorioProdutoLoja.ProdutoJaExisteNaLojaException ex) {
+                codigo.setText("");
+                nome.setText("");
+                marca.setText("");
+                referencia.setText("");
+                preco.setText("");
 
+                nome.setEditable(true);
+                marca.setEditable(true);
+                referencia.setEditable(true);
                 JOptionPane.showMessageDialog(this, ex.getMessage());
+
                 return;
+
             }
 
         } else if (sistema.getListaProduto().verificarProduto(codigo.getText()) == true) {
@@ -200,7 +211,18 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
                 sistema.getListaProdutoLoja().addProdutoLoja(produto);
             } catch (RepositorioProdutoLoja.ProdutoJaExisteNaLojaException ex) {
 
+                codigo.setText("");
+                nome.setText("");
+                marca.setText("");
+                referencia.setText("");
+                preco.setText("");
+
+                nome.setEditable(true);
+                marca.setEditable(true);
+                referencia.setEditable(true);
+
                 JOptionPane.showMessageDialog(this, ex.getMessage());
+                
                 return;
             }
 
@@ -208,6 +230,11 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
 
         modeloTabela = criarModeloTabela();
         rep.setModel(modeloTabela);
+        codigo.setText("");
+        nome.setText("");
+        marca.setText("");
+        referencia.setText("");
+        preco.setText("");
         JOptionPane.showMessageDialog(this, "Registo guardado com sucesso.");
 
     }
@@ -234,7 +261,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
 
         String username = sistema.getUtilizadorLigado().getUsername();
         String produto = (String) rep.getValueAt(i, 3);
-        
+
         ProdutoLoja l = sistema.getListaProdutoLoja().getProdutoLoja(username, produto);
 
         try {
@@ -254,11 +281,20 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
         }
 
         l.setDisponibilidade(subs);
-        
-        
 
         atualizar();
         JOptionPane.showMessageDialog(this, "Produto alterado com sucesso.");
+        codigo.setText("");
+        nome.setText("");
+        marca.setText("");
+        referencia.setText("");
+        preco.setText("");
+
+        codigo.setEditable(true);
+        nome.setEditable(true);
+        marca.setEditable(true);
+        referencia.setEditable(true);
+        associar.setEnabled(true);
 
     }
 
@@ -341,7 +377,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Preco");
+        jLabel1.setText("Preco:");
 
         jLabel2.setText("Disponibilidade");
 
@@ -376,13 +412,13 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
 
         combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Indisponivel", "Disponivel" }));
 
-        jLabel3.setText("Codigo-Barras");
+        jLabel3.setText("Codigo-Barras:");
 
-        jLabel4.setText("Referencia");
+        jLabel4.setText("Referencia:");
 
-        jLabel5.setText("Marca");
+        jLabel5.setText("Marca:");
 
-        jLabel6.setText("Nome");
+        jLabel6.setText("Nome:");
 
         procurar.setText("Procurar");
         procurar.addActionListener(new java.awt.event.ActionListener() {
@@ -499,10 +535,8 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
 
         String username = sistema.getUtilizadorLigado().getUsername();
         String produto = (String) rep.getValueAt(i, 3);
-        
-        ProdutoLoja l = sistema.getListaProdutoLoja().getProdutoLoja(username, produto);
 
-        
+        ProdutoLoja l = sistema.getListaProdutoLoja().getProdutoLoja(username, produto);
 
         nome.setEditable(false);
         marca.setEditable(false);

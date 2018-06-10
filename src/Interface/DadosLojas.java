@@ -196,13 +196,13 @@ public class DadosLojas extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("Username");
+        jLabel1.setText("Username:");
 
-        jLabel2.setText("Nome");
+        jLabel2.setText("Nome:");
 
-        jLabel3.setText("Password");
+        jLabel3.setText("Password:");
 
-        jLabel4.setText("Confirmação");
+        jLabel4.setText("Confirmação:");
 
         username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,7 +224,7 @@ public class DadosLojas extends javax.swing.JDialog {
             }
         });
 
-        jLabel6.setText("Clicks");
+        jLabel6.setText("Clicks:");
 
         combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nao Ativa", "Ativa" }));
 

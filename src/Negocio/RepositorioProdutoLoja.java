@@ -47,7 +47,7 @@ public class RepositorioProdutoLoja implements Serializable {
         ProdutoLoja temp = new ProdutoLoja();
 
         for (ProdutoLoja u : lista()) {
-            if (u.getProduto().getCodigoBarras().contains(p) && u.getLoja().getUsername().contains(l)) {
+            if (u.getProduto().getCodigoBarras().contains(p) && u.getLoja().getUsername() == l) {
                 temp = u;
             }
         }

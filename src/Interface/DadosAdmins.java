@@ -156,13 +156,13 @@ public class DadosAdmins extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Username");
+        jLabel1.setText("Username:");
 
-        jLabel2.setText("Nome");
+        jLabel2.setText("Nome:");
 
-        jLabel3.setText("Password");
+        jLabel3.setText("Password:");
 
-        jLabel4.setText("Confirmação");
+        jLabel4.setText("Confirmação:");
 
         guardar.setText("Guardar");
         guardar.addActionListener(new java.awt.event.ActionListener() {

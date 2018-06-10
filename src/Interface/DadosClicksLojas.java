@@ -63,11 +63,11 @@ public class DadosClicksLojas extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Clicks Subscritos");
+        jLabel1.setText("Clicks Subscritos:");
 
-        jLabel2.setText("CLicks Restantes");
+        jLabel2.setText("CLicks Restantes:");
 
-        jLabel3.setText("Clicks Usados");
+        jLabel3.setText("Clicks Usados:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

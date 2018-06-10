@@ -185,7 +185,9 @@ public class Login extends javax.swing.JDialog {
      */
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        sistema.terminar();
+        dispose();
+        inicioJanelaProcurarProduto procurar = new inicioJanelaProcurarProduto(sistema,bd);
+        procurar.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
     /**
