@@ -40,7 +40,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
         this.sistema = sistema;
 
         codigo.requestFocus();
-        
+
         this.modeloTabela = criarModeloTabela();
         rep.setModel(modeloTabela);
 
@@ -141,23 +141,10 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
             return;
         }
 
-        Produto novo = new Produto();
-        novo.setNomeProduto(nome.getText());
-        novo.setMarca(marca.getText());
-        novo.setReferencia(referencia.getText());
-        novo.setCodigoBarras(codigo.getText());
-        codigo.addActionListener(combo);
-        try {
-            sistema.getListaProduto().registarProduto(novo);
-        } catch (RepositorioProduto.ProdutoDuplicadoException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-            return;
-
-        }
-
         Loja l = (Loja) sistema.getUtilizadorLigado();
 
         ProdutoLoja produto = new ProdutoLoja();
+
         boolean subs = true;
         if (combo.getSelectedItem().toString() == "Indisponivel") {
             subs = false;
@@ -175,20 +162,48 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
             return;
         }
 
-        try {
-            Produto produtoA = sistema.getListaProduto().getProduto(codigo.getText());
-            produto.setProduto(produtoA);
-        } catch (RepositorioProduto.ProdutoNaoExistenteException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
-        produto.setLoja(l);
+        if (sistema.getListaProduto().verificarProduto(codigo.getText()) == false) {
 
-        try {
-            sistema.getListaProdutoLoja().addProdutoLoja(produto);
-        } catch (RepositorioProdutoLoja.ProdutoJaExisteNaLojaException ex) {
+            Produto novo = new Produto();
+            novo.setNomeProduto(nome.getText());
+            novo.setMarca(marca.getText());
+            novo.setReferencia(referencia.getText());
+            novo.setCodigoBarras(codigo.getText());
+            codigo.addActionListener(combo);
+            try {
+                sistema.getListaProduto().registarProduto(novo);
+                produto.setProduto(novo);
+            } catch (RepositorioProduto.ProdutoDuplicadoException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+                return;
+            }
+            produto.setLoja(l);
+            try {
+                sistema.getListaProdutoLoja().addProdutoLoja(produto);
+            } catch (RepositorioProdutoLoja.ProdutoJaExisteNaLojaException ex) {
 
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-            return;
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+                return;
+            }
+
+        } else if (sistema.getListaProduto().verificarProduto(codigo.getText()) == true) {
+            try {
+                Produto produtoA = sistema.getListaProduto().getProduto(codigo.getText());
+                produto.setProduto(produtoA);
+            } catch (RepositorioProduto.ProdutoNaoExistenteException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
+
+            produto.setLoja(l);
+
+            try {
+                sistema.getListaProdutoLoja().addProdutoLoja(produto);
+            } catch (RepositorioProdutoLoja.ProdutoJaExisteNaLojaException ex) {
+
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+                return;
+            }
+
         }
 
         modeloTabela = criarModeloTabela();
@@ -217,7 +232,10 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
 
         int i = rep.getSelectedRow();
 
-        ProdutoLoja l = sistema.getListaProdutoLoja().getProdutoLoja(i);
+        String username = sistema.getUtilizadorLigado().getUsername();
+        String produto = (String) rep.getValueAt(i, 3);
+        
+        ProdutoLoja l = sistema.getListaProdutoLoja().getProdutoLoja(username, produto);
 
         try {
             double p = Double.valueOf(preco.getText());
@@ -236,6 +254,8 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
         }
 
         l.setDisponibilidade(subs);
+        
+        
 
         atualizar();
         JOptionPane.showMessageDialog(this, "Produto alterado com sucesso.");
@@ -280,6 +300,9 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
                 nome.setText(p.getNomeProduto());
                 marca.setText(p.getMarca());
                 referencia.setText(p.getReferencia());
+                nome.setEditable(false);
+                marca.setEditable(false);
+                referencia.setEditable(false);
             } catch (RepositorioProduto.ProdutoNaoExistenteException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
             }
@@ -474,19 +497,22 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
         associar.setEnabled(false);
         int i = rep.getSelectedRow();
 
-        ProdutoLoja l = sistema.getListaProdutoLoja().getProdutoLoja(i);
+        String username = sistema.getUtilizadorLigado().getUsername();
+        String produto = (String) rep.getValueAt(i, 3);
+        
+        ProdutoLoja l = sistema.getListaProdutoLoja().getProdutoLoja(username, produto);
 
-        Produto produto = l.getProduto();
+        
 
         nome.setEditable(false);
         marca.setEditable(false);
         referencia.setEditable(false);
         codigo.setEditable(false);
 
-        nome.setText(produto.getNomeProduto());
-        marca.setText(produto.getMarca());
-        referencia.setText(produto.getReferencia());
-        codigo.setText(produto.getCodigoBarras());
+        nome.setText(l.getProduto().getNomeProduto());
+        marca.setText(l.getProduto().getMarca());
+        referencia.setText(l.getProduto().getReferencia());
+        codigo.setText(l.getProduto().getCodigoBarras());
         preco.setText(String.valueOf(l.getPreco()));
     }//GEN-LAST:event_repMouseClicked
 

@@ -29,6 +29,7 @@ private final Serializacao bd;
         
         this.sistema = sistema;
         this.bd=bd;
+        this.setModal(true);
     }
 
     /**
@@ -87,6 +88,7 @@ private final Serializacao bd;
 
         dispose();
         inicioJanelaProcurarProduto janela = new inicioJanelaProcurarProduto(sistema,bd);
+        janela.setVisible(true);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,6 +111,11 @@ private final Serializacao bd;
         sair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("Username:");
 
@@ -197,6 +204,13 @@ private final Serializacao bd;
         inicioJanelaProcurarProduto procurar = new inicioJanelaProcurarProduto(sistema,bd);
         procurar.setVisible(true);
     }//GEN-LAST:event_sairActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        dispose();
+        inicioJanelaProcurarProduto procurar = new inicioJanelaProcurarProduto(sistema,bd);
+        procurar.setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

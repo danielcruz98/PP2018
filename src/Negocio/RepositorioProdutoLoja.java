@@ -38,11 +38,21 @@ public class RepositorioProdutoLoja implements Serializable {
     /**
      *
      *
-     * @param i
+     * @param l
+     * @param p
      * @return
      */
-    public ProdutoLoja getProdutoLoja(int i) {
-        return repositorio.get(i);
+    public ProdutoLoja getProdutoLoja(String l , String p) {
+        
+        ProdutoLoja temp = new ProdutoLoja();
+
+        for (ProdutoLoja u : lista()) {
+            if (u.getProduto().getCodigoBarras().contains(p) && u.getLoja().getUsername().contains(l)) {
+                temp = u;
+            }
+        }
+
+        return temp;
     }
 
     //fazer 3 metodos diferentes de forma a procurar cada um sozoinho
@@ -56,7 +66,7 @@ public class RepositorioProdutoLoja implements Serializable {
         ArrayList<ProdutoLoja> temp = new ArrayList<>();
 
         for (ProdutoLoja p : lista()) {
-            if (p.getProduto().getNomeProduto().contains(s)) {
+            if (p.getProduto().getNomeProduto().contains(s)&&p.getLoja().getSubscricao()==true) {
                 temp.add(p);
             }
         }
@@ -73,7 +83,7 @@ public class RepositorioProdutoLoja implements Serializable {
         ArrayList<ProdutoLoja> temp = new ArrayList<>();
 
         for (ProdutoLoja p : lista()) {
-            if (p.getProduto().getMarca().contains(s)) {
+            if (p.getProduto().getMarca().contains(s)&&p.getLoja().getSubscricao()==true) {
                 temp.add(p);
             }
         }
@@ -90,7 +100,7 @@ public class RepositorioProdutoLoja implements Serializable {
         ArrayList<ProdutoLoja> temp = new ArrayList<>();
 
         for (ProdutoLoja p : lista()) {
-            if (p.getProduto().getReferencia().contains(s)) {
+            if (p.getProduto().getReferencia().contains(s)&&p.getLoja().getSubscricao()==true) {
                 temp.add(p);
             }
         }
@@ -106,7 +116,7 @@ public class RepositorioProdutoLoja implements Serializable {
      */
     public boolean verificarExistencia(ProdutoLoja produto) throws ProdutoJaExisteNaLojaException {
         for (ProdutoLoja produtoloja : repositorio) {
-            if (produtoloja.getProduto() == produto.getProduto()) {
+            if (produtoloja.getProduto() == produto.getProduto() && produtoloja.getLoja() == produto.getLoja()) {
 
                 throw new ProdutoJaExisteNaLojaException(String.format("O Produto já existe nesta loja"));
 

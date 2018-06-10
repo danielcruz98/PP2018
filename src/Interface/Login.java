@@ -33,6 +33,7 @@ public class Login extends javax.swing.JDialog {
 
         this.sistema = sistema;
         this.bd = bd;
+        this.setModal(true);
         userName.requestFocus();
     }
 

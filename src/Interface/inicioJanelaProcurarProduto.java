@@ -63,9 +63,9 @@ public class inicioJanelaProcurarProduto extends javax.swing.JDialog {
         });
 
         for (int i = 0; i < listas.size(); i++) {
-            min.setText(String.format("O preço minimo é: %s ", String.valueOf(listas.get(listas.size() - 1).getPreco())));
+            min.setText(String.format("O preço máximo é: %s ", String.valueOf(listas.get(listas.size() - 1).getPreco())));
             min.setVisible(true);
-            max.setText(String.format("O preço máximo é: %s", String.valueOf(listas.get(0).getPreco())));
+            max.setText(String.format("O preço minimo é: %s", String.valueOf(listas.get(0).getPreco())));
             max.setVisible(true);
         }
 
@@ -147,7 +147,7 @@ public class inicioJanelaProcurarProduto extends javax.swing.JDialog {
             return;
         }
 
-        ProdutoLoja pro = sistema.getListaProdutoLoja().lista().get(rowIndex);
+        ProdutoLoja pro = p.get(rowIndex);
         String username = pro.getLoja().getUsername();
 
         try {
