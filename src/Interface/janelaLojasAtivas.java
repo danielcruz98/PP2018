@@ -8,8 +8,6 @@ package Interface;
 import Negocio.Loja;
 import Negocio.Sistema;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -17,18 +15,22 @@ import javax.swing.table.AbstractTableModel;
  * @author daniel
  */
 public class janelaLojasAtivas extends javax.swing.JDialog {
-private Sistema sistema;
+
+    private final Sistema sistema;
 
     private final AbstractTableModel modeloTabela;
+
     /**
      * Creates new form janelaLojasAtivas
+     *
+     * @param sistema
      */
     public janelaLojasAtivas(Sistema sistema) {
-    
+
         initComponents();
-        
+
         this.sistema = sistema;
-        
+
         this.modeloTabela = criarModeloTabela();
         tabela.setModel(modeloTabela);
     }
@@ -39,7 +41,7 @@ private Sistema sistema;
      */
     private AbstractTableModel criarModeloTabela() {
         String[] nomeColunas = {"Username", "Nome", "Subscricao"};
-     
+
         ArrayList<Loja> listas = new ArrayList<>(sistema.getListaLojas().lojasAtivas());
 
         return new AbstractTableModel() {
@@ -77,6 +79,7 @@ private Sistema sistema;
             }
         };
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

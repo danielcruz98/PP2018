@@ -5,7 +5,6 @@
  */
 package Negocio;
 
-import Negocio.Loja;
 import java.io.Serializable;
 
 /**

@@ -72,7 +72,7 @@ public class ListaAdmins implements Serializable {
      *
      *
      * @param utilizador
-     * @throws Users.ListaAdmins.UtilizadorDuplicadoException
+     * @throws Negocio.ListaAdmins.UtilizadorDuplicadoException
      */
     public void adicionar(Administrador utilizador) throws UtilizadorDuplicadoException {
         if (utilizador == null) {
@@ -106,7 +106,7 @@ public class ListaAdmins implements Serializable {
      *
      * @param username
      * @return
-     * @throws Users.ListaAdmins.UtilizadorNaoExistenteException
+     * @throws Negocio.ListaAdmins.UtilizadorNaoExistenteException
      */
     public Utilizador getUtilizador(String username) throws UtilizadorNaoExistenteException {
         if (lista.containsKey(username)) {

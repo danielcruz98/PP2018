@@ -159,7 +159,7 @@ public class janelaListaLojas extends javax.swing.JDialog {
         janelaLojasMaisVisitadas listagem = new janelaLojasMaisVisitadas(sistema);
         listagem.setVisible(true);
     }
-    
+
     /**
      *
      *

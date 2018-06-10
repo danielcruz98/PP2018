@@ -22,8 +22,8 @@ public class Correr {
      *
      *
      * @param args
-     * @throws Users.ListaAdmins.UtilizadorDuplicadoException
-     * @throws Users.ListaLojas.UtilizadorDuplicadoException
+     * @throws Negocio.ListaAdmins.UtilizadorDuplicadoException
+     * @throws Negocio.ListaLojas.UtilizadorDuplicadoException
      */
     public static void main(String[] args) throws ListaAdmins.UtilizadorDuplicadoException, ListaLojas.UtilizadorDuplicadoException {
 
@@ -39,7 +39,7 @@ public class Correr {
             sistema.getListaAdmins().adicionar(new Administrador("admin", "admin", "Aministrador"));
             sistema.getListaLojas().adicionar(new Loja("daniel", "daniel", "daniel", true, 1111));
             sistema.getListaLojas().adicionar(new Loja("quim", "quim", "quim", true, 1111));
-             sistema.getListaLojas().adicionar(new Loja("da", "da", "da", true, 1111));
+            sistema.getListaLojas().adicionar(new Loja("da", "da", "da", true, 1111));
         } else {
             sistema = bd.carregar();
         }

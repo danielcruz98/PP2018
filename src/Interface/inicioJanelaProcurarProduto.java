@@ -89,7 +89,7 @@ public class inicioJanelaProcurarProduto extends javax.swing.JDialog {
             public Object getValueAt(int rowIndex, int columnIndex) {
 
                 ProdutoLoja produto = p.get(rowIndex);
-System.out.println(produto.getLoja().getUsername());
+                System.out.println(produto.getLoja().getUsername());
                 switch (columnIndex) {
                     case 0:
                         return produto.getProduto().getNomeProduto();
@@ -102,7 +102,7 @@ System.out.println(produto.getLoja().getUsername());
                         return produto.getPreco();
                     case 4:
                         return produto.getDisponibilidade();
-                        
+
                     default:
                         return "";
                 }

@@ -102,9 +102,9 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
     /**
      *
      *
-     * @throws Users.ListaLojas.UtilizadorNaoExistenteException
-     * @throws Produtos.RepositorioProduto.ProdutoNaoExistenteException
-     * @throws Produtos.RepositorioProdutoLoja.ProdutoJaExisteNaLojaException
+     * @throws Negocio.ListaLojas.UtilizadorNaoExistenteException
+     * @throws Negocio.RepositorioProduto.ProdutoNaoExistenteException
+     * @throws Negocio.RepositorioProdutoLoja.ProdutoJaExisteNaLojaException
      */
     public void associar() throws ListaLojas.UtilizadorNaoExistenteException, RepositorioProduto.ProdutoNaoExistenteException, RepositorioProdutoLoja.ProdutoJaExisteNaLojaException {
         if (nome.getText().isEmpty()) {
@@ -222,7 +222,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
                 referencia.setEditable(true);
 
                 JOptionPane.showMessageDialog(this, ex.getMessage());
-                
+
                 return;
             }
 
@@ -235,7 +235,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
         marca.setText("");
         referencia.setText("");
         preco.setText("");
-        
+
         codigo.setEditable(true);
         nome.setEditable(true);
         marca.setEditable(true);
@@ -323,7 +323,7 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
     /**
      *
      *
-     * @throws Produtos.RepositorioProduto.ProdutoNaoExistenteException
+     * @throws Negocio.RepositorioProduto.ProdutoNaoExistenteException
      */
     public void procurar() throws RepositorioProduto.ProdutoNaoExistenteException {
         if (codigo.getText().isEmpty()) {

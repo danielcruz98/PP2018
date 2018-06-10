@@ -77,12 +77,6 @@ import java.util.ArrayList;
 //                        +u.Lojas().get(i).getClicks()+"      "+u.Lojas().size());
 //                
 //                
-
-
-
-
-
-
 //            Produto p = new Produto("f","nome","marca","referencia");
 //            Produto p1 = new Produto("f","nomep1","nomep1","referenciap1");
 //            
@@ -149,4 +143,4 @@ import java.util.ArrayList;
 //        
 //        System.out.println(r.getLoja().getNome());
 //        System.out.println(r.getProduto().getNomeProduto());
-    
+

@@ -13,19 +13,24 @@ import Negocio.Sistema;
  * @author daniel
  */
 public class DadosLojaMostrada extends javax.swing.JDialog {
-private Sistema sistema;
-private ProdutoLoja p;
+
+    private final Sistema sistema;
+    private final ProdutoLoja p;
+
     /**
      * Creates new form DadosLojaMostrada
+     *
+     * @param sistema
+     * @param p
      */
     public DadosLojaMostrada(Sistema sistema, ProdutoLoja p) {
-      
+
         initComponents();
-        
+
         this.sistema = sistema;
-        this.p=p;
-        
-        label.setText(String.format("Bem vindo á  %s !",p.getLoja().getNome()));
+        this.p = p;
+
+        label.setText(String.format("Bem vindo á  %s !", p.getLoja().getNome()));
     }
 
     /**
@@ -71,7 +76,6 @@ private ProdutoLoja p;
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

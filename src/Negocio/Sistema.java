@@ -5,14 +5,6 @@
  */
 package Negocio;
 
-import Negocio.Produto;
-import Negocio.RepositorioProdutoLoja;
-import Negocio.RepositorioProduto;
-import Negocio.Administrador;
-import Negocio.Loja;
-import Negocio.ListaAdmins;
-import Negocio.ListaLojas;
-import Negocio.Utilizador;
 import java.io.Serializable;
 
 /**
@@ -82,8 +74,8 @@ public class Sistema implements Serializable {
      * @param username
      * @param password
      * @return
-     * @throws Users.ListaAdmins.UtilizadorNaoExistenteException
-     * @throws Users.ListaLojas.UtilizadorNaoExistenteException
+     * @throws Negocio.ListaAdmins.UtilizadorNaoExistenteException
+     * @throws Negocio.ListaLojas.UtilizadorNaoExistenteException
      */
     public boolean autenticarUtilizador(String username, String password) throws ListaAdmins.UtilizadorNaoExistenteException, ListaLojas.UtilizadorNaoExistenteException {
 
@@ -124,9 +116,9 @@ public class Sistema implements Serializable {
     /**
      *
      *
-     * @throws Users.ListaAdmins.UtilizadorDuplicadoException
-     * @throws Produtos.RepositorioProduto.ProdutoDuplicadoException
-     * @throws Users.ListaLojas.UtilizadorDuplicadoException
+     * @throws Negocio.ListaAdmins.UtilizadorDuplicadoException
+     * @throws Negocio.RepositorioProduto.ProdutoDuplicadoException
+     * @throws Negocio.ListaLojas.UtilizadorDuplicadoException
      */
     public void inicializar() throws ListaAdmins.UtilizadorDuplicadoException, RepositorioProduto.ProdutoDuplicadoException, ListaLojas.UtilizadorDuplicadoException {
         admins.adicionar(new Administrador("admin", "admin", "Aministrador"));

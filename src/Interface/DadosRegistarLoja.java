@@ -16,19 +16,22 @@ import javax.swing.JOptionPane;
  * @author daniel
  */
 public class DadosRegistarLoja extends javax.swing.JDialog {
-private final Sistema sistema;
-private final Serializacao bd;
+
+    private final Sistema sistema;
+    private final Serializacao bd;
+
     /**
      * Creates new form DadosRegistarLoja
+     *
      * @param sistema
      * @param bd
      */
-    public DadosRegistarLoja(Sistema sistema,Serializacao bd) {
-       
+    public DadosRegistarLoja(Sistema sistema, Serializacao bd) {
+
         initComponents();
-        
+
         this.sistema = sistema;
-        this.bd=bd;
+        this.bd = bd;
         this.setModal(true);
     }
 
@@ -87,9 +90,10 @@ private final Serializacao bd;
         JOptionPane.showMessageDialog(this, "Registo guardado com sucesso.");
 
         dispose();
-        inicioJanelaProcurarProduto janela = new inicioJanelaProcurarProduto(sistema,bd);
+        inicioJanelaProcurarProduto janela = new inicioJanelaProcurarProduto(sistema, bd);
         janela.setVisible(true);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -201,21 +205,20 @@ private final Serializacao bd;
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
         // TODO add your handling code here:
         dispose();
-        inicioJanelaProcurarProduto procurar = new inicioJanelaProcurarProduto(sistema,bd);
+        inicioJanelaProcurarProduto procurar = new inicioJanelaProcurarProduto(sistema, bd);
         procurar.setVisible(true);
     }//GEN-LAST:event_sairActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         dispose();
-        inicioJanelaProcurarProduto procurar = new inicioJanelaProcurarProduto(sistema,bd);
+        inicioJanelaProcurarProduto procurar = new inicioJanelaProcurarProduto(sistema, bd);
         procurar.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField conf;

@@ -41,14 +41,14 @@ public class janelaLojasMaisVisitadas extends javax.swing.JDialog {
      */
     private AbstractTableModel criarModeloTabela() {
         String[] nomeColunas = {"Username", "Nome", "ClicksUsados"};
-     
+
         List<Loja> listas = new ArrayList<>(sistema.getListaLojas().todos());
-     
+
         listas.sort(new Comparator<Loja>() {
 
             @Override
             public int compare(Loja o2, Loja o1) {
-                
+
                 return String.valueOf(o2.getClicksRestantes()).compareTo(String.valueOf(o1.getClicksRestantes()));
             }
         });

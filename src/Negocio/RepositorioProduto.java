@@ -29,7 +29,7 @@ public class RepositorioProduto implements Serializable {
      *
      *
      * @param produto
-     * @throws Produtos.RepositorioProduto.ProdutoDuplicadoException
+     * @throws Negocio.RepositorioProduto.ProdutoDuplicadoException
      */
     public void registarProduto(Produto produto) throws ProdutoDuplicadoException {
         if (produto == null) {
@@ -48,7 +48,7 @@ public class RepositorioProduto implements Serializable {
      *
      * @param codigoBarras
      * @return
-     * @throws Produtos.RepositorioProduto.ProdutoNaoExistenteException
+     * @throws Negocio.RepositorioProduto.ProdutoNaoExistenteException
      */
     public Produto getProduto(String codigoBarras) throws ProdutoNaoExistenteException {
         if (lista.containsKey(codigoBarras)) {

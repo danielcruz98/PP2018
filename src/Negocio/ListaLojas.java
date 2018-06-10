@@ -72,7 +72,7 @@ public class ListaLojas implements Serializable {
      *
      *
      * @param utilizador
-     * @throws Users.ListaLojas.UtilizadorDuplicadoException
+     * @throws Negocio.ListaLojas.UtilizadorDuplicadoException
      */
     public void adicionar(Loja utilizador) throws UtilizadorDuplicadoException {
         if (utilizador == null) {
@@ -111,7 +111,7 @@ public class ListaLojas implements Serializable {
      *
      * @param username
      * @return
-     * @throws Users.ListaLojas.UtilizadorNaoExistenteException
+     * @throws Negocio.ListaLojas.UtilizadorNaoExistenteException
      */
     public Utilizador getUtilizador(String username) throws UtilizadorNaoExistenteException {
         if (lista.containsKey(username)) {
@@ -125,7 +125,7 @@ public class ListaLojas implements Serializable {
      *
      *
      * @param username
-     * @throws Users.ListaLojas.NaoVisita
+     * @throws Negocio.ListaLojas.NaoVisita
      */
     public void conta(String username) throws NaoVisita {
         if (lista.containsKey(username)) {
@@ -163,18 +163,17 @@ public class ListaLojas implements Serializable {
 
         return l;
     }
-    
+
     /**
      *
      *
-     * @param i
      * @return
      */
     public ArrayList<Loja> lojasAtivas() {
         ArrayList<Loja> l = new ArrayList<>();
 
         for (Loja p : todos()) {
-            if (p.getSubscricao()==true) {
+            if (p.getSubscricao() == true) {
                 l.add(p);
             }
 
@@ -182,6 +181,5 @@ public class ListaLojas implements Serializable {
 
         return l;
     }
-    
 
 }

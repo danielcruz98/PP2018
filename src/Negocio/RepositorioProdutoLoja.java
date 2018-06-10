@@ -26,7 +26,7 @@ public class RepositorioProdutoLoja implements Serializable {
     /**
      *
      * @param dados
-     * @throws Produtos.RepositorioProdutoLoja.ProdutoJaExisteNaLojaException
+     * @throws Negocio.RepositorioProdutoLoja.ProdutoJaExisteNaLojaException
      */
     public void addProdutoLoja(ProdutoLoja dados) throws ProdutoJaExisteNaLojaException {
 
@@ -42,8 +42,8 @@ public class RepositorioProdutoLoja implements Serializable {
      * @param p
      * @return
      */
-    public ProdutoLoja getProdutoLoja(String l , String p) {
-        
+    public ProdutoLoja getProdutoLoja(String l, String p) {
+
         ProdutoLoja temp = new ProdutoLoja();
 
         for (ProdutoLoja u : lista()) {
@@ -66,7 +66,7 @@ public class RepositorioProdutoLoja implements Serializable {
         ArrayList<ProdutoLoja> temp = new ArrayList<>();
 
         for (ProdutoLoja p : lista()) {
-            if (p.getProduto().getNomeProduto().contains(s)&&p.getLoja().getSubscricao()==true) {
+            if (p.getProduto().getNomeProduto().contains(s) && p.getLoja().getSubscricao() == true) {
                 temp.add(p);
             }
         }
@@ -83,7 +83,7 @@ public class RepositorioProdutoLoja implements Serializable {
         ArrayList<ProdutoLoja> temp = new ArrayList<>();
 
         for (ProdutoLoja p : lista()) {
-            if (p.getProduto().getMarca().contains(s)&&p.getLoja().getSubscricao()==true) {
+            if (p.getProduto().getMarca().contains(s) && p.getLoja().getSubscricao() == true) {
                 temp.add(p);
             }
         }
@@ -100,7 +100,7 @@ public class RepositorioProdutoLoja implements Serializable {
         ArrayList<ProdutoLoja> temp = new ArrayList<>();
 
         for (ProdutoLoja p : lista()) {
-            if (p.getProduto().getReferencia().contains(s)&&p.getLoja().getSubscricao()==true) {
+            if (p.getProduto().getReferencia().contains(s) && p.getLoja().getSubscricao() == true) {
                 temp.add(p);
             }
         }
@@ -112,7 +112,7 @@ public class RepositorioProdutoLoja implements Serializable {
      *
      * @param produto
      * @return
-     * @throws Produtos.RepositorioProdutoLoja.ProdutoJaExisteNaLojaException
+     * @throws Negocio.RepositorioProdutoLoja.ProdutoJaExisteNaLojaException
      */
     public boolean verificarExistencia(ProdutoLoja produto) throws ProdutoJaExisteNaLojaException {
         for (ProdutoLoja produtoloja : repositorio) {
@@ -216,6 +216,7 @@ public class RepositorioProdutoLoja implements Serializable {
         /**
          *
          *
+         * @param message
          */
         public OProdutoNaoExiste(String message) {
             super(message);

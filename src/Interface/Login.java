@@ -26,6 +26,7 @@ public class Login extends javax.swing.JDialog {
      * Creates new form Logins
      *
      * @param sistema
+     * @param bd
      */
     public Login(Sistema sistema, Serializacao bd) {
 
@@ -186,7 +187,7 @@ public class Login extends javax.swing.JDialog {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         dispose();
-        inicioJanelaProcurarProduto procurar = new inicioJanelaProcurarProduto(sistema,bd);
+        inicioJanelaProcurarProduto procurar = new inicioJanelaProcurarProduto(sistema, bd);
         procurar.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
