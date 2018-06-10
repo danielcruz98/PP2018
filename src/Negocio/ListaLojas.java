@@ -163,5 +163,25 @@ public class ListaLojas implements Serializable {
 
         return l;
     }
+    
+    /**
+     *
+     *
+     * @param i
+     * @return
+     */
+    public ArrayList<Loja> lojasAtivas() {
+        ArrayList<Loja> l = new ArrayList<>();
+
+        for (Loja p : todos()) {
+            if (p.getSubscricao()==true) {
+                l.add(p);
+            }
+
+        }
+
+        return l;
+    }
+    
 
 }

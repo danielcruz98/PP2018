@@ -235,6 +235,12 @@ public class janelaProdutoLojas extends javax.swing.JDialog {
         marca.setText("");
         referencia.setText("");
         preco.setText("");
+        
+        codigo.setEditable(true);
+        nome.setEditable(true);
+        marca.setEditable(true);
+        referencia.setEditable(true);
+        associar.setEnabled(true);
         JOptionPane.showMessageDialog(this, "Registo guardado com sucesso.");
 
     }
